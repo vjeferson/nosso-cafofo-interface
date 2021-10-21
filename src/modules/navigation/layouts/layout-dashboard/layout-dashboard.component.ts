@@ -24,12 +24,12 @@ export class LayoutDashboardComponent implements OnInit, OnDestroy {
     subscription: Subscription = new Subscription();
     sideNavItems = sideNavItems;
     sideNavSections = sideNavSections;
-    sidenavStyle = 'sb-sidenav-dark';
+    sidenavStyle = 'sb-sidenav-principal';
 
     constructor(
         public navigationService: NavigationService,
         private changeDetectorRef: ChangeDetectorRef
-    ) {}
+    ) { }
     ngOnInit() {
         if (this.light) {
             this.sidenavStyle = 'sb-sidenav-light';

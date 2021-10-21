@@ -1,0 +1,33 @@
+// Tema principal para sidenav Nosso Cafofo
+
+.sb-sidenav-principal {
+    background-color: $sidenav-background;
+    color: $sidenav-color;
+    .sb-sidenav-menu {
+      .sb-sidenav-menu-heading {
+        color: $sidenav-heading-color;
+      }
+      .nav-link {
+        color: $sidenav-link-color;
+        .sb-nav-link-icon {
+          color: $sidenav-icon-color;
+        }
+        .sb-sidenav-collapse-arrow {
+          color: $sidenav-icon-color;
+        }
+        &:hover {
+          color: $sidenav-link-active-color;
+        }
+        &.active {
+          color: $sidenav-link-active-color;
+          .sb-nav-link-icon {
+            color: $sidenav-link-active-color;
+          }
+        }
+      }
+    }
+    .sb-sidenav-footer {
+      background-color: $sidenav-footer-bg;
+    }
+  }
+  

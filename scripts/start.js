@@ -1,5 +1,5 @@
 const concurrently = require('concurrently');
-const port = process.env.PORT || 4200;
+const port = process.env.PORT || 4300;
 
 concurrently([
     { command: 'node scripts/pug-watch.js', name: 'PUG_WATCH', prefixColor: 'bgGreen.bold' },

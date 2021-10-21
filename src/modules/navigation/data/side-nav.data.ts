@@ -2,17 +2,9 @@ import { SideNavItems, SideNavSection } from '@modules/navigation/models';
 
 export const sideNavSections: SideNavSection[] = [
     {
-        text: 'CORE',
-        items: ['dashboard'],
-    },
-    {
-        text: 'INTERFACE',
-        items: ['layouts', 'pages'],
-    },
-    {
-        text: 'ADDONS',
-        items: ['charts', 'tables'],
-    },
+        text: '',
+        items: ['dashboard', 'layouts', 'pages', 'charts', 'tables']
+    }
 ];
 
 export const sideNavItems: SideNavItems = {
