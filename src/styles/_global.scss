@@ -1,4 +1,9 @@
 // Global styling for this template
+:root {
+  --color-text-base: #202145;
+  --color-button-background-purple: #5D2680;
+  --color-button-text-white: #ffffff;
+}
 
 html,
 body {
@@ -11,4 +16,10 @@ body {
 .container-fluid {
   padding-left: $grid-gutter-width;
   padding-right: $grid-gutter-width;
+}
+
+
+body, h1, h2, h3, h4, button, p {
+  font-family: Archivo;
+  color: var(--color-text-base);
 }

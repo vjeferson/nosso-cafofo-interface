@@ -19,7 +19,8 @@
         "ng": "cross-env NODE_OPTIONS=--max_old_space_size=2048 ./node_modules/.bin/ng",
         "serve": "./node_modules/.bin/static-server dist/sb-admin-angular",
         "start": "node scripts/start.js",
-        "test": "npm run ng -- test"
+        "test": "npm run ng -- test",
+        "generate-api:local": "ng-swagger-gen --config swagger.conf.json -i http://localhost:3001/api-docs.json"
     },
     "private": true,
     "dependencies": {
@@ -71,6 +72,7 @@
         "karma-coverage-istanbul-reporter": "3.0.3",
         "karma-jasmine": "4.0.1",
         "karma-jasmine-html-reporter": "1.5.4",
+        "ng-swagger-gen": "^2.3.1",
         "prettier": "2.1.2",
         "protractor": "7.0.0",
         "pug": "^3.0.2",

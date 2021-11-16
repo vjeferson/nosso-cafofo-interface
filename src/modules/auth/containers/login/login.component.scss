@@ -1,1 +1,35 @@
 @import 'styles/variables.scss';
+
+.card-header{
+    h4 {
+        margin: 0.5rem !important
+    }
+}
+
+#logar {
+    display: flex;
+    justify-content: center;
+    button {
+        width: 45%;
+        background-color: var(--color-button-background-purple);
+        color: #FFFFFF;
+    }
+}
+
+#divisor { 
+    color: #808588;
+    display: flex;
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    hr{
+        width: 30%;
+    }
+}
+
+.card-footer{
+    p {
+        margin-bottom: 0;
+    }
+    .small {
+        margin-bottom: 0.5rem;
+    }
+}

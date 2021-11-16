@@ -3,7 +3,18 @@ import { SideNavItems, SideNavSection } from '@modules/navigation/models';
 export const sideNavSections: SideNavSection[] = [
     {
         text: '',
-        items: ['dashboard', 'layouts', 'pages', 'charts', 'tables']
+        items: [
+            'dashboard',
+            'pages',
+            'charts',
+            'tables',
+            'republica',
+            'moradores',
+            'usuarios',
+            'contas',
+            'festas',
+            'reunioes'
+        ]
     }
 ];
 
@@ -12,20 +23,6 @@ export const sideNavItems: SideNavItems = {
         icon: 'tachometer-alt',
         text: 'Dashboard',
         link: '/dashboard',
-    },
-    layouts: {
-        icon: 'columns',
-        text: 'Layouts',
-        submenu: [
-            {
-                text: 'Static Navigation',
-                link: '/dashboard/static',
-            },
-            {
-                text: 'Light Sidenav',
-                link: '/dashboard/light',
-            },
-        ],
     },
     pages: {
         icon: 'book-open',
@@ -53,15 +50,15 @@ export const sideNavItems: SideNavItems = {
                 submenu: [
                     {
                         text: '401 Page',
-                        link: '/error/401',
+                        link: '/error/401'
                     },
                     {
                         text: '404 Page',
-                        link: '/error/404',
+                        link: '/error/404'
                     },
                     {
                         text: '500 Page',
-                        link: '/error/500',
+                        link: '/error/500'
                     },
                 ],
             },
@@ -70,11 +67,54 @@ export const sideNavItems: SideNavItems = {
     charts: {
         icon: 'chart-area',
         text: 'Charts',
-        link: '/charts',
+        link: '/charts'
     },
     tables: {
         icon: 'table',
         text: 'Tables',
-        link: '/tables',
+        link: '/tables'
     },
+    republica: {
+        icon: 'book-open',
+        text: 'República',
+        submenu: [
+            {
+                text: 'Info. Cadastro',
+                link: '/info-cadastro'
+            },
+            {
+                text: 'Caixa',
+                link: '/caixa'
+            },
+            {
+                text: 'Entradas e Saídas',
+                link: '/entradas-saidas'
+            }
+        ],
+    },
+    moradores: {
+        icon: 'table',
+        text: 'Moradores',
+        link: '/moradores'
+    },
+    usuarios: {
+        icon: 'table',
+        text: 'Usuários',
+        link: '/usuarios'
+    },
+    contas: {
+        icon: 'table',
+        text: 'Contas',
+        link: '/contas'
+    },
+    festas: {
+        icon: 'table',
+        text: 'Festas',
+        link: '/festas'
+    },
+    reunioes: {
+        icon: 'table',
+        text: 'Reuniões',
+        link: '/reunioes'
+    }
 };
