@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ChildActivationEnd, Router } from '@angular/router';
+import { environment } from 'environments/environment';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -9,7 +10,7 @@ import { filter } from 'rxjs/operators';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    title = 'sb-admin-angular';
+    title = 'nosso-cafofo';
     constructor(public router: Router, private titleService: Title) {
         this.router.events
             .pipe(filter(event => event instanceof ChildActivationEnd))
@@ -18,7 +19,14 @@ export class AppComponent {
                 while (snapshot.firstChild !== null) {
                     snapshot = snapshot.firstChild;
                 }
-                this.titleService.setTitle(snapshot.data.title || 'SB Admin Angular');
+                this.titleService.setTitle('Nosso Cafofo');
             });
+    }
+
+    ngOnInit() {
+        if (environment.production) {
+            // No servidor 48 esta ocorrendo erro.
+            // this.installPwa();
+        }
     }
 }

@@ -17,9 +17,6 @@ import * as authContainers from './containers';
 /* Guards */
 import * as authGuards from './guards';
 
-/* Services */
-import * as authServices from './services';
-
 @NgModule({
     imports: [
         CommonModule,
@@ -27,10 +24,10 @@ import * as authServices from './services';
         ReactiveFormsModule,
         FormsModule,
         AppCommonModule,
-        NavigationModule,
+        NavigationModule
     ],
-    providers: [...authServices.services, ...authGuards.guards],
+    providers: [...authGuards.guards],
     declarations: [...authContainers.containers, ...authComponents.components],
     exports: [...authContainers.containers, ...authComponents.components],
 })
-export class AuthModule {}
+export class AuthModule { }
