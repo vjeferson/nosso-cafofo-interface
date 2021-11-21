@@ -1,1 +1,24 @@
 @import 'styles/variables.scss';
+
+#layoutAuthentication{
+    background-color: var(--pages-auth-background-color);
+}
+
+#logo{
+    color: var(--color-button-text-white);
+    margin-top: 3rem;
+    font-size: 28px;
+    font-weight: bold;
+
+    img {
+        width: 70px;
+        height: 70px;
+
+    }
+}
+
+.logo-nosso-cafofo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
