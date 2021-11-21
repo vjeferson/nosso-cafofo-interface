@@ -11,6 +11,13 @@ import { ApiConfiguration } from './api/api-configuration';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+declare module "@angular/core" {
+    interface ModuleWithProviders<T = any> {
+        ngModule: Type<T>;
+        providers?: Provider[];
+    }
+}
+
 export function initApiConfiguration(config: ApiConfiguration) {
     return () => {
         config.rootUrl = environment.apiUrl;

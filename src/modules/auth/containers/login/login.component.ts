@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     ) {
         this.formGroup = this._formBuilder.group({
             email: [null, [Validators.required, Validators.email]],
-            senha: [null, [Validators.required]],
+            senha: [null, [Validators.required, Validators.minLength(8)]],
         });
     }
 
@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
                     err.error && err.error.error ? err.error.error : "Autenticação inválida", {
                     timeOut: 3000,
                 });
-                //this._changeDetectorService.detectChanges();
             });
         }
     }

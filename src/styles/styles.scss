@@ -7,6 +7,9 @@
 // Import Custom SCSS
 @import "global.scss";
 
+// Import Custom SCSS
+@import "form.scss";
+
 // Layout
 @import "layout/authentication.scss";
 @import "layout/dashboard-default.scss";
@@ -32,3 +35,6 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 @import '~ngx-toastr/toastr-bs4-alert';
+
+// Default Ng Select Style
+@import "~@ng-select/ng-select/themes/default.theme.css";

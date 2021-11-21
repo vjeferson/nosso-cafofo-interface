@@ -26,6 +26,10 @@
                                 <show-erro-input [inputName]="'senha'" [formGroup]="formGroup"
                                     [validationName]="'required'">
                                 </show-erro-input>
+
+                                <show-erro-input [inputName]="'senha'" [formGroup]="formGroup"
+                                    [validationName]="'minlength'" [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
+                                </show-erro-input>
                             </div>
                             <!-- <div class="form-group">
                                 <div class="custom-control custom-checkbox">
@@ -34,18 +38,18 @@
                                         password</label>
                                 </div>
                             </div> -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <a class="small" routerLink="/auth/forgot-password">Esqueci minha senha.</a>
-                            </div>
+                            </div> -->
                             <div id="logar">
                                 <button class="btn" (click)="logar()" [disabled]="!formGroup.valid">Entrar</button>
                             </div>
                         </form>
-                        <div class="row" id="divisor">
+                        <!-- <div class="row" id="divisor">
                             <hr />
                             <p>ou</p>
                             <hr />
-                        </div>
+                        </div> -->
                     </div>
                     <div class="card-footer text-center">
                         <p>Ainda não possui um cadastro?</p>

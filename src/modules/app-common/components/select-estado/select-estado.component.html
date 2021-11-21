@@ -1,0 +1,5 @@
+<label class="small mb-1" for="estado | async">Estado</label>
+<ng-select #select [items]="estados" bindLabel="estado" appendTo="body" placeholder="Selecione um Estado"
+    [loading]="_loading" [readonly]="_loading || _readonly" [(ngModel)]="_value" [disabled]="_disabled"
+    [typeahead]="filtro$" (change)="_onChange($event)" (focus)="_onTouched($event)">
+</ng-select>
