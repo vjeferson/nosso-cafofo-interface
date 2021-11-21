@@ -23,10 +23,19 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "aot": false,
-                        "assets": ["src/favicon.png", "src/assets"],
-                        "styles": ["src/styles/styles.scss"],
+                        "assets": [
+                            "src/favicon.png",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles/styles.scss",
+                            "node_modules/ngx-toastr/toastr.css"
+                        ],
                         "stylePreprocessorOptions": {
-                            "includePaths": ["src", "./node_modules"]
+                            "includePaths": [
+                                "src",
+                                "./node_modules"
+                            ]
                         },
                         "scripts": []
                     },
@@ -85,10 +94,19 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
-                        "assets": ["src/favicon.png", "src/assets"],
-                        "styles": ["src/styles/styles.scss"],
+                        "assets": [
+                            "src/favicon.png",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles/styles.scss",
+                            "node_modules/ngx-toastr/toastr.css"
+                        ],
                         "stylePreprocessorOptions": {
-                            "includePaths": ["src", "./node_modules"]
+                            "includePaths": [
+                                "src",
+                                "./node_modules"
+                            ]
                         },
                         "scripts": []
                     }
@@ -101,7 +119,9 @@
                             "tsconfig.spec.json",
                             "e2e/tsconfig.json"
                         ],
-                        "exclude": ["**/node_modules/**"]
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
                     }
                 },
                 "e2e": {

@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Autenticar } from '@app/api/models';
 import { AutenticacaoService } from '@app/api/services';
-import { Utilitarios } from '@common/services/utilitarios.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'sb-login',
@@ -15,27 +15,32 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private readonly _autenticacaoService: AutenticacaoService,
-        private readonly _formBuilder: FormBuilder
+        private readonly _formBuilder: FormBuilder,
+        private readonly _toastService: ToastrService,
+        private readonly _changeDetectorService: ChangeDetectorRef
     ) {
         this.formGroup = this._formBuilder.group({
-            email: ['', [Validators.required, Validators.email]],
-            senha: ['', [Validators.required]],
+            email: [null, [Validators.required, Validators.email]],
+            senha: [null, [Validators.required]],
         });
     }
 
-    ngOnInit() {
-
-    }
+    ngOnInit() { }
 
     public logar() {
-        console.log(this.formGroup);
         if (this.formGroup.valid) {
             const parametros: Autenticar = this.formGroup.value;
-            this._autenticacaoService.postAuthenticate(parametros).subscribe(res => { console.log(res) });
-        } else {
-            Utilitarios.validateAllFormFields(this.formGroup);
+            this._autenticacaoService.postAuthenticate(parametros).subscribe((res: any) => {
+                console.log(res);
+            }, (err: any) => {
+                debugger;
+                this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                    err.error && err.error.error ? err.error.error : "Autenticação inválida", {
+                    timeOut: 3000,
+                });
+                //this._changeDetectorService.detectChanges();
+            });
         }
-
     }
 
 }

@@ -1,7 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'environments/environment';
+import { ToastrModule } from 'ngx-toastr';
 import { ApiConfiguration } from './api/api-configuration';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,8 +26,14 @@ export const INIT_API_CONFIGURATION: Provider = {
     declarations: [AppComponent],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        ToastrModule.forRoot({
+            timeOut: 10000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true
+        })
     ],
     providers: [
         INIT_API_CONFIGURATION
