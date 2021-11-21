@@ -21,7 +21,7 @@ export const ROUTES: Routes = [
     },
     {
         path: 'login',
-        canActivate: [],
+        canActivate: [authGuards.AuthGuard],
         component: authContainers.LoginComponent,
         data: {
             title: 'Pages Login - SB Admin Angular',
@@ -49,4 +49,4 @@ export const ROUTES: Routes = [
     imports: [AuthModule, RouterModule.forChild(ROUTES)],
     exports: [RouterModule],
 })
-export class AuthRoutingModule {}
+export class AuthRoutingModule { }

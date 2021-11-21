@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Autenticar } from '@app/api/models';
 import { AutenticacaoService } from '@app/api/services';
+import { UsuarioLogadoService } from '@common/services';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
         private readonly _formBuilder: FormBuilder,
         private readonly _toastService: ToastrService,
         private readonly _changeDetectorService: ChangeDetectorRef,
-        private readonly _router: Router
+        private readonly _router: Router,
+        private readonly _usuarioLogadoService: UsuarioLogadoService
     ) {
         this.formGroup = this._formBuilder.group({
             email: [null, [Validators.required, Validators.email]],
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
         if (this.formGroup.valid) {
             const parametros: Autenticar = this.formGroup.value;
             this._autenticacaoService.postAuthenticate(parametros).subscribe((res: any) => {
+                this._usuarioLogadoService.setDadosSession(res);
                 this._router.navigate(['/']);
             }, (err: any) => {
                 this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',

@@ -1,7 +1,7 @@
 import { AppCommonService } from './app-common.service';
-import { Utilitarios } from './utilitarios.service';
+import { UsuarioLogadoService } from './usuario-logado.service';
 
-export const services = [AppCommonService, Utilitarios];
+export const services = [AppCommonService, UsuarioLogadoService];
 
 export * from './app-common.service';
-export * from './utilitarios.service';
+export * from './usuario-logado.service';

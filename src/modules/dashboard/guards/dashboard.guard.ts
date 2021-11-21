@@ -1,10 +1,20 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { UsuarioLogadoService } from '@common/services';
 import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class DashboardGuard implements CanActivate {
-    canActivate(): Observable<boolean> {
-        return of(true);
+    constructor(
+        private readonly _router: Router,
+        private readonly _usuarioLogado: UsuarioLogadoService
+    ) { }
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        if (this._usuarioLogado.isLogado()) {
+            return true;
+        }
+        this._router.navigate(['/auth/login']);
+        return false;
     }
 }
