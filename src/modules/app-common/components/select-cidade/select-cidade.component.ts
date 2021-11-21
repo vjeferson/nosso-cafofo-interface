@@ -1,46 +1,42 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Injector, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, forwardRef, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { EstadosService } from '@app/api/services';
+import { CidadesService } from '@app/api/services';
 import { NgSelectComponent } from '@ng-select/ng-select';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
-    selector: 'form-select-estado',
-    templateUrl: './select-estado.component.html',
-    styleUrls: ['select-estado.component.scss'],
+    selector: 'form-select-cidade',
+    templateUrl: './select-cidade.component.html',
+    styleUrls: ['select-cidade.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => SelectEstadoComponent),
+            useExisting: forwardRef(() => SelectCidadeComponent),
             multi: true
         }
     ]
 })
-export class SelectEstadoComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class SelectCidadeComponent implements OnInit, AfterViewInit, ControlValueAccessor {
     @ViewChild('select', { static: true }) select: NgSelectComponent | any;
-    @Output() escolheEstado = new EventEmitter<any>();
+    @Input() estadoId: string | any;
     _onChange: any;
     _onTouched: any;
     control: any;
     _value: any;
     _disabled: boolean;
     _loading: boolean;
-    _readonly: boolean;
+    @Input() _readonly: boolean;
     public filtro$ = new Subject<string | null>();
 
-    estados: Observable<any[]> | any;
+    cidades = [];
 
-    constructor(private injector: Injector, private element: ElementRef, private readonly _estadosService: EstadosService,
+    constructor(private injector: Injector, private element: ElementRef, private readonly _cidadesService: CidadesService,
         private readonly _cd: ChangeDetectorRef) {
         this._disabled = false;
         this._loading = true;
         this._readonly = false;
         this._onChange = (_: any) => { };
         this._onTouched = (_: any) => { };
-
-        this.filtro$.subscribe((filtro) => {
-            this.pesquisa(filtro)
-        });
     }
 
     ngOnInit() {
@@ -49,8 +45,8 @@ export class SelectEstadoComponent implements OnInit, AfterViewInit, ControlValu
     }
 
     ngAfterViewInit() {
-        this.select.changeEvent.subscribe((event: any) => {
-            this.escolheEstado.next(event);
+        this.filtro$.subscribe((filtro) => {
+            this.pesquisa(filtro)
         });
     }
 
@@ -72,9 +68,9 @@ export class SelectEstadoComponent implements OnInit, AfterViewInit, ControlValu
 
     pesquisa(filtro: string | any = null) {
         this._loading = true;
-        this._estadosService.getEstado(undefined, filtro).subscribe((res: any) => {
+        this._cidadesService.getCidade({ estadoId: this.estadoId, cidade: filtro }).subscribe((res: any) => {
             this._loading = false;
-            this.estados = res;
+            this.cidades = res;
             this._cd.detectChanges();
         });
     }

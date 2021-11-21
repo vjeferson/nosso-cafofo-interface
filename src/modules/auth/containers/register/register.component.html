@@ -183,9 +183,22 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <form-select-estado formControlName="estadoId"></form-select-estado>
+                                        <form-select-estado formControlName="estadoId"
+                                            (escolheEstado)="getEstadoSelecionado($event)"></form-select-estado>
 
                                         <show-erro-input [inputName]="'estadoId'" [formGroup]="formGroup"
+                                            [validationName]="'required'">
+                                        </show-erro-input>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <form-select-cidade #selectCidade formControlName="cidadeId"
+                                            [_readonly]="!estadoId">
+                                        </form-select-cidade>
+
+                                        <show-erro-input [inputName]="'cidadeId'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
                                     </div>

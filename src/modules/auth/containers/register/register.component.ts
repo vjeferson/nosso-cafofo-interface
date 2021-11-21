@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClientesService } from '@app/api/services';
+import { SelectCidadeComponent } from '@common/components';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -11,7 +12,9 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['register.component.scss', '../login/login.component.scss']
 })
 export class RegisterComponent implements OnInit {
+    @ViewChild('selectCidade', { static: true }) selectCidade: SelectCidadeComponent | any;
     private formGroup: FormGroup;
+    public estadoId: string | any;
 
     constructor(
         private readonly _clienteService: ClientesService,
@@ -54,6 +57,15 @@ export class RegisterComponent implements OnInit {
             this._toastService.error("Por favor preencha corretamente as informações", 'Formulário inválido!', {
                 timeOut: 3000,
             });
+        }
+    }
+
+    getEstadoSelecionado(estado: any) {
+        this.estadoId = estado ? estado.id : null;
+        this.formGroup.get('cidadeId')?.setValue(null);
+        if (this.selectCidade) {
+            this.selectCidade.estadoId = estado ? estado.id : null;
+            this.selectCidade.pesquisa(null);
         }
     }
 
