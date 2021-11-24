@@ -8,9 +8,17 @@ import { NavigationService } from '@modules/navigation/services';
     styleUrls: ['top-nav.component.scss'],
 })
 export class TopNavComponent implements OnInit {
-    constructor(private navigationService: NavigationService) {}
-    ngOnInit() {}
+    usuario: any;
+    constructor(private navigationService: NavigationService) { }
+
+    ngOnInit() {
+        this.usuario = {
+            nome: 'Valdeci Jeferson'
+        };
+    }
+
     toggleSideNav() {
         this.navigationService.toggleSideNav();
     }
+
 }

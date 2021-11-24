@@ -1,1 +1,33 @@
 @import 'styles/variables.scss';
+
+.sb-topnav{
+    background-color: #f8f9fa !important;
+    color: #202145 !important;
+
+    -webkit-box-shadow: 0px 4px 10px 0px rgba(147, 147, 147, 1);
+    -moz-box-shadow:    0px 4px 10px 0px rgba(147, 147, 147, 1);
+    box-shadow:         0px 4px 10px 0px rgba(147, 147, 147, 1);
+
+    img {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    #sidebarToggle{
+        color: #202145;
+    }
+}
+
+.navbar-brand {
+    color: #202145;
+    font-size: 20px;
+    font-weight: bold;
+
+    &:hover {
+        color: #202145;
+    }
+
+    &:focus {
+        color: #202145;
+    }
+}

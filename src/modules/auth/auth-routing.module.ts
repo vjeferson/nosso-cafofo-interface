@@ -21,7 +21,7 @@ export const ROUTES: Routes = [
     },
     {
         path: 'login',
-        canActivate: [authGuards.AuthGuard],
+        canActivate: [],
         component: authContainers.LoginComponent,
         data: {
             title: 'Pages Login - SB Admin Angular',
