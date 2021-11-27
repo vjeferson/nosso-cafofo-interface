@@ -1,5 +1,20 @@
 @import 'styles/variables.scss';
 
+.dropdown-menu{ 
+    background-color: var(--color-background-navbar) !important; 
+}
+
 #userDropdown {
     cursor: pointer;
+    color: var(--color-button-background-purple);
+}
+
+#nameUser{
+    font-weight: bold;
+    color: var(--color-text-base);
+}
+
+#statusUser{
+    color: var(--color-icons-blue);
+    font-weight: bold;
 }

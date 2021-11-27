@@ -13,7 +13,8 @@ export class TopNavComponent implements OnInit {
 
     ngOnInit() {
         this.usuario = {
-            nome: 'Valdeci Jeferson'
+            nome: 'Valdeci Jeferson',
+            email: 'valdecijpr@gmail.com'
         };
     }
 

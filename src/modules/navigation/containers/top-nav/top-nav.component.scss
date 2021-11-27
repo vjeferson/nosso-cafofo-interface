@@ -1,8 +1,8 @@
 @import 'styles/variables.scss';
 
 .sb-topnav{
-    background-color: #f8f9fa !important;
-    color: #202145 !important;
+    background-color: var(--color-background-navbar) !important;
+    color: var(--color-text-base) !important;
 
     -webkit-box-shadow: 0px 4px 10px 0px rgba(147, 147, 147, 1);
     -moz-box-shadow:    0px 4px 10px 0px rgba(147, 147, 147, 1);
@@ -14,20 +14,46 @@
     }
 
     #sidebarToggle{
-        color: #202145;
+        color: var(--color-text-base);
     }
+
+    .navbar-text{
+        color: var(--color-text-base);
+    }
+
+    #descricaoUsuarioNavBar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-right: 1rem;
+
+        .navbar-text{
+            font-weight: bold;
+            height: 15px;
+            font-size: 14px;
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        .navbar-text:nth-child(2){
+            font-size: 12px;
+            color: var(--color-text-grey);
+        }
+    }
+
 }
 
 .navbar-brand {
-    color: #202145;
+    color: var(--color-text-base);
     font-size: 20px;
     font-weight: bold;
 
     &:hover {
-        color: #202145;
+        color: var(--color-text-base);
     }
 
     &:focus {
-        color: #202145;
+        color: var(--color-text-base);
     }
 }

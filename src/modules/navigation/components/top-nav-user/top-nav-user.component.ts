@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { AutenticacaoService } from '@app/api/services';
 
 @Component({
@@ -8,6 +8,11 @@ import { AutenticacaoService } from '@app/api/services';
     styleUrls: ['top-nav-user.component.scss'],
 })
 export class TopNavUserComponent implements OnInit {
+    @Input() usuario: any;
+
     constructor(public userService: AutenticacaoService) { }
-    ngOnInit() { }
+    ngOnInit() {
+        console.log(this.usuario);
+    }
+    
 }
