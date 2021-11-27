@@ -1,4 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IUsuarioAutenticado } from '@app/models/retorno-autenticacao';
+import { UsuarioLogadoService } from '@common/services';
 import { NavigationService } from '@modules/navigation/services';
 
 @Component({
@@ -8,15 +11,15 @@ import { NavigationService } from '@modules/navigation/services';
     styleUrls: ['top-nav.component.scss'],
 })
 export class TopNavComponent implements OnInit {
-    usuario: any;
-    constructor(private navigationService: NavigationService) { }
+    public usuario: IUsuarioAutenticado;
 
-    ngOnInit() {
-        this.usuario = {
-            nome: 'Valdeci Jeferson',
-            email: 'valdecijpr@gmail.com'
-        };
+    constructor(private navigationService: NavigationService,
+        private readonly _usuarioLogadoService: UsuarioLogadoService
+    ) {
+        this.usuario = this._usuarioLogadoService.getDadosSession().usuario;
     }
+
+    ngOnInit() { }
 
     toggleSideNav() {
         this.navigationService.toggleSideNav();

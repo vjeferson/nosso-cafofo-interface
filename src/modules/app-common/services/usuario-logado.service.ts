@@ -1,20 +1,17 @@
 
 import { Injectable } from '@angular/core';
-import { RetornoAutenticacao } from '@app/models/retorno-autenticacao';
+import { IRetornoAutenticacao } from '@app/models/retorno-autenticacao';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class UsuarioLogadoService {
-
     protected static instance: UsuarioLogadoService;
 
-    constructor(
-    ) {
+    constructor() {
         UsuarioLogadoService.instance = this;
     }
 
-    private static dadosSession: any = null;
-    private static isLoaded = false;
+    private static dadosSession: IRetornoAutenticacao | any;
 
     public static observer: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
@@ -23,33 +20,37 @@ export class UsuarioLogadoService {
     }
 
     isLogado() {
-        debugger;
         if (!UsuarioLogadoService.dadosSession) {
-            this.loadeDadosSession();
+            this.loadDadosSession();
         }
-        return UsuarioLogadoService.dadosSession && !!UsuarioLogadoService.dadosSession.token && (new Date(UsuarioLogadoService.dadosSession.expiresIn) > new Date());
+        return UsuarioLogadoService.dadosSession && !!UsuarioLogadoService.dadosSession.token
+            && (new Date(UsuarioLogadoService.dadosSession.expiresIn) > new Date()) && !!UsuarioLogadoService.dadosSession.usuario;
     }
 
-    setDadosSession(dadosSession: RetornoAutenticacao) {
-        debugger
-        sessionStorage.setItem('session-information', JSON.stringify(dadosSession));
+    setDadosSession(dadosSession: IRetornoAutenticacao) {
         UsuarioLogadoService.dadosSession = dadosSession;
-        UsuarioLogadoService.observer.next(dadosSession);
+        sessionStorage.setItem('session-information', JSON.stringify(UsuarioLogadoService.dadosSession));
+        UsuarioLogadoService.observer.next(UsuarioLogadoService.dadosSession);
     }
 
-    private loadeDadosSession() {
+    private loadDadosSession() {
         const dados = sessionStorage.getItem('session-information');
         if (dados) {
             UsuarioLogadoService.dadosSession = JSON.parse(dados);
         }
     }
 
-    getDadosSession(): RetornoAutenticacao {
-        return UsuarioLogadoService.dadosSession;
+    getDadosSession(): IRetornoAutenticacao | any {
+        if (this.isLogado()) {
+            return UsuarioLogadoService.dadosSession;
+        } else {
+            this.logout();
+        }
     }
 
     logout() {
-
+        sessionStorage.removeItem('session-information');
+        UsuarioLogadoService.dadosSession = null;
     }
 
 }

@@ -10,11 +10,10 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        debugger;
         if (this._usuarioLogado.isLogado()) {
             this._router.navigate(['/dashboard']);
         }
-
         return true;
     }
+    
 }
