@@ -2,9 +2,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApiInterceptor } from '@common/api.interceptor';
 import { LoaderInterceptor } from '@common/loader/loader.interceptor';
 import { LoaderModule } from '@common/loader/loader.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UsuarioLogadoService } from '@common/services';
 import { environment } from 'environments/environment';
 import { ToastrModule } from 'ngx-toastr';
 import { ApiConfiguration } from './api/api-configuration';
@@ -31,6 +32,13 @@ export const INIT_API_CONFIGURATION: Provider = {
     multi: true
 };
 
+export const INIT_API_INTERCEPTOR: Provider = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiInterceptor,
+    multi: true,
+    deps: [UsuarioLogadoService],
+};
+
 export const INIT_LOADER_INTERCEPTOR_APPLICATION: Provider = {
     provide: HTTP_INTERCEPTORS,
     useClass: LoaderInterceptor,
@@ -53,6 +61,7 @@ export const INIT_LOADER_INTERCEPTOR_APPLICATION: Provider = {
     ],
     providers: [
         INIT_API_CONFIGURATION,
+        INIT_API_INTERCEPTOR,
         INIT_LOADER_INTERCEPTOR_APPLICATION
     ],
     bootstrap: [AppComponent]

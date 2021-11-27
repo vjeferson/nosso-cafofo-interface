@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { IRetornoAutenticacao } from '@app/models/retorno-autenticacao';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class UsuarioLogadoService {
     protected static instance: UsuarioLogadoService;
 
