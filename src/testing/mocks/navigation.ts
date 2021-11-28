@@ -4,4 +4,5 @@ export { SideNavItem };
 export class MockSideNavItem implements SideNavItem {
     text = 'TEST';
     link = 'TEST';
+    tipoPerfil = [1];
 }

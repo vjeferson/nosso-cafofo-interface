@@ -19,6 +19,7 @@ export interface SideNavItem {
     text: string;
     link?: string;
     submenu?: SideNavItem[];
+    tipoPerfil: number[]
 }
 
 export interface SideNavSection {
