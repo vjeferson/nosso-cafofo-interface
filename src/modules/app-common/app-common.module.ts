@@ -8,7 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IconsModule } from '@modules/icons/icons.module';
 import { NgSelectModule } from '@ng-select/ng-select';
-const thirdParty = [IconsModule, NgbModule, NgSelectModule];
+import { PipesModule } from './pipes/pipes.module';
+const thirdParty = [IconsModule, NgbModule, NgSelectModule, PipesModule];
 
 /* Containers */
 import * as appCommonContainers from './containers';

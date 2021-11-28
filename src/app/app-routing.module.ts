@@ -20,6 +20,13 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'planos',
+        loadChildren: () =>
+            import('modules/planos/planos-routing.module').then(
+                m => m.PlanosRoutingModule
+            )
+    },
+    {
         path: 'auth',
         loadChildren: () =>
             import('modules/auth/auth-routing.module').then(m => m.AuthRoutingModule),
@@ -51,4 +58,4 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
     exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

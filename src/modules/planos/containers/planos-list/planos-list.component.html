@@ -1,0 +1,59 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head title="Planos" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <sb-card>
+        <div class="card-body">
+            <form>
+                <div class="form-group form-inline">
+                    <input class="form-control ml-2" type="text" name="searchTerm" placeholder="Pesquisa"
+                        [(ngModel)]="countryService.searchTerm" /><span class="ml-3"
+                        *ngIf="countryService.loading$ | async">Loading...</span>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" sbSortable="descricao" (sort)="onSort($event)"><span>Descrição</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "descricao"' [direction]="sortedDirection">
+                                </sb-sort-icon>
+                            </th>
+                            <th scope="col" sbSortable="tipoPlano" (sort)="onSort($event)"><span>Tipo</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "tipoPlano"' [direction]="sortedDirection">
+                                </sb-sort-icon>
+                            </th>
+                            <th scope="col" sbSortable="valorPlano" (sort)="onSort($event)"><span>Valor</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "valorPlano"' [direction]="sortedDirection">
+                                </sb-sort-icon>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let country of countries$ | async">
+                            <th scope="row">{{ country.id }}</th>
+                            <td>
+                                <ngb-highlight [result]="country.descricao" [term]="countryService.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="country.tipoPlano" [term]="countryService.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="country.valorPlano | number"
+                                    [term]="countryService.searchTerm"></ngb-highlight>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [collectionSize]="total$ | async" [(page)]="countryService.page"
+                        [pageSize]="countryService.pageSize"></ngb-pagination><select class="custom-select"
+                        style="width: auto" name="pageSize" [(ngModel)]="countryService.pageSize">
+                        <option [ngValue]="2">2 itens por página</option>
+                        <option [ngValue]="4">4 itens por página</option>
+                        <option [ngValue]="6">6 itens por página</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </sb-card>
+</sb-layout-dashboard>

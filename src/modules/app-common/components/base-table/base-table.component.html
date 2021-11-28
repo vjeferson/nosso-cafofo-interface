@@ -1,0 +1,31 @@
+<form>
+    <div class="form-group form-inline"><input class="form-control ml-2" type="text" name="searchTerm"
+            [(ngModel)]="countryService.searchTerm" /><span class="ml-3"
+            *ngIf="countryService.loading$ | async">Loading...</span></div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" *ngFor="let coluna of colunas">{{coluna.descricao}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let country of countries$ | async">
+                <th scope="row">{{ country.id }}</th>
+                <td *ngFor="let coluna of colunas">
+                    {{country[coluna.property] | numeral:colunas.mask}}
+                    <!-- <ngb-highlight [result]="country[coluna.property] | number" [term]="countryService.searchTerm"></ngb-highlight> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="total$ | async" [(page)]="countryService.page"
+            [pageSize]="countryService.pageSize"></ngb-pagination><select class="custom-select" style="width: auto"
+            name="pageSize" [(ngModel)]="countryService.pageSize">
+            <option [ngValue]="5">5 itens por página</option>
+            <option [ngValue]="10">10 itens por página</option>
+            <option [ngValue]="15">15 itens por página</option>
+        </select>
+    </div>
+</form>

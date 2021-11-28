@@ -102,16 +102,27 @@ class PlanosService extends __BaseService {
    * Consulta Planos
    *
    * Rota para consulta de Planos.
-   * @param tipoPlano Código/Tipo do plano
-   * @param ativo Situação do plano. Plano esta ativo?
+   * @param params The `PlanosService.GetPlanoParams` containing the following parameters:
+   *
+   * - `offset`: Offset da consulta (para paginação)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros por consulta)
+   *
+   * - `tipoPlano`: Código/Tipo do plano
+   *
+   * - `descricao`: Descrição do plano
+   *
+   * - `ativo`: Situação do plano. Plano esta ativo?
    */
-  getPlanoResponse(tipoPlano?: number,
-    ativo?: boolean): __Observable<__StrictHttpResponse<null>> {
+  getPlanoResponse(params: PlanosService.GetPlanoParams): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (tipoPlano != null) __params = __params.set('tipoPlano', tipoPlano.toString());
-    if (ativo != null) __params = __params.set('ativo', ativo.toString());
+    if (params.offset != null) __params = __params.set('offset', params.offset.toString());
+    if (params.limit != null) __params = __params.set('limit', params.limit.toString());
+    if (params.tipoPlano != null) __params = __params.set('tipoPlano', params.tipoPlano.toString());
+    if (params.descricao != null) __params = __params.set('descricao', params.descricao.toString());
+    if (params.ativo != null) __params = __params.set('ativo', params.ativo.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/plano`,
@@ -133,12 +144,20 @@ class PlanosService extends __BaseService {
    * Consulta Planos
    *
    * Rota para consulta de Planos.
-   * @param tipoPlano Código/Tipo do plano
-   * @param ativo Situação do plano. Plano esta ativo?
+   * @param params The `PlanosService.GetPlanoParams` containing the following parameters:
+   *
+   * - `offset`: Offset da consulta (para paginação)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros por consulta)
+   *
+   * - `tipoPlano`: Código/Tipo do plano
+   *
+   * - `descricao`: Descrição do plano
+   *
+   * - `ativo`: Situação do plano. Plano esta ativo?
    */
-  getPlano(tipoPlano?: number,
-    ativo?: boolean): __Observable<null> {
-    return this.getPlanoResponse(tipoPlano, ativo).pipe(
+  getPlano(params: PlanosService.GetPlanoParams): __Observable<null> {
+    return this.getPlanoResponse(params).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -225,6 +244,37 @@ class PlanosService extends __BaseService {
 }
 
 module PlanosService {
+
+  /**
+   * Parameters for getPlano
+   */
+  export interface GetPlanoParams {
+
+    /**
+     * Offset da consulta (para paginação)
+     */
+    offset: number;
+
+    /**
+     * Limit da consulta (para paginação: máximo de 50 registros por consulta)
+     */
+    limit: number;
+
+    /**
+     * Código/Tipo do plano
+     */
+    tipoPlano?: number;
+
+    /**
+     * Descrição do plano
+     */
+    descricao?: string;
+
+    /**
+     * Situação do plano. Plano esta ativo?
+     */
+    ativo?: boolean;
+  }
 }
 
 export { PlanosService }
