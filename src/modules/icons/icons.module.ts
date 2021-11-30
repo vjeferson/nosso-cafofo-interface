@@ -7,7 +7,7 @@ import { fontAwesomeRegularIcons } from './icons.font-awesome-regular';
 import { fontAwesomeBrandsIcons } from './icons.font-awesome-brands';
 
 @NgModule({
-    exports: [FontAwesomeModule],
+    exports: [FontAwesomeModule]
 })
 export class IconsModule {
     constructor(library: FaIconLibrary) {

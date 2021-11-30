@@ -1,0 +1,14 @@
+@import 'styles/variables.scss';
+
+button {
+    fa-icon {
+        padding: 0rem 0.5rem;
+    }
+    width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+    background-color: var(--color-button-background-more-purple);
+    color: #FFFFFF !important;
+}

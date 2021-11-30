@@ -8,21 +8,16 @@ import { State } from '@app/models/state';
 import { SearchResult } from '@app/models/search-result';
 
 @Injectable()
-export abstract class TableService<Service>{
+export abstract class TableService<Service, Model>{
     private _loading$ = new BehaviorSubject<boolean>(true);
     private _search$ = new Subject<void>();
     private _registros$ = new BehaviorSubject<Country[]>([]);
     private _count$ = new BehaviorSubject<number>(0);
 
-    private _state: State = {
-        page: 1,
-        pageSize: 4,
-        searchTerm: '',
-        sortColumn: '',
-        sortDirection: '',
-    };
+    private _state: Model | any;
 
-    constructor(private pipe: DecimalPipe, protected service: Service) {
+    constructor(private pipe: DecimalPipe, protected service: Service, state: Model) {
+        this._state = state;
         this._search$
             .pipe(
                 tap(() => this._loading$.next(true)),

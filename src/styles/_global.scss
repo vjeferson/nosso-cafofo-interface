@@ -5,6 +5,7 @@
   --color-text-base: #202145;
   --color-text-grey: #616161;
   --color-button-background-purple: #5D2680;
+  --color-button-background-more-purple: #7E00CC;
   --color-button-text-white: #ffffff;
   --color-icons-blue: #43DBD7;
 }
@@ -23,7 +24,13 @@ body {
 }
 
 
-body, h1, h2, h3, h4, button, p {
+body, h1, h2, h3, h4, button, p, th, td {
   font-family: Archivo;
-  color: var(--color-text-base);
+  color: var(--color-text-base) !important;
+}
+
+.opcoes-listagens{
+  margin-right: 0.5rem;
+  font-weight: bold;
+  font-size: 10px;
 }

@@ -19,7 +19,7 @@ export class PlanosComponent implements OnInit {
         tipoPlano: undefined,
         ativo: undefined
     }
-    countries$!: Observable<Country[]>;
+    registros$!: Observable<Country[]>;
     total$!: Observable<number>;
     sortedColumn!: string;
     sortedDirection!: string;
@@ -27,22 +27,22 @@ export class PlanosComponent implements OnInit {
     @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
 
     constructor(
-        public countryService: PlanoTableService,
+        public serviceTable: PlanoTableService,
         private readonly _planosService: PlanosService,
         private changeDetectorRef: ChangeDetectorRef
     ) { }
 
     ngOnInit() {
-        this.countryService.pageSize = this.pageSize;
-        this.countries$ = this.countryService.registros$;
-        this.total$ = this.countryService.count$;
+        this.serviceTable.pageSize = this.pageSize;
+        this.registros$ = this.serviceTable.registros$;
+        this.total$ = this.serviceTable.count$;
     }
 
     onSort({ column, direction }: SortEvent) {
         this.sortedColumn = column;
         this.sortedDirection = direction;
-        this.countryService.sortColumn = column;
-        this.countryService.sortDirection = direction;
+        this.serviceTable.sortColumn = column;
+        this.serviceTable.sortDirection = direction;
         this.changeDetectorRef.detectChanges();
     }
 
