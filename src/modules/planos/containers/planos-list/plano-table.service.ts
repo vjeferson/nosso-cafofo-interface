@@ -23,9 +23,8 @@ export class PlanoTableService extends TableService<PlanosService, IFiltroPlanos
     }
 
     _search(): Observable<SearchResult> {
-        const { sortColumn, sortDirection, pageSize, searchTerm, tipoPlano, ativo } = this.state;
+        let { sortColumn, sortDirection, pageSize, searchTerm, tipoPlano, ativo } = this.state;
         return new Observable((observer) => {
-            debugger;
             this.service.getPlano({ limit: pageSize, offset: this.calculaOffset(), descricao: searchTerm && searchTerm !== '' ? searchTerm : undefined, tipoPlano, ativo }).subscribe((res: any) => {
                 observer.next(res);
                 observer.complete();

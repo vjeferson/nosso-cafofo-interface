@@ -27,7 +27,6 @@ export abstract class TableService<Service, Model>{
                 tap(() => this._loading$.next(false))
             )
             .subscribe((result: any) => {
-                debugger
                 this._registros$.next(result.rows);
                 this._count$.next(result.count);
             });
@@ -72,7 +71,7 @@ export abstract class TableService<Service, Model>{
         this._set({ sortDirection });
     }
 
-    private _set(patch: Partial<State>) {
+    public _set(patch: Partial<State>) {
         Object.assign(this._state, patch);
         this._search$.next();
     }

@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { PlanosService } from '@app/api/services';
+import { IFiltroPlanos } from '@app/models/search-planos';
+import { FiltrosPlanosNgbdModal } from '@modules/planos/components';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { Country } from '@modules/tables/models';
 import { Observable } from 'rxjs';
@@ -12,19 +14,15 @@ import { PlanoTableService } from './plano-table.service';
     styleUrls: ['./planos-list.component.scss'],
 })
 export class PlanosComponent implements OnInit {
+    @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
+    @ViewChild('modalFiltros', { static: true }) modalFiltros: FiltrosPlanosNgbdModal | any;
+
     pageSize = 2;
-    filtros: PlanosService.GetPlanoParams = {
-        limit: this.pageSize,
-        offset: 0,
-        tipoPlano: undefined,
-        ativo: undefined
-    }
     registros$!: Observable<Country[]>;
     total$!: Observable<number>;
     sortedColumn!: string;
     sortedDirection!: string;
-
-    @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
+    filtros!: IFiltroPlanos;
 
     constructor(
         public serviceTable: PlanoTableService,
@@ -36,6 +34,7 @@ export class PlanosComponent implements OnInit {
         this.serviceTable.pageSize = this.pageSize;
         this.registros$ = this.serviceTable.registros$;
         this.total$ = this.serviceTable.count$;
+        this.filtros = this.serviceTable.state;
     }
 
     onSort({ column, direction }: SortEvent) {
@@ -44,6 +43,14 @@ export class PlanosComponent implements OnInit {
         this.serviceTable.sortColumn = column;
         this.serviceTable.sortDirection = direction;
         this.changeDetectorRef.detectChanges();
+    }
+
+    abrirModalFiltrar() {
+        this.modalFiltros.open();
+    }
+
+    filtrar() {
+        this.serviceTable._set(this.filtros);
     }
 
 }
