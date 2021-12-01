@@ -37,7 +37,12 @@
                                 "./node_modules"
                             ]
                         },
-                        "scripts": []
+                        "scripts": [],
+                        "allowedCommonJsDependencies": [
+                            "lodash",
+                            "chart.js",
+                            "numeral"
+                        ]
                     },
                     "configurations": {
                         "production": {

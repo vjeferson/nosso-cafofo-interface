@@ -43,6 +43,7 @@
     "@prettier/plugin-pug": "1.10.1",
     "@types/numeral": "^2.0.2",
     "chart.js": "2.9.4",
+    "ng2-currency-mask": "^9.0.2",
     "ngx-loading": "^8.0.0",
     "ngx-toastr": "^13.2.1",
     "numeral": "^2.0.6",
