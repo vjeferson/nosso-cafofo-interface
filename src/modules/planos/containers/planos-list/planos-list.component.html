@@ -51,8 +51,9 @@
                                 <button type="button" class="btn btn-warning btn-sm opcoes-listagens"
                                     (click)="editar(registro.id)">Editar</button>
                                 <button type="button" *ngIf="registro.ativo"
-                                    class="btn btn-danger btn-sm opcoes-listagens">Desativar</button>
-                                <button type="button" *ngIf="!registro.ativo"
+                                    class="btn btn-danger btn-sm opcoes-listagens"
+                                    (click)="desativar(registro)">Desativar</button>
+                                <button type="button" *ngIf="!registro.ativo" (click)="ativar(registro)"
                                     class="btn btn-info btn-sm opcoes-listagens">Ativar</button>
                             </td>
                         </tr>

@@ -18,6 +18,8 @@ class PlanosService extends __BaseService {
   static readonly getPlanoPath = '/plano';
   static readonly getPlanoIdPath = '/plano/{id}';
   static readonly putPlanoIdPath = '/plano/{id}';
+  static readonly putPlanoAtivarIdPath = '/plano/ativar/{id}';
+  static readonly putPlanoDesativarIdPath = '/plano/desativar/{id}';
 
   constructor(
     config: __Configuration,
@@ -248,6 +250,86 @@ class PlanosService extends __BaseService {
   putPlanoId(id: number,
     body: AtualizaPlano): __Observable<null> {
     return this.putPlanoIdResponse(id, body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Ativar Plano
+   *
+   * Rota para ativação de plano. Apenas Administradores Nosso Cafofo.
+   * @param id Identificador do registro
+   */
+  putPlanoAtivarIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/plano/ativar/${encodeURIComponent(String(id))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Ativar Plano
+   *
+   * Rota para ativação de plano. Apenas Administradores Nosso Cafofo.
+   * @param id Identificador do registro
+   */
+  putPlanoAtivarId(id: number): __Observable<null> {
+    return this.putPlanoAtivarIdResponse(id).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Desativar Plano
+   *
+   * Rota para desativação de plano. Apenas Administradores Nosso Cafofo.
+   * @param id Identificador do registro
+   */
+  putPlanoDesativarIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/plano/desativar/${encodeURIComponent(String(id))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Desativar Plano
+   *
+   * Rota para desativação de plano. Apenas Administradores Nosso Cafofo.
+   * @param id Identificador do registro
+   */
+  putPlanoDesativarId(id: number): __Observable<null> {
+    return this.putPlanoDesativarIdResponse(id).pipe(
       __map(_r => _r.body as null)
     );
   }

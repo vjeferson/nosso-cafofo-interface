@@ -6,6 +6,7 @@ import { mapTiposPlanos } from '@app/utils/consts';
 import { FiltrosPlanosNgbdModal } from '@modules/planos/components';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { Country } from '@modules/tables/models';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { PlanoTableService } from './plano-table.service';
 
@@ -33,7 +34,8 @@ export class PlanosComponent implements OnInit {
         public serviceTable: PlanoTableService,
         private readonly _planosService: PlanosService,
         private changeDetectorRef: ChangeDetectorRef,
-        private router: Router
+        private router: Router,
+        private toastService: ToastrService
     ) { }
 
     ngOnInit() {
@@ -61,6 +63,46 @@ export class PlanosComponent implements OnInit {
 
     editar(idRegistro: number) {
         this.router.navigate([this.routeEdicaoPlanos, { id: idRegistro }]);
+    }
+
+    ativar(plano: any) {
+        this._planosService.putPlanoAtivarId(plano.id).subscribe((res: any) => {
+            if (res) {
+                this.toastService.success('Registro ativo com sucesso!', "Ativação", {
+                    timeOut: 3000
+                });
+            } else {
+                this.toastService.error('Ativação do Plano não foi feita!', "Ativação", {
+                    timeOut: 3000
+                });
+            }
+            this.filtrar();
+        }, (err: any) => {
+            this.toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                err.error && err.error.error ? err.error.error : "Ativação inválida", {
+                timeOut: 3000
+            });
+        });
+    }
+
+    desativar(plano: any) {
+        this._planosService.putPlanoDesativarId(plano.id).subscribe((res: any) => {
+            if (res) {
+                this.toastService.success('Registro desativado com sucesso!', "Desativação", {
+                    timeOut: 3000
+                });
+            } else {
+                this.toastService.error('Desativação do Plano não foi feita!', "Desativação", {
+                    timeOut: 3000
+                });
+            }
+            this.filtrar();
+        }, (err: any) => {
+            this.toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                err.error && err.error.error ? err.error.error : "Desativação inválida", {
+                timeOut: 3000
+            });
+        });
     }
 
 }
