@@ -1,0 +1,74 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head [title]="title" [hideBreadcrumbs]="false"></sb-dashboard-head>
+
+    <form [formGroup]="formGroup">
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="small mb-1" for="descricao">Descrição</label>
+                    <input class="form-control" id="descricao" type="text" placeholder="Informe a descrição do plano"
+                        formControlName="descricao" maxlength="70" />
+
+                    <show-erro-input [inputName]="'descricao'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="small mb-1" for="recorrencia">
+                        Recorrência</label>
+                    <input class="form-control" id="recorrencia" type="text"
+                        placeholder="Informe a recorrência do plano" formControlName="recorrencia" maxlength="70" />
+
+                    <show-erro-input [inputName]="'recorrencia'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4">
+                <form-select-tipo-plano *ngIf="dadosRegistroFiltrado" formControlName="tipoPlano" [_readonly]="!isNew">
+                </form-select-tipo-plano>
+
+                <show-erro-input [inputName]="'tipoPlano'" [formGroup]="formGroup" [validationName]="'required'">
+                </show-erro-input>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="small mb-1" for="numeroMaximoParcelasPagamento">
+                        Número máximo de parcelas do Pagamento</label>
+                    <input class="form-control" id="numeroMaximoParcelasPagamento" type="number"
+                        placeholder="Informe o número máximo de parcelas para pagamento"
+                        formControlName="numeroMaximoParcelasPagamento" [readonly]="!isNew" />
+
+                    <show-erro-input [inputName]="'numeroMaximoParcelasPagamento'" [formGroup]="formGroup"
+                        [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="small mb-1" for="valorPlano">
+                    Valor</label>
+                <input currencyMask class="form-control" id="valorPlano" type="text"
+                    placeholder="Informe o valor do plano" formControlName="valorPlano" [readonly]="!isNew" />
+
+                <show-erro-input [inputName]="'valorPlano'" [formGroup]="formGroup" [validationName]="'required'">
+                </show-erro-input>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="!isNew">
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" id="ativo" type="checkbox" formControlName="ativo" disabled />
+                <label class="custom-control-label" for="ativo">Plano Ativo</label>
+            </div>
+        </div>
+    </form>
+
+    <div class="btns-formulario-cadastro">
+        <button class="btn btns-formulario-cadastro-voltar" (click)="voltar()">Voltar</button>
+        <button class="btn btns-formulario-cadastro-salvar" (click)="salvar()"
+            [disabled]="!formGroup.valid">Salvar</button>
+    </div>
+</sb-layout-dashboard>

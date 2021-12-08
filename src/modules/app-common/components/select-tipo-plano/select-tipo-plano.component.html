@@ -1,4 +1,5 @@
 <label class="small mb-1" for="tipos">Tipos de Planos</label>
 <ng-select [items]="tipos" bindLabel="descricao" bindValue="codigoTipoPlano" [ngModelOptions]="{standalone: true}"
-    [(ngModel)]="_value" placeholder="Selecione um tipo" (change)="_onChange($event)" (focus)="_onTouched($event)">
+    [readonly]="_readonly" [(ngModel)]="_value" placeholder="Selecione um tipo" (change)="_onChange($event)"
+    (focus)="_onTouched($event)">
 </ng-select>

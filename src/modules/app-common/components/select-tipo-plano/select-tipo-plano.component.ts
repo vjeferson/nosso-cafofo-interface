@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, forwardRef, Injector, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { EnumTipoPlano } from '@app/utils/enums';
 
@@ -14,6 +14,7 @@ import { EnumTipoPlano } from '@app/utils/enums';
     ]
 })
 export class SelectTiposPlanosComponent implements OnInit, ControlValueAccessor {
+    @Input() _readonly: boolean;
     _value: any;
     _onChange: any;
     _onTouched: any;
@@ -42,18 +43,15 @@ export class SelectTiposPlanosComponent implements OnInit, ControlValueAccessor 
     ];
 
 
-    constructor() {
+    constructor(private injector: Injector, private element: ElementRef) {
         this._onChange = (_: any) => { };
         this._onTouched = (_: any) => { };
+        this._readonly = false;
     }
 
-    ngOnInit() {
-        console.log('tipo selecionado: ' + this._value)
-    }
+    ngOnInit() { }
 
-    change() {
-        console.log('tipo mudado change: ' + this._value)
-    }
+    change() { }
 
     registerOnChange(fn: any): void {
         this._onChange = fn;

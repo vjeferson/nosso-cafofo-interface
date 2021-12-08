@@ -13,7 +13,6 @@ export class ButtonFiltrosComponent implements OnInit {
     ngOnInit() { }
 
     filtrar() {
-        console.log('open filtros');
         this.openDialogFiltrar.next();
     }
 

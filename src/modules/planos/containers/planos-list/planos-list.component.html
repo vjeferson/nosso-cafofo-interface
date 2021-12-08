@@ -8,7 +8,7 @@
                         placeholder="Pesquisa" [(ngModel)]="serviceTable.searchTerm" />
                     <span class="ml-8" *ngIf="serviceTable.loading$ | async">Loading...</span>
                     <div class="botoes-acoes">
-                        <sb-button-cadastro [route]="'planos/cadastro'"></sb-button-cadastro>
+                        <sb-button-cadastro [route]="routeCadastroPlanos"></sb-button-cadastro>
                         <sb-button-filtros (openDialogFiltrar)="abrirModalFiltrar()"></sb-button-filtros>
                     </div>
                 </div>
@@ -39,7 +39,8 @@
                                 </ngb-highlight>
                             </td>
                             <td>
-                                <ngb-highlight [result]="registro.tipoPlano" [term]="serviceTable.searchTerm">
+                                <ngb-highlight [result]="mapTiposPlanos[registro.tipoPlano]"
+                                    [term]="serviceTable.searchTerm">
                                 </ngb-highlight>
                             </td>
                             <td>
@@ -47,7 +48,8 @@
                                 </ngb-highlight>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm opcoes-listagens">Editar</button>
+                                <button type="button" class="btn btn-warning btn-sm opcoes-listagens"
+                                    (click)="editar(registro.id)">Editar</button>
                                 <button type="button" *ngIf="registro.ativo"
                                     class="btn btn-danger btn-sm opcoes-listagens">Desativar</button>
                                 <button type="button" *ngIf="!registro.ativo"

@@ -27,6 +27,42 @@ export const ROUTES: Routes = [
         } as SBRouteData,
         canActivate: [PlanosGuard],
         component: planosContainers.PlanosComponent
+    },
+    {
+        path: 'cadastro',
+        data: {
+            title: 'Cadastro de Planos',
+            breadcrumbs: [
+                {
+                    text: 'Planos',
+                    link: '/planos',
+                },
+                {
+                    text: 'Cadastro',
+                    active: true,
+                }
+            ],
+        } as SBRouteData,
+        canActivate: [PlanosGuard],
+        component: planosContainers.PlanosFormComponent
+    },
+    {
+        path: 'edicao',
+        data: {
+            title: 'Edição de Planos',
+            breadcrumbs: [
+                {
+                    text: 'Planos',
+                    link: '/planos',
+                },
+                {
+                    text: 'Edição',
+                    active: true,
+                }
+            ],
+        } as SBRouteData,
+        canActivate: [PlanosGuard],
+        component: planosContainers.PlanosFormComponent
     }
 ];
 

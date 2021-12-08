@@ -48,3 +48,25 @@ body, h1, h2, h3, h4, button, p, th, td {
   background-color: var(--color-background-btn-blue);
   color: var(--color-text-btn-blue) !important;
 }
+
+.btns-formulario-cadastro{
+  margin-top: 12px;
+  display: flex;
+  flex: row;
+  justify-content: end;
+
+  button {
+      width: 140px;
+      margin-left: 1rem;
+  }
+}
+
+.btns-formulario-cadastro-voltar {
+  background-color: var(--color-background-btn-blue);
+  color: var(--color-text-btn-blue) !important;
+}
+
+.btns-formulario-cadastro-salvar{
+  background-color: var(--color-button-background-more-purple);
+  color: #FFFFFF !important;
+}

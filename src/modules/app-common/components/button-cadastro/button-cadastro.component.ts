@@ -13,4 +13,7 @@ export class ButtonCadastroComponent implements OnInit {
     constructor(private readonly router: Router) { }
     ngOnInit() { }
 
+    irParaCadastro() {
+        this.router.navigate([this.route]);
+    }
 }

@@ -7,6 +7,8 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { NovoPlano } from '../models/novo-plano';
+import { AtualizaPlano } from '../models/atualiza-plano';
 @Injectable({
   providedIn: 'root',
 })
@@ -65,11 +67,13 @@ class PlanosService extends __BaseService {
    * Cadastro de Plano
    *
    * Rota para criação de planos no sistema. Apenas Administradores Nosso Cafofo.
+   * @param body Informações do novo plano
    */
-  postPlanoResponse(): __Observable<__StrictHttpResponse<null>> {
+  postPlanoResponse(body: NovoPlano): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    __body = body;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/plano`,
@@ -91,9 +95,10 @@ class PlanosService extends __BaseService {
    * Cadastro de Plano
    *
    * Rota para criação de planos no sistema. Apenas Administradores Nosso Cafofo.
+   * @param body Informações do novo plano
    */
-  postPlano(): __Observable<null> {
-    return this.postPlanoResponse().pipe(
+  postPlano(body: NovoPlano): __Observable<null> {
+    return this.postPlanoResponse(body).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -168,7 +173,7 @@ class PlanosService extends __BaseService {
    * Rota para consulta de plano específico pelo id (identificação/sigla do registro).
    * @param id Identificador/Sigla do registro
    */
-  getPlanoIdResponse(id: string): __Observable<__StrictHttpResponse<null>> {
+  getPlanoIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -196,7 +201,7 @@ class PlanosService extends __BaseService {
    * Rota para consulta de plano específico pelo id (identificação/sigla do registro).
    * @param id Identificador/Sigla do registro
    */
-  getPlanoId(id: string): __Observable<null> {
+  getPlanoId(id: number): __Observable<null> {
     return this.getPlanoIdResponse(id).pipe(
       __map(_r => _r.body as null)
     );
@@ -207,12 +212,15 @@ class PlanosService extends __BaseService {
    *
    * Rota para alteração de plano. Apenas Administradores Nosso Cafofo.
    * @param id Identificador do registro
+   * @param body Novas informações do plano
    */
-  putPlanoIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+  putPlanoIdResponse(id: number,
+    body: AtualizaPlano): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
+    __body = body;
     let req = new HttpRequest<any>(
       'PUT',
       this.rootUrl + `/plano/${encodeURIComponent(String(id))}`,
@@ -235,9 +243,11 @@ class PlanosService extends __BaseService {
    *
    * Rota para alteração de plano. Apenas Administradores Nosso Cafofo.
    * @param id Identificador do registro
+   * @param body Novas informações do plano
    */
-  putPlanoId(id: number): __Observable<null> {
-    return this.putPlanoIdResponse(id).pipe(
+  putPlanoId(id: number,
+    body: AtualizaPlano): __Observable<null> {
+    return this.putPlanoIdResponse(id, body).pipe(
       __map(_r => _r.body as null)
     );
   }
