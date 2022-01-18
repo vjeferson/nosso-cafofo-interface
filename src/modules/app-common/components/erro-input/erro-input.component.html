@@ -1,5 +1,5 @@
 <ng-container *ngIf="formGroup && formGroup.get(inputName).touched">
-    <span class="mensagem-erro-input" *ngIf="formGroup.get(inputName).hasError(validationName)">
+    <p class="mensagem-erro-input" *ngIf="formGroup.get(inputName).hasError(validationName)">
         {{mensagemDeErro}}
-    </span>
+    </p>
 </ng-container>

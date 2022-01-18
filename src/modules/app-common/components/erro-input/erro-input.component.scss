@@ -1,6 +1,7 @@
 @import 'styles/variables.scss';
 
 .mensagem-erro-input {
-    color: red;
-    font-size: 12px;
+    color: red !important;
+    font-size: 12px !important;
+    margin: 4px;
 }

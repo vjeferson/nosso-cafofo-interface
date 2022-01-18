@@ -3,8 +3,8 @@
 
 button {
     background-color: var(--color-button-background-purple);
-    color: #FFFFFF;   
+    color: #FFFFFF !important;   
     &:hover {
-        color: #FFFFFF; 
+        color: #FFFFFF !important; 
     }
 }
