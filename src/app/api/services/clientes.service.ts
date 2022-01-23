@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { NovoCliente } from '../models/novo-cliente';
 @Injectable({
   providedIn: 'root',
 })
@@ -24,11 +25,13 @@ class ClientesService extends __BaseService {
    * Cadastro de Novos Cliente (Padrão).
    *
    * Rota para cadastro de novos clientes no sistema usando email e senha como informações de acesso
+   * @param body Informações do novo cliente
    */
-  postClienteResponse(): __Observable<__StrictHttpResponse<null>> {
+  postClienteResponse(body: NovoCliente): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    __body = body;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/cliente`,
@@ -50,9 +53,10 @@ class ClientesService extends __BaseService {
    * Cadastro de Novos Cliente (Padrão).
    *
    * Rota para cadastro de novos clientes no sistema usando email e senha como informações de acesso
+   * @param body Informações do novo cliente
    */
-  postCliente(): __Observable<null> {
-    return this.postClienteResponse().pipe(
+  postCliente(body: NovoCliente): __Observable<null> {
+    return this.postClienteResponse(body).pipe(
       __map(_r => _r.body as null)
     );
   }

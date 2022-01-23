@@ -18,6 +18,10 @@
                                         <show-erro-input [inputName]="'nome'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
+                                        <show-erro-input [inputName]="'nome'" [formGroup]="formGroup"
+                                            [validationName]="'maxlength'"
+                                            [mensagemDeErro]="'Tamanho máximo de 50 caracteres'">
+                                        </show-erro-input>
                                     </div>
                                 </div>
                             </div>
@@ -33,6 +37,10 @@
                                         <show-erro-input [inputName]="'nomeRepublica'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
+                                        <show-erro-input [inputName]="'nomeRepublica'" [formGroup]="formGroup"
+                                            [validationName]="'maxlength'"
+                                            [mensagemDeErro]="'Tamanho máximo de 50 caracteres'">
+                                        </show-erro-input>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -47,8 +55,10 @@
                                             [validationName]="'required'">
                                         </show-erro-input>
                                         <show-erro-input [inputName]="'anoCriacaoRepublica'" [formGroup]="formGroup"
-                                            [validationName]="'maxLength'"
-                                            [mensagemDeErro]="'Tamanho máximo de 8 caracteres'">
+                                            [validationName]="'max'" [mensagemDeErro]="mensagemAnoMaximoAnoCriacao">
+                                        </show-erro-input>
+                                        <show-erro-input [inputName]="'anoCriacaoRepublica'" [formGroup]="formGroup"
+                                            [validationName]="'min'" [mensagemDeErro]="'Valor mínimo: 1900'">
                                         </show-erro-input>
                                     </div>
                                 </div>
@@ -84,6 +94,10 @@
                                         <show-erro-input [inputName]="'anoEntradaMorador'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
+                                        <show-erro-input [inputName]="'anoEntradaMorador'" [formGroup]="formGroup"
+                                            [validationName]="'anoEntradaInvalido'"
+                                            [mensagemDeErro]="'Ano de entrada na República deve ser igual ou superior ao ano de criação da mesma'">
+                                        </show-erro-input>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +114,8 @@
                                         </show-erro-input>
 
                                         <show-erro-input [inputName]="'logradouro'" [formGroup]="formGroup"
-                                            [validationName]="'maxLength'">
+                                            [validationName]="'maxlength'"
+                                            [mensagemDeErro]="'Tamanho máximo de 70 caracteres'">
                                         </show-erro-input>
                                     </div>
                                 </div>
@@ -115,7 +130,8 @@
                                             formControlName="complemento" />
 
                                         <show-erro-input [inputName]="'complemento'" [formGroup]="formGroup"
-                                            [validationName]="'maxLength'">
+                                            [validationName]="'maxlength'"
+                                            [mensagemDeErro]="'Tamanho máximo de 45 caracteres'">
                                         </show-erro-input>
                                     </div>
                                 </div>
@@ -127,6 +143,10 @@
 
                                         <show-erro-input [inputName]="'numero'" [formGroup]="formGroup"
                                             [validationName]="'required'">
+                                        </show-erro-input>
+                                        <show-erro-input [inputName]="'numero'" [formGroup]="formGroup"
+                                            [validationName]="'maxlength'"
+                                            [mensagemDeErro]="'Tamanho máximo de 10 caracteres'">
                                         </show-erro-input>
                                     </div>
                                 </div>
@@ -177,6 +197,10 @@
                                             [validationName]="'minlength'"
                                             [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
                                         </show-erro-input>
+
+                                        <show-erro-input [inputName]="'confirmaSenha'" [formGroup]="formGroup"
+                                            [validationName]="'confirmar'" [mensagemDeErro]="'Senhas não conferem'">
+                                        </show-erro-input>
                                     </div>
                                 </div>
                             </div>
@@ -205,10 +229,8 @@
                                 </div>
                             </div>
 
-
-
                             <div class="form-group mt-4 mb-0">
-                                <button class="btn btn-block" (click)="cadastrar()" [disabled]="!formGroup.valid">Criar
+                                <button class="btn btn-block" (click)="cadastrar()">Criar
                                     Cadastro</button>
                             </div>
                         </form>
