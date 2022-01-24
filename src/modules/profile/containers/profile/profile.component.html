@@ -1,0 +1,83 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head title="Profile" [hideBreadcrumbs]="false"></sb-dashboard-head>
+
+
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+            <a ngbNavLink>Profile</a>
+            <ng-template ngbNavContent>
+                <div class="container">
+                    <div class="row">
+                        <sb-card class="col-md-4">
+                            <div class="card-header">Imagem de Profile</div>
+                            <div class="card-body selecao-imagem">
+                                <div class="small text-white"><fa-icon [icon]='["fas", "user-circle"]'></fa-icon></div>
+                                <button class="btn btns-formulario-cadastro-salvar" (click)="trocarImagem()">Trocar
+                                    imagem</button>
+                            </div>
+                        </sb-card>
+
+                        <sb-card class="col-md-8">
+                            <div class="card-header">Detalhes da Conta</div>
+                            <div class="card-body">
+                                <form [formGroup]="formGroup">
+                                    <div class="form-row">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="nome">Nome</label>
+                                                <input class="form-control" id="nome" type="text"
+                                                    placeholder="Informe o nome" formControlName="nome"
+                                                    maxlength="50" />
+
+                                                <show-erro-input [inputName]="'nome'" [formGroup]="formGroup"
+                                                    [validationName]="'required'">
+                                                </show-erro-input>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="ano">Ano</label>
+                                                <input class="form-control" id="ano" type="number" placeholder="Ano"
+                                                    formControlName="ano" />
+
+                                                <show-erro-input [inputName]="'ano'" [formGroup]="formGroup"
+                                                    [validationName]="'required'">
+                                                </show-erro-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="email">Email</label>
+                                                <input class="form-control" id="email" type="email"
+                                                    placeholder="Informe o email" formControlName="email"
+                                                    maxlength="50" />
+
+                                                <show-erro-input [inputName]="'email'" [formGroup]="formGroup"
+                                                    [validationName]="'required'">
+                                                </show-erro-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btns-formulario-cadastro">
+                                        <button class="btn btns-formulario-cadastro-salvar"
+                                            (click)="salvar()">Salvar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </sb-card>
+
+                    </div>
+                </div>
+            </ng-template>
+        </li>
+        <li ngbNavItem>
+            <a ngbNavLink>Ações Adicionais</a>
+            <ng-template ngbNavContent>Second content</ng-template>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
+
+
+</sb-layout-dashboard>

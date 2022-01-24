@@ -3,5 +3,5 @@
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 
 export const fontAwesomeRegularIcons = {
-    faBell,
+    faBell
 };

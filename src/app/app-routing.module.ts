@@ -27,6 +27,13 @@ const routes: Routes = [
             )
     },
     {
+        path: 'profile',
+        loadChildren: () =>
+            import('modules/profile/profile-routing.module').then(
+                m => m.ProfileRoutingModule
+            )
+    },
+    {
         path: 'auth',
         loadChildren: () =>
             import('modules/auth/auth-routing.module').then(m => m.AuthRoutingModule),

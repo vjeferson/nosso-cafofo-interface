@@ -1,0 +1,44 @@
+@import 'styles/variables.scss';
+
+.container { 
+    margin: 0px;
+    padding: 0px;
+    max-width: 100%;
+    
+    .row {
+        display: flex;
+        margin: 0px;
+        padding: 0px;
+        max-width: 100%;
+        justify-content: space-between;
+    }
+}
+
+sb-card{
+    .card-header {
+        background-color: var(--color-background-sb-cards);
+    }
+    .card-body {
+        background-color: var(--color-background-sb-cards); 
+    }
+    .selecao-imagem {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+        button {
+            width: 140px;
+        }
+        
+        fa-icon {
+            color: var(--color-text-base);
+            font-weight: bold;
+            width: 140px;
+            font-size: 120px;
+        }
+
+
+    }
+
+}

@@ -11,6 +11,7 @@
   --color-background-btn-blue: #202145;
   --color-text-btn-blue: #f8f9fa;
   --color-background-btn-grey: #e9ecef;
+  --color-background-sb-cards: #e9ecef;
 }
 
 html,
@@ -56,8 +57,8 @@ body, h1, h2, h3, h4, button, p, th, td {
   justify-content: end;
 
   button {
-      width: 140px;
-      margin-left: 1rem;
+    width: 140px;
+    margin-left: 1rem;
   }
 }
 
@@ -69,4 +70,17 @@ body, h1, h2, h3, h4, button, p, th, td {
 .btns-formulario-cadastro-salvar{
   background-color: var(--color-button-background-more-purple);
   color: #FFFFFF !important;
+}
+
+.nav-tabs { 
+  margin-bottom: 2rem;
+
+  .nav-item {
+    border-bottom: 1px solid #CCC;
+  }
+  
+  .nav-link {
+    color: var(--color-text-base);
+  }
+
 }
