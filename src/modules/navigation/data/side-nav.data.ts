@@ -101,17 +101,17 @@ export const sideNavItems: SideNavItems = {
         submenu: [
             {
                 text: 'Info. Cadastro',
-                link: '/info-cadastro',
+                link: '/republica/info-cadastro',
                 tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
             },
             {
                 text: 'Caixa',
-                link: '/caixa',
+                link: '/republica/caixa',
                 tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
             },
             {
                 text: 'Entradas e Saídas',
-                link: '/entradas-saidas',
+                link: '/republica/entradas-saidas',
                 tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
             }
         ]

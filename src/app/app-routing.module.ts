@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SBRouteData } from '@modules/navigation/models';
 
 const routes: Routes = [
     {
@@ -31,6 +32,13 @@ const routes: Routes = [
         loadChildren: () =>
             import('modules/profile/profile-routing.module').then(
                 m => m.ProfileRoutingModule
+            )
+    },
+    {
+        path: 'republica',
+        loadChildren: () =>
+            import('modules/republica/republica-routing.module').then(
+                m => m.RepublicaRoutingModule
             )
     },
     {
