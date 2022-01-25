@@ -1,14 +1,13 @@
 <sb-layout-dashboard>
     <sb-dashboard-head title="Informações dos Assinantes" [hideBreadcrumbs]="false"></sb-dashboard-head>
-    <!-- <sb-card>
+    <sb-card>
         <div class="card-body">
             <form>
                 <div class="form-group form-inline">
                     <input class="form-control ml-2 mr-2 pesquisa-listagem" type="text" name="searchTerm"
-                        placeholder="Pesquisa" [(ngModel)]="serviceTable.searchTerm" />
-                    <span class="ml-8" *ngIf="serviceTable.loading$ | async">Loading...</span>
+                        placeholder="Pesquisa" [(ngModel)]="_serviceTable.searchTerm" />
+                    <span class="ml-8" *ngIf="_serviceTable.loading$ | async">Loading...</span>
                     <div class="botoes-acoes">
-                        <sb-button-cadastro [route]="routeCadastroPlanos"></sb-button-cadastro>
                         <sb-button-filtros (openDialogFiltrar)="abrirModalFiltrar()"></sb-button-filtros>
                     </div>
                 </div>
@@ -16,16 +15,12 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col" sbSortable="descricao" (sort)="onSort($event)"><span>Descrição</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "descricao"' [direction]="sortedDirection">
+                            <th scope="col" sbSortable="nome" (sort)="onSort($event)"><span>Descrição</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "nome"' [direction]="sortedDirection">
                                 </sb-sort-icon>
                             </th>
-                            <th scope="col" sbSortable="tipoPlano" (sort)="onSort($event)"><span>Tipo</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "tipoPlano"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col" sbSortable="valorPlano" (sort)="onSort($event)"><span>Valor</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "valorPlano"' [direction]="sortedDirection">
+                            <th scope="col" sbSortable="anoCriacao" (sort)="onSort($event)"><span>Ano</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "anoCriacao"' [direction]="sortedDirection">
                                 </sb-sort-icon>
                             </th>
                             <th scope="col">Opções</th>
@@ -35,26 +30,17 @@
                         <tr *ngFor="let registro of registros$ | async">
                             <th scope="row">{{ registro.id }}</th>
                             <td>
-                                <ngb-highlight [result]="registro.descricao" [term]="serviceTable.searchTerm">
+                                <ngb-highlight [result]="registro.nome" [term]="_serviceTable.searchTerm">
                                 </ngb-highlight>
                             </td>
                             <td>
-                                <ngb-highlight [result]="mapTiposPlanos[registro.tipoPlano]"
-                                    [term]="serviceTable.searchTerm">
+                                <ngb-highlight [result]="registro.anoCriacao | number"
+                                    [term]="_serviceTable.searchTerm">
                                 </ngb-highlight>
                             </td>
                             <td>
-                                <ngb-highlight [result]="registro.valorPlano | number" [term]="serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm opcoes-listagens"
-                                    (click)="editar(registro.id)">Editar</button>
-                                <button type="button" *ngIf="registro.ativo"
-                                    class="btn btn-danger btn-sm opcoes-listagens"
-                                    (click)="desativar(registro)">Desativar</button>
-                                <button type="button" *ngIf="!registro.ativo" (click)="ativar(registro)"
-                                    class="btn btn-info btn-sm opcoes-listagens">Ativar</button>
+                                <button type="button"
+                                    class="btn btn-warning btn-sm opcoes-listagens">Visualizar</button>
                             </td>
                         </tr>
                     </tbody>
@@ -63,10 +49,10 @@
                     Nenhum registro encontrado!
                 </div>
                 <div class="d-flex justify-content-between p-2" *ngIf="(total$ | async) > 0">
-                    <ngb-pagination [collectionSize]="total$ | async" [(page)]="serviceTable.page"
-                        [pageSize]="serviceTable.pageSize"></ngb-pagination>
+                    <ngb-pagination [collectionSize]="total$ | async" [(page)]="_serviceTable.page"
+                        [pageSize]="_serviceTable.pageSize"></ngb-pagination>
                     <select class="custom-select" style="width: auto" name="pageSize"
-                        [(ngModel)]="serviceTable.pageSize">
+                        [(ngModel)]="_serviceTable.pageSize">
                         <option [ngValue]="2">2 itens por página</option>
                         <option [ngValue]="4">4 itens por página</option>
                         <option [ngValue]="6">6 itens por página</option>
@@ -74,7 +60,7 @@
                 </div>
             </form>
         </div>
-    </sb-card> -->
+    </sb-card>
 </sb-layout-dashboard>
 <!-- <ngbd-modal-filtros-assinantes #modalFiltros [filtros]="filtros" (searchOutput)="filtrar()">
 </ngbd-modal-filtros-assinantes> -->

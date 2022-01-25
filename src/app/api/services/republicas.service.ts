@@ -28,19 +28,30 @@ class RepublicasService extends __BaseService {
    * Consulta Repúblicas
    *
    * Rota para consulta de repúblicas. Apenas Administradores Nosso Cafofo.
-   * @param nome Nome da república
-   * @param dataPagamentoContas Dia (número) de pagamento das contas
-   * @param anoCriacao Ano de criação
+   * @param params The `RepublicasService.GetRepublicaParams` containing the following parameters:
+   *
+   * - `offset`: Offset da consulta (para paginação)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros por consulta)
+   *
+   * - `tipoPlanoAtivo`: Tipo de plano assinado/ativo
+   *
+   * - `nome`: Nome da república
+   *
+   * - `dataPagamentoContas`: Dia (número) de pagamento das contas
+   *
+   * - `anoCriacao`: Ano de criação
    */
-  getRepublicaResponse(nome?: string,
-    dataPagamentoContas?: number,
-    anoCriacao?: number): __Observable<__StrictHttpResponse<null>> {
+  getRepublicaResponse(params: RepublicasService.GetRepublicaParams): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (nome != null) __params = __params.set('nome', nome.toString());
-    if (dataPagamentoContas != null) __params = __params.set('dataPagamentoContas', dataPagamentoContas.toString());
-    if (anoCriacao != null) __params = __params.set('anoCriacao', anoCriacao.toString());
+    if (params.offset != null) __params = __params.set('offset', params.offset.toString());
+    if (params.limit != null) __params = __params.set('limit', params.limit.toString());
+    if (params.tipoPlanoAtivo != null) __params = __params.set('tipoPlanoAtivo', params.tipoPlanoAtivo.toString());
+    if (params.nome != null) __params = __params.set('nome', params.nome.toString());
+    if (params.dataPagamentoContas != null) __params = __params.set('dataPagamentoContas', params.dataPagamentoContas.toString());
+    if (params.anoCriacao != null) __params = __params.set('anoCriacao', params.anoCriacao.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/republica`,
@@ -62,14 +73,22 @@ class RepublicasService extends __BaseService {
    * Consulta Repúblicas
    *
    * Rota para consulta de repúblicas. Apenas Administradores Nosso Cafofo.
-   * @param nome Nome da república
-   * @param dataPagamentoContas Dia (número) de pagamento das contas
-   * @param anoCriacao Ano de criação
+   * @param params The `RepublicasService.GetRepublicaParams` containing the following parameters:
+   *
+   * - `offset`: Offset da consulta (para paginação)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros por consulta)
+   *
+   * - `tipoPlanoAtivo`: Tipo de plano assinado/ativo
+   *
+   * - `nome`: Nome da república
+   *
+   * - `dataPagamentoContas`: Dia (número) de pagamento das contas
+   *
+   * - `anoCriacao`: Ano de criação
    */
-  getRepublica(nome?: string,
-    dataPagamentoContas?: number,
-    anoCriacao?: number): __Observable<null> {
-    return this.getRepublicaResponse(nome, dataPagamentoContas, anoCriacao).pipe(
+  getRepublica(params: RepublicasService.GetRepublicaParams): __Observable<null> {
+    return this.getRepublicaResponse(params).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -201,6 +220,42 @@ class RepublicasService extends __BaseService {
 }
 
 module RepublicasService {
+
+  /**
+   * Parameters for getRepublica
+   */
+  export interface GetRepublicaParams {
+
+    /**
+     * Offset da consulta (para paginação)
+     */
+    offset: number;
+
+    /**
+     * Limit da consulta (para paginação: máximo de 50 registros por consulta)
+     */
+    limit: number;
+
+    /**
+     * Tipo de plano assinado/ativo
+     */
+    tipoPlanoAtivo?: number;
+
+    /**
+     * Nome da república
+     */
+    nome?: string;
+
+    /**
+     * Dia (número) de pagamento das contas
+     */
+    dataPagamentoContas?: number;
+
+    /**
+     * Ano de criação
+     */
+    anoCriacao?: number;
+  }
 }
 
 export { RepublicasService }

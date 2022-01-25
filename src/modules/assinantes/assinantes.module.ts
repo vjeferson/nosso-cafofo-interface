@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AssinantesTableService } from './containers/assinantes-list/assinantes-table.service';
 
 /* Modules */
 import { AppCommonModule } from '@common/app-common.module';
@@ -19,6 +20,7 @@ import * as assinantesContainers from './containers';
 /* Guards */
 import * as assinantesGuards from './guards';
 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -30,7 +32,7 @@ import * as assinantesGuards from './guards';
         ChartsModule,
         TablesModule
     ],
-    providers: [...assinantesGuards.guards],
+    providers: [AssinantesTableService, ...assinantesGuards.guards],
     declarations: [...assinantesContainers.containers, ...assinantesComponents.components],
     exports: [...assinantesContainers.containers, ...assinantesComponents.components],
 })
