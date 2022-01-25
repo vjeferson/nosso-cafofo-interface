@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { AtualizaUsuario } from '../models/atualiza-usuario';
 @Injectable({
   providedIn: 'root',
 })
@@ -145,12 +146,15 @@ class UsuariosService extends __BaseService {
    *
    * Rota para alteração de usuário.
    * @param id Identificador do registro
+   * @param body Novas informações do Usuário
    */
-  putUsuarioIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+  putUsuarioIdResponse(id: number,
+    body: AtualizaUsuario): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
+    __body = body;
     let req = new HttpRequest<any>(
       'PUT',
       this.rootUrl + `/usuario/${encodeURIComponent(String(id))}`,
@@ -173,9 +177,11 @@ class UsuariosService extends __BaseService {
    *
    * Rota para alteração de usuário.
    * @param id Identificador do registro
+   * @param body Novas informações do Usuário
    */
-  putUsuarioId(id: number): __Observable<null> {
-    return this.putUsuarioIdResponse(id).pipe(
+  putUsuarioId(id: number,
+    body: AtualizaUsuario): __Observable<null> {
+    return this.putUsuarioIdResponse(id, body).pipe(
       __map(_r => _r.body as null)
     );
   }

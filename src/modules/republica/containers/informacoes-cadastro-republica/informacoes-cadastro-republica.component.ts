@@ -102,10 +102,8 @@ export class InformacoesCadastroRepublicaComponent implements OnInit {
     }
 
     public salvar() {
-        debugger
         if (this.formGroup.valid) {
             const body: AtualizaRepublica = this.trataDadosParaSalvar();
-            debugger;
             this._republicaService.putRepublicaId(+this.republicaId, body).subscribe((res: any) => {
                 if (res) {
                     this._toastService.success('Alterações salvas!', "Atualização", {

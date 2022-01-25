@@ -11,7 +11,9 @@
                         <sb-card class="col-md-4">
                             <div class="card-header">Imagem de Profile</div>
                             <div class="card-body selecao-imagem">
-                                <div class="small text-white"><fa-icon [icon]='["fas", "user-circle"]'></fa-icon></div>
+                                <div class="small text-white">
+                                    <fa-icon [icon]='["fas", "user-circle"]'></fa-icon>
+                                </div>
                                 <button class="btn btns-formulario-cadastro-salvar" (click)="trocarImagem()">Trocar
                                     imagem</button>
                             </div>
@@ -22,27 +24,26 @@
                             <div class="card-body">
                                 <form [formGroup]="formGroup">
                                     <div class="form-row">
-                                        <div class="col-md-10">
+                                        <div class="col-md-8">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="nome">Nome</label>
                                                 <input class="form-control" id="nome" type="text"
-                                                    placeholder="Informe o nome" formControlName="nome"
-                                                    maxlength="50" />
+                                                    placeholder="Informe o nome" formControlName="nome" />
 
                                                 <show-erro-input [inputName]="'nome'" [formGroup]="formGroup"
                                                     [validationName]="'required'">
                                                 </show-erro-input>
+                                                <show-erro-input [inputName]="'nome'" [formGroup]="formGroup"
+                                                    [validationName]="'maxlength'"
+                                                    [mensagemDeErro]="'Tamanho máximo de 50 caracteres'">
+                                                </show-erro-input>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="ano">Ano</label>
+                                                <label class="small mb-1" for="ano">Ano de Entrada na República</label>
                                                 <input class="form-control" id="ano" type="number" placeholder="Ano"
-                                                    formControlName="ano" />
-
-                                                <show-erro-input [inputName]="'ano'" [formGroup]="formGroup"
-                                                    [validationName]="'required'">
-                                                </show-erro-input>
+                                                    formControlName="ano" readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -51,18 +52,20 @@
                                             <div class="form-group">
                                                 <label class="small mb-1" for="email">Email</label>
                                                 <input class="form-control" id="email" type="email"
-                                                    placeholder="Informe o email" formControlName="email"
-                                                    maxlength="50" />
+                                                    placeholder="Informe o email" formControlName="email" />
 
                                                 <show-erro-input [inputName]="'email'" [formGroup]="formGroup"
-                                                    [validationName]="'required'">
+                                                    [validationName]="'required'"></show-erro-input>
+                                                <show-erro-input [inputName]="'email'" [formGroup]="formGroup"
+                                                    [validationName]="'email'"
+                                                    [mensagemDeErro]="'Informe um email válido'">
                                                 </show-erro-input>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="btns-formulario-cadastro">
                                         <button class="btn btns-formulario-cadastro-salvar"
-                                            (click)="salvar()">Salvar</button>
+                                            (click)="salvarDetalhesDoUsuario()">Salvar</button>
                                     </div>
                                 </form>
                             </div>
