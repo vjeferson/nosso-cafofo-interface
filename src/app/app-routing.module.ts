@@ -21,6 +21,13 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'assinantes',
+        loadChildren: () =>
+            import('modules/assinantes/assinantes-routing.module').then(
+                m => m.AssinantesRoutingModule
+            )
+    },
+    {
         path: 'planos',
         loadChildren: () =>
             import('modules/planos/planos-routing.module').then(

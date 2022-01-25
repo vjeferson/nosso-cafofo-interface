@@ -6,6 +6,7 @@ export const sideNavSections: SideNavSection[] = [
         text: '',
         items: [
             'dashboard',
+            'assinantes',
             'planos',
             'pages',
             'charts',
@@ -26,6 +27,12 @@ export const sideNavItems: SideNavItems = {
         text: 'Dashboard',
         link: '/dashboard',
         tipoPerfil: [EnumTipoPerfil.AdministradorNossoCafofo, EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
+    },
+    assinantes: {
+        icon: 'tachometer-alt',
+        text: 'Assinantes',
+        link: '/assinantes',
+        tipoPerfil: [EnumTipoPerfil.AdministradorNossoCafofo]
     },
     planos: {
         icon: 'tachometer-alt',
