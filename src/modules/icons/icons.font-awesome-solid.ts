@@ -18,7 +18,8 @@ import {
     faUser,
     faUserCircle,
     faPlusCircle,
-    faFilter
+    faFilter,
+    faHome
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeSolidIcons = {
@@ -39,5 +40,6 @@ export const fontAwesomeSolidIcons = {
     faUser,
     faUserCircle,
     faPlusCircle,
-    faFilter
+    faFilter,
+    faHome
 };

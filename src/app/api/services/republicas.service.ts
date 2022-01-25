@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { AtualizaRepublica } from '../models/atualiza-republica';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,6 +15,7 @@ class RepublicasService extends __BaseService {
   static readonly getRepublicaPath = '/republica';
   static readonly getRepublicaIdPath = '/republica/{id}';
   static readonly putRepublicaIdPath = '/republica/{id}';
+  static readonly getRepublicaInformacoesCadastroIdPath = '/republica/informacoes-cadastro/{id}';
 
   constructor(
     config: __Configuration,
@@ -117,12 +119,15 @@ class RepublicasService extends __BaseService {
    *
    * Rota para alteração de república.
    * @param id Identificador do registro
+   * @param body Novas informações da República
    */
-  putRepublicaIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+  putRepublicaIdResponse(id: number,
+    body: AtualizaRepublica): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
+    __body = body;
     let req = new HttpRequest<any>(
       'PUT',
       this.rootUrl + `/republica/${encodeURIComponent(String(id))}`,
@@ -145,9 +150,51 @@ class RepublicasService extends __BaseService {
    *
    * Rota para alteração de república.
    * @param id Identificador do registro
+   * @param body Novas informações da República
    */
-  putRepublicaId(id: number): __Observable<null> {
-    return this.putRepublicaIdResponse(id).pipe(
+  putRepublicaId(id: number,
+    body: AtualizaRepublica): __Observable<null> {
+    return this.putRepublicaIdResponse(id, body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Consulta informações de Cadastro da República Específico trazendo informações adicionais
+   *
+   * Rota para consulta de república específica pelo id (identificação do registro), trazendo informações adicionais de cadastro.
+   * @param id Identificador do registro
+   */
+  getRepublicaInformacoesCadastroIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/republica/informacoes-cadastro/${encodeURIComponent(String(id))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Consulta informações de Cadastro da República Específico trazendo informações adicionais
+   *
+   * Rota para consulta de república específica pelo id (identificação do registro), trazendo informações adicionais de cadastro.
+   * @param id Identificador do registro
+   */
+  getRepublicaInformacoesCadastroId(id: number): __Observable<null> {
+    return this.getRepublicaInformacoesCadastroIdResponse(id).pipe(
       __map(_r => _r.body as null)
     );
   }

@@ -1,5 +1,139 @@
 <sb-layout-dashboard>
     <sb-dashboard-head title="Informações de Cadastro da República" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <form [formGroup]="formGroup">
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="small mb-1" for="nome">Nome</label>
+                                <input class="form-control py-4 " id="nome" type="text" placeholder="Informe seu nome"
+                                    formControlName="nome" />
 
+                                <show-erro-input [inputName]="'nome'" [formGroup]="formGroup"
+                                    [validationName]="'required'">
+                                </show-erro-input>
+                                <show-erro-input [inputName]="'nome'" [formGroup]="formGroup"
+                                    [validationName]="'maxlength'" [mensagemDeErro]="'Tamanho máximo de 50 caracteres'">
+                                </show-erro-input>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="small mb-1" for="logradouro">Endereço</label>
+                                <input class="form-control py-4" id="logradouro" type="text"
+                                    placeholder="Informe o endereço" formControlName="logradouro" />
+
+                                <show-erro-input [inputName]="'logradouro'" [formGroup]="formGroup"
+                                    [validationName]="'required'">
+                                </show-erro-input>
+
+                                <show-erro-input [inputName]="'logradouro'" [formGroup]="formGroup"
+                                    [validationName]="'maxlength'" [mensagemDeErro]="'Tamanho máximo de 70 caracteres'">
+                                </show-erro-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="small mb-1" for="complemento">Complemento</label>
+                                <input class="form-control py-4" id="complemento" type="text"
+                                    placeholder="Informe o complemento" formControlName="complemento" />
+
+                                <show-erro-input [inputName]="'complemento'" [formGroup]="formGroup"
+                                    [validationName]="'maxlength'" [mensagemDeErro]="'Tamanho máximo de 45 caracteres'">
+                                </show-erro-input>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="small mb-1" for="numero">Número</label>
+                                <input class="form-control py-4" id="numero" type="text"
+                                    placeholder="Informe o nome da república" formControlName="numero" />
+
+                                <show-erro-input [inputName]="'numero'" [formGroup]="formGroup"
+                                    [validationName]="'required'">
+                                </show-erro-input>
+                                <show-erro-input [inputName]="'numero'" [formGroup]="formGroup"
+                                    [validationName]="'maxlength'" [mensagemDeErro]="'Tamanho máximo de 10 caracteres'">
+                                </show-erro-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <form-select-estado formControlName="estadoId"
+                                    (escolheEstado)="getEstadoSelecionado($event)"></form-select-estado>
+
+                                <show-erro-input [inputName]="'estadoId'" [formGroup]="formGroup"
+                                    [validationName]="'required'">
+                                </show-erro-input>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <form-select-cidade #selectCidade formControlName="cidadeId" [_readonly]="!estadoId">
+                                </form-select-cidade>
+
+                                <show-erro-input [inputName]="'cidadeId'" [formGroup]="formGroup"
+                                    [validationName]="'required'">
+                                </show-erro-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="small mb-1" for="dataPagamentoContas">
+                                    Dia de Pagamento das Contas</label><input class="form-control py-4"
+                                    id="dataPagamentoContas" type="number" placeholder="Informe o nome da república"
+                                    formControlName="dataPagamentoContas" />
+
+                                <show-erro-input [inputName]="'dataPagamentoContas'" [formGroup]="formGroup"
+                                    [validationName]="'required'">
+                                </show-erro-input>
+                                <show-erro-input [inputName]="'dataPagamentoContas'" [formGroup]="formGroup"
+                                    [validationName]="'max'" [mensagemDeErro]="'Valor máximo dia 31'">
+                                </show-erro-input>
+                                <show-erro-input [inputName]="'dataPagamentoContas'" [formGroup]="formGroup"
+                                    [validationName]="'min'" [mensagemDeErro]="'Valor mínimo dia 1'">
+                                </show-erro-input>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="small mb-1" for="anoCriacao">Ano de Criação</label>
+                                <input class="form-control py-4" id="anoCriacao" type="number"
+                                    placeholder="Informe o ano de entrada" formControlName="anoCriacao" />
+
+                                    <show-erro-input [inputName]="'anoCriacao'" [formGroup]="formGroup"
+                                    [validationName]="'required'">
+                                </show-erro-input>
+                                <show-erro-input [inputName]="'anoCriacao'" [formGroup]="formGroup"
+                                    [validationName]="'max'" [mensagemDeErro]="mensagemAnoMaximoAnoCriacao">
+                                </show-erro-input>
+                                <show-erro-input [inputName]="'anoCriacao'" [formGroup]="formGroup"
+                                    [validationName]="'min'" [mensagemDeErro]="'Valor mínimo: 1900'">
+                                </show-erro-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btns-formulario-cadastro">
+                        <button class="btn btns-formulario-cadastro-salvar" (click)="salvar()">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </sb-layout-dashboard>

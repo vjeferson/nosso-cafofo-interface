@@ -1,1 +1,16 @@
 @import 'styles/variables.scss';
+
+.container { 
+    margin: 0px;
+    margin-top: 3rem;
+    padding: 0px;
+    max-width: 100%;
+    
+    .row {
+        display: flex;
+        margin: 0px;
+        padding: 0px;
+        max-width: 100%;
+    }
+    
+}

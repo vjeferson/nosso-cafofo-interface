@@ -95,7 +95,7 @@ export const sideNavItems: SideNavItems = {
         tipoPerfil: [EnumTipoPerfil.AdministradorNossoCafofo, EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
     },
     republica: {
-        icon: 'book-open',
+        icon: 'home',
         text: 'República',
         tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador],
         submenu: [
