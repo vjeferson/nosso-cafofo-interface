@@ -43,6 +43,8 @@ export class FiltrosAssinantesNgbdModal implements AfterViewInit {
     private trataFiltrosParaPesquisa() {
         this.filtros.tipoPlanoAtivo = this.formGroup.value.tipoPlanoAtivo ?
             this.formGroup.value.tipoPlanoAtivo.codigoTipoPlano || this.formGroup.value.tipoPlanoAtivo : undefined;
+        this.filtros.dataPagamentoContas = this.formGroup.value.dataPagamentoContas;
+        this.filtros.anoCriacao = this.formGroup.value.anoCriacao;
     }
 
     close() {

@@ -60,8 +60,8 @@ export class AssinantesComponent implements OnInit {
         this._serviceTable._set(this.filtros);
     }
 
-    // editar(idRegistro: number) {
-    //     this.router.navigate([this.routeEdicaoPlanos, { id: idRegistro }]);
-    // }
+    visualizar(idRegistro: number) {
+        // this._router.navigate([this.routeEdicaoPlanos, { id: idRegistro }]);
+    }
 
 }

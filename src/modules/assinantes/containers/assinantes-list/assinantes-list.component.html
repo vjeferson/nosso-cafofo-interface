@@ -23,6 +23,10 @@
                                 <sb-sort-icon *ngIf='sortedColumn === "anoCriacao"' [direction]="sortedDirection">
                                 </sb-sort-icon>
                             </th>
+                            <th scope="col" sbSortable="anoCriacao" (sort)="onSort($event)"><span>Dia de Pag. das Contas</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "anoCriacao"' [direction]="sortedDirection">
+                                </sb-sort-icon>
+                            </th>
                             <th scope="col">Opções</th>
                         </tr>
                     </thead>
@@ -34,13 +38,18 @@
                                 </ngb-highlight>
                             </td>
                             <td>
-                                <ngb-highlight [result]="registro.anoCriacao | number"
+                                <ngb-highlight [result]="registro.anoCriacao"
+                                    [term]="_serviceTable.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="registro.dataPagamentoContas"
                                     [term]="_serviceTable.searchTerm">
                                 </ngb-highlight>
                             </td>
                             <td>
                                 <button type="button"
-                                    class="btn btn-warning btn-sm opcoes-listagens">Visualizar</button>
+                                    class="btn btn-primary btn-sm opcoes-listagens">Visualizar</button>
                             </td>
                         </tr>
                     </tbody>
@@ -62,5 +71,5 @@
         </div>
     </sb-card>
 </sb-layout-dashboard>
-<!-- <ngbd-modal-filtros-assinantes #modalFiltros [filtros]="filtros" (searchOutput)="filtrar()">
-</ngbd-modal-filtros-assinantes> -->
+<ngbd-modal-filtros-assinantes #modalFiltros [filtros]="filtros" (searchOutput)="filtrar()">
+</ngbd-modal-filtros-assinantes>
