@@ -21,7 +21,8 @@ import {
     faFilter,
     faHome,
     faHouseUser,
-    faMoneyCheckAlt
+    faMoneyCheckAlt,
+    faHandshake
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeSolidIcons = {
@@ -45,5 +46,6 @@ export const fontAwesomeSolidIcons = {
     faFilter,
     faHome,
     faHouseUser,
-    faMoneyCheckAlt
+    faMoneyCheckAlt,
+    faHandshake
 };

@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-xl-3 col-md-6" *ngIf="administradorNossoCafofo">
+<div class="row" *ngIf="administradorNossoCafofo">
+    <div class="col-xl-3 col-md-6">
         <sb-card link="/dashboard" background="card-widget-default">
             <div class="card-body">
                 <div class="text-card">
@@ -9,6 +9,22 @@
                 </div>
                 <div class="icon-card">
                     <fa-icon [icon]='["fas", "house-user"]'></fa-icon>
+                </div>
+            </div>
+        </sb-card>
+    </div>
+</div>
+<div class="row" *ngIf="!administradorNossoCafofo">
+    <div class="col-xl-3 col-md-6">
+        <sb-card link="/dashboard" background="card-widget-default">
+            <div class="card-body">
+                <div class="text-card">
+                    <p>Última Reunião</p>
+                    <span *ngIf="this.mapEstatisticasCards['ultima-reuniao']">
+                        {{this.mapEstatisticasCards['ultima-reuniao'].data}}</span>
+                </div>
+                <div class="icon-card">
+                    <fa-icon [icon]='["fas", "handshake"]'></fa-icon>
                 </div>
             </div>
         </sb-card>

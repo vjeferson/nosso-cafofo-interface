@@ -37,6 +37,18 @@ export class DashboardCardsComponent implements OnInit {
                     this._changes.detectChanges();
                 }
             );
+        }else {
+            this.mapEstatisticasCards['ultima-reuniao'] = false;
+            this._estatisticasService.getEstatisticasUltimaReuniao().subscribe(
+                (res: any) => {
+                    if (res) {
+                        this.mapEstatisticasCards['ultima-reuniao'] = res;
+                    } else {
+                        this.mapEstatisticasCards['ultima-reuniao'] = { data: 'Nenhuma reunião realizada' };
+                    }
+                    this._changes.detectChanges();
+                }
+            );
         }
     }
 

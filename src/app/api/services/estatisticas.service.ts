@@ -13,6 +13,7 @@ import { map as __map, filter as __filter } from 'rxjs/operators';
 class EstatisticasService extends __BaseService {
   static readonly getEstatisticasCountAssinantesPath = '/estatisticas/count-assinantes';
   static readonly getEstatisticasCountPagamentosPath = '/estatisticas/count-pagamentos';
+  static readonly getEstatisticasUltimaReuniaoPath = '/estatisticas/ultima-reuniao';
 
   constructor(
     config: __Configuration,
@@ -91,6 +92,43 @@ class EstatisticasService extends __BaseService {
    */
   getEstatisticasCountPagamentos(): __Observable<null> {
     return this.getEstatisticasCountPagamentosResponse().pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Data da última reunião
+   *
+   * Rota para consulta data da última reunião cadastrada.
+   */
+  getEstatisticasUltimaReuniaoResponse(): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/estatisticas/ultima-reuniao`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Data da última reunião
+   *
+   * Rota para consulta data da última reunião cadastrada.
+   */
+  getEstatisticasUltimaReuniao(): __Observable<null> {
+    return this.getEstatisticasUltimaReuniaoResponse().pipe(
       __map(_r => _r.body as null)
     );
   }
