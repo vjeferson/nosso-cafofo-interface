@@ -15,7 +15,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col" sbSortable="nome" (sort)="onSort($event)"><span>Descrição</span>
+                            <th scope="col" sbSortable="nome" (sort)="onSort($event)"><span>Nome República</span>
                                 <sb-sort-icon *ngIf='sortedColumn === "nome"' [direction]="sortedDirection">
                                 </sb-sort-icon>
                             </th>
@@ -25,6 +25,10 @@
                             </th>
                             <th scope="col" sbSortable="anoCriacao" (sort)="onSort($event)"><span>Dia de Pag. das Contas</span>
                                 <sb-sort-icon *ngIf='sortedColumn === "anoCriacao"' [direction]="sortedDirection">
+                                </sb-sort-icon>
+                            </th>
+                            <th scope="col" sbSortable="tipoPlano" (sort)="onSort($event)"><span>Tipo de Plano</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "tipoPlano"' [direction]="sortedDirection">
                                 </sb-sort-icon>
                             </th>
                             <th scope="col">Opções</th>
@@ -44,6 +48,11 @@
                             </td>
                             <td>
                                 <ngb-highlight [result]="registro.dataPagamentoContas"
+                                    [term]="_serviceTable.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="mapTiposPlanos[registro.tipoPlano]"
                                     [term]="_serviceTable.searchTerm">
                                 </ngb-highlight>
                             </td>

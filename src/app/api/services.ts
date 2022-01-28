@@ -7,6 +7,7 @@ export { PerfisService } from './services/perfis.service';
 export { UsuariosService } from './services/usuarios.service';
 export { RepublicasService } from './services/republicas.service';
 export { AssinaturasService } from './services/assinaturas.service';
+export { AssinantesService } from './services/assinantes.service';
 export { MoradoresService } from './services/moradores.service';
 export { ReunioesService } from './services/reunioes.service';
 export { FestasService } from './services/festas.service';

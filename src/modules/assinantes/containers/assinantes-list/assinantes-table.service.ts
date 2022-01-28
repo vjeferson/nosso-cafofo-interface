@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableService } from '@common/services/table.service';
-import { PlanosService, RepublicasService } from '@app/api/services';
+import { AssinantesService, AssinaturasService, PlanosService, RepublicasService } from '@app/api/services';
 import { DecimalPipe } from '@angular/common';
 import { SearchResult } from '@app/models/search-result';
 import { IFiltroPlanos } from '@app/models/search-planos';
 import { IFiltroAssinantes } from '@app/models/search-assinantes';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({ providedIn: 'root' })
-export class AssinantesTableService extends TableService<RepublicasService, IFiltroAssinantes> {
-    constructor(pipe: DecimalPipe, service: RepublicasService) {
+export class AssinantesTableService extends TableService<AssinantesService, IFiltroAssinantes> {
+    constructor(pipe: DecimalPipe, service: AssinantesService, private readonly _toastService: ToastrService) {
         super(pipe, service, {
             page: 1,
             pageSize: 2,
@@ -27,7 +28,7 @@ export class AssinantesTableService extends TableService<RepublicasService, IFil
     _search(): Observable<SearchResult> {
         let { sortColumn, sortDirection, pageSize, searchTerm, tipoPlanoAtivo, anoCriacao, dataPagamentoContas } = this.state;
         return new Observable((observer) => {
-            this.service.getRepublica({
+            this.service.getAssinantes({
                 limit: pageSize,
                 offset: this.calculaOffset(),
                 nome: searchTerm && searchTerm !== '' ? searchTerm : undefined,
@@ -38,6 +39,10 @@ export class AssinantesTableService extends TableService<RepublicasService, IFil
                 observer.next(res);
                 observer.complete();
             }, (err: any) => {
+                this._toastService.error(err.error && err.error.message ? err.error.message : 'Consulta inválida!',
+                    err.error && err.error.error ? err.error.error : "Consulta inválida", {
+                    timeOut: 3000,
+                });
                 observer.error(err);
                 observer.complete();
             });

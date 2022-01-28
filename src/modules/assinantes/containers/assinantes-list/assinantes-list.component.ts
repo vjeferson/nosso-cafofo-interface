@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { PlanosService } from '@app/api/services';
 import { IFiltroPlanos } from '@app/models/search-planos';
 import { mapTiposPlanos } from '@app/utils/consts';
 import { FiltrosAssinantesNgbdModal } from '@modules/assinantes/components';
@@ -31,7 +30,6 @@ export class AssinantesComponent implements OnInit {
 
     constructor(
         public _serviceTable: AssinantesTableService,
-        private readonly _planosService: PlanosService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private _toastService: ToastrService
@@ -60,8 +58,8 @@ export class AssinantesComponent implements OnInit {
         this._serviceTable._set(this.filtros);
     }
 
-    visualizar(idRegistro: number) {
-        // this._router.navigate([this.routeEdicaoPlanos, { id: idRegistro }]);
-    }
+    // visualizar(idRegistro: number) {
+    //     // this._router.navigate([this.routeEdicaoPlanos, { id: idRegistro }]);
+    // }
 
 }

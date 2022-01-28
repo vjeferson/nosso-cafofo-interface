@@ -12,6 +12,7 @@ import { PerfisService } from './services/perfis.service';
 import { UsuariosService } from './services/usuarios.service';
 import { RepublicasService } from './services/republicas.service';
 import { AssinaturasService } from './services/assinaturas.service';
+import { AssinantesService } from './services/assinantes.service';
 import { MoradoresService } from './services/moradores.service';
 import { ReunioesService } from './services/reunioes.service';
 import { FestasService } from './services/festas.service';
@@ -40,6 +41,7 @@ import { ContasService } from './services/contas.service';
     UsuariosService,
     RepublicasService,
     AssinaturasService,
+    AssinantesService,
     MoradoresService,
     ReunioesService,
     FestasService,
