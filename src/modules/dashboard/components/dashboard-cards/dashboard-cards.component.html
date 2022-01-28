@@ -1,10 +1,11 @@
 <div class="row">
     <div class="col-xl-3 col-md-6" *ngIf="administradorNossoCafofo">
-        <sb-card link="/dashboard" background="card-widget-default">
+        <sb-card link="/dashboard" [background]="card-widget-default">
             <div class="card-body">
                 <div class="text-card">
                     <p>Total de Assinantes</p>
-                    <span>3 assinantes</span>
+                    <span *ngIf="this.mapEstatisticasCards['total-assinantes']">
+                        {{this.mapEstatisticasCards['total-assinantes'].assinantes}} assinantes</span>
                 </div>
                 <div class="icon-card">
                     <fa-icon [icon]='["fas", "house-user"]'></fa-icon>

@@ -1,7 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { IUsuarioAutenticado } from '@app/models/retorno-autenticacao';
-import { EnumTipoPerfil } from '@app/utils/enums';
-import { UsuarioLogadoService } from '@common/services';
 
 @Component({
     selector: 'sb-dashboard',
@@ -10,14 +7,8 @@ import { UsuarioLogadoService } from '@common/services';
     styleUrls: ['dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-    public administradorNossoCafofo: boolean = false;
-    private usuarioLogado: IUsuarioAutenticado;
+    constructor() {}
 
-    constructor(
-        private readonly _usuarioLogadoService: UsuarioLogadoService
-    ) {
-        this.usuarioLogado = this._usuarioLogadoService.getDadosSession().usuario;
-        this.administradorNossoCafofo = this.usuarioLogado.tipoPerfil === EnumTipoPerfil.AdministradorNossoCafofo;
-    }
-    ngOnInit() { }
+    ngOnInit() {}
+
 }

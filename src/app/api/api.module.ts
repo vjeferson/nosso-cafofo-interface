@@ -18,6 +18,7 @@ import { ReunioesService } from './services/reunioes.service';
 import { FestasService } from './services/festas.service';
 import { ParticipantesFestaService } from './services/participantes-festa.service';
 import { ContasService } from './services/contas.service';
+import { EstatisticasService } from './services/estatisticas.service';
 
 /**
  * Provider for all Api services, plus ApiConfiguration
@@ -46,7 +47,8 @@ import { ContasService } from './services/contas.service';
     ReunioesService,
     FestasService,
     ParticipantesFestaService,
-    ContasService
+    ContasService,
+    EstatisticasService
   ],
 })
 export class ApiModule {

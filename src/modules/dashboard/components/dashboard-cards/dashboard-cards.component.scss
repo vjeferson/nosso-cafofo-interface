@@ -1,1 +1,29 @@
 @import 'styles/variables.scss';
+
+.card-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .text-card {
+        max-width: 80%;
+        font-weight: bold;
+        p {
+            margin-bottom: 0.2rem;
+        }
+        span {
+            font-size: 18px;
+        }
+    }
+
+    .icon-card {
+        max-width: 20%;
+        fa-icon {
+            color: var(--color-icons-blue);
+            font-weight: bold;
+            width: 45px;
+            font-size: 45px;
+        }
+    }
+}

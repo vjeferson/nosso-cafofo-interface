@@ -13,3 +13,4 @@ export { ReunioesService } from './services/reunioes.service';
 export { FestasService } from './services/festas.service';
 export { ParticipantesFestaService } from './services/participantes-festa.service';
 export { ContasService } from './services/contas.service';
+export { EstatisticasService } from './services/estatisticas.service';
