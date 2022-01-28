@@ -19,7 +19,7 @@ export class AssinantesComponent implements OnInit {
     @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
     @ViewChild('modalFiltros', { static: true }) modalFiltros: FiltrosAssinantesNgbdModal | any;
 
-    // private routeVisualizaAssinantes: string = '/assinantes/';
+    private route: string = '/assinantes';
     public mapTiposPlanos = mapTiposPlanos;
     public pageSize = 2;
     public registros$!: Observable<Country[]>;
@@ -58,8 +58,8 @@ export class AssinantesComponent implements OnInit {
         this._serviceTable._set(this.filtros);
     }
 
-    // visualizar(idRegistro: number) {
-    //     // this._router.navigate([this.routeEdicaoPlanos, { id: idRegistro }]);
-    // }
+    visualizar(idRegistro: number) {
+        this._router.navigate([this.route + '/visualizar', { id: idRegistro }]);
+    }
 
 }

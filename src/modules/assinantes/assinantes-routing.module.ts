@@ -27,7 +27,25 @@ export const ROUTES: Routes = [
         } as SBRouteData,
         canActivate: [AssinantesGuard],
         component: assinantesContainers.AssinantesComponent
-    }
+    },
+    {
+        path: 'visualizar',
+        data: {
+            title: 'Informações de Assinante',
+            breadcrumbs: [
+                {
+                    text: 'Assinantes',
+                    link: '/assinantes',
+                },
+                {
+                    text: 'Visualização',
+                    active: true
+                }
+            ],
+        } as SBRouteData,
+        canActivate: [AssinantesGuard],
+        component: assinantesContainers.AssinantesFormComponent
+    },
 ];
 
 @NgModule({

@@ -1,0 +1,43 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head [title]="title" [hideBreadcrumbs]="false"></sb-dashboard-head>
+
+    <form [formGroup]="formGroup">
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="small mb-1" for="nome">Nome da República</label>
+                    <input class="form-control" id="nome" type="text" formControlName="nome" maxlength="70" readonly />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="small mb-1" for="anoCriacao">
+                        Ano de criação</label>
+                    <input class="form-control" id="anoCriacao" type="number" formControlName="anoCriacao" readonly />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="small mb-1" for="dataPagamentoContas">
+                        Dia de Pagamento das Contas</label>
+                    <input class="form-control" id="dataPagamentoContas" type="number"
+                        formControlName="dataPagamentoContas" readonly />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <form-select-tipo-plano formControlName="tipoPlano" [_readonly]="true">
+                    </form-select-tipo-plano>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="btns-formulario-cadastro">
+        <button class="btn btns-formulario-cadastro-voltar" (click)="voltar()">Voltar</button>
+        <button class="btn btns-formulario-cadastro-salvar" (click)="salvar()"
+            [disabled]="!formGroup.valid">Salvar</button>
+    </div>
+</sb-layout-dashboard>
