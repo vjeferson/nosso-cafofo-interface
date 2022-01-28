@@ -29,13 +29,13 @@ export const sideNavItems: SideNavItems = {
         tipoPerfil: [EnumTipoPerfil.AdministradorNossoCafofo, EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
     },
     assinantes: {
-        icon: 'tachometer-alt',
+        icon: 'house-user',
         text: 'Assinantes',
         link: '/assinantes',
         tipoPerfil: [EnumTipoPerfil.AdministradorNossoCafofo]
     },
     planos: {
-        icon: 'tachometer-alt',
+        icon: 'money-check-alt',
         text: 'Planos',
         link: '/planos',
         tipoPerfil: [EnumTipoPerfil.AdministradorNossoCafofo]
