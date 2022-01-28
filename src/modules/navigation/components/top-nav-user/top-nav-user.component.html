@@ -11,11 +11,9 @@
                 <div id="statusUser">To on!</div>
             </div>
         </h6>
-        <div *ngIf="mostrarOpcoesAdicionais">
-            <div class="dropdown-divider"></div>
+        <div id="opcoesAdicionais" *ngIf="mostrarOpcoesAdicionais">
             <a class="dropdown-item" routerLink="/profile">Profile</a>
             <a class="dropdown-item" routerLink="/dashboard">Assinatura</a>
-            <div class="dropdown-divider"></div>
         </div>
         <button class="dropdown-item" (click)="sair()">Sair</button>
     </div>

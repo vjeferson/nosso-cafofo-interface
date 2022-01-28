@@ -2,6 +2,17 @@
 
 .dropdown-menu{ 
     background-color: var(--color-background-navbar) !important; 
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+    #opcoesAdicionais {
+        margin: 1rem 0rem 1rem 0rem;
+        a{color: var(--color-text-grey) !important;}
+    }
+
+    button {
+        color: var(--color-text-grey) !important;
+    }
 }
 
 #userDropdown {
