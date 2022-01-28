@@ -1,14 +1,15 @@
 <div class="row">
-    <div class="col-xl-3 col-md-6">
-        <sb-card-view-details link="/dashboard" background="bg-primary"><div class="card-body">Primary Card</div></sb-card-view-details>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <sb-card-view-details link="/dashboard" background="bg-warning"><div class="card-body">Warning Card</div></sb-card-view-details>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <sb-card-view-details link="/dashboard" background="bg-success"><div class="card-body">Success Card</div></sb-card-view-details>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <sb-card-view-details link="/dashboard" background="bg-danger"><div class="card-body">Danger Card</div></sb-card-view-details>
+    <div class="col-xl-3 col-md-6" *ngIf="administradorNossoCafofo">
+        <sb-card link="/dashboard" background="card-widget-default">
+            <div class="card-body">
+                <div class="text-card">
+                    <p>Total de Assinantes</p>
+                    <span>3 assinantes</span>
+                </div>
+                <div class="icon-card">
+                    <fa-icon [icon]='["fas", "house-user"]'></fa-icon>
+                </div>
+            </div>
+        </sb-card>
     </div>
 </div>
