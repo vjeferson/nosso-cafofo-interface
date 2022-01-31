@@ -1,0 +1,1 @@
+export * from './assinatura-ativa.model';

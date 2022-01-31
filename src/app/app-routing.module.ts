@@ -42,6 +42,13 @@ const routes: Routes = [
             )
     },
     {
+        path: 'assinatura',
+        loadChildren: () =>
+            import('modules/assinatura/assinatura-ativa-routing.module').then(
+                m => m.AssinaturaAtivaRoutingModule
+            )
+    },
+    {
         path: 'republica',
         loadChildren: () =>
             import('modules/republica/republica-routing.module').then(
