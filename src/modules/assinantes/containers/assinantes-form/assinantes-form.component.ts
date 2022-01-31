@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssinantesService } from '@app/api/services';
+import { IResultAssinante } from '@app/models/assinante-result-interface';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -21,8 +23,10 @@ export class AssinantesFormComponent implements OnInit {
         private readonly _activeRoute: ActivatedRoute,
         public _service: AssinantesService,
         private _changeDetectorRef: ChangeDetectorRef,
-        private _toastService: ToastrService
+        private _toastService: ToastrService,
+        private _localeService: BsLocaleService
     ) {
+        this._localeService.use('pt-br');
         this._activeRoute.data.subscribe(data => {
             this.title = data.title;
         });
@@ -33,7 +37,8 @@ export class AssinantesFormComponent implements OnInit {
             nome: [null, []],
             anoCriacao: [null, []],
             tipoPlano: [null, []],
-            dataPagamentoContas: [null, []]
+            dataPagamentoContas: [null, []],
+            dataAssinatura: [null, []]
         });
 
         this._activeRoute.params.subscribe(params => {
@@ -52,7 +57,7 @@ export class AssinantesFormComponent implements OnInit {
     private loadRegistro(idRegistro: number) {
         this._service.getAssinantesId(idRegistro).subscribe((res: any) => {
             if (res) {
-                this.formGroup.patchValue(res);
+                this.formGroup.patchValue(this.trataDadosParaAbrirNoFormulario(res));
                 this._changeDetectorRef.detectChanges();
             } else {
                 this._router.navigate([this.route]);
@@ -68,7 +73,12 @@ export class AssinantesFormComponent implements OnInit {
         });
     }
 
-    voltar() {
+    private trataDadosParaAbrirNoFormulario(dados: any): IResultAssinante {
+        dados.dataAssinatura = new Date(dados.dataAssinatura);
+        return dados;
+    }
+
+    public voltar() {
         this._router.navigate([this.route]);
     }
 

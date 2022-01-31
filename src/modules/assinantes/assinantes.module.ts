@@ -20,7 +20,6 @@ import * as assinantesContainers from './containers';
 /* Guards */
 import * as assinantesGuards from './guards';
 
-
 @NgModule({
     imports: [
         CommonModule,

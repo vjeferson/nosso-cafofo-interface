@@ -3,10 +3,19 @@
 
     <form [formGroup]="formGroup">
         <div class="form-row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="form-group">
                     <label class="small mb-1" for="nome">Nome da República</label>
                     <input class="form-control" id="nome" type="text" formControlName="nome" maxlength="70" readonly />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="small mb-1" for="dataAssinatura">
+                        Data de Assinatura</label>
+                        
+                    <input class="form-control" id="dataAssinatura" type="text" formControlName="dataAssinatura"
+                        bsDatepicker isDisabled="true" readonly/>
                 </div>
             </div>
         </div>
@@ -37,7 +46,5 @@
 
     <div class="btns-formulario-cadastro">
         <button class="btn btns-formulario-cadastro-voltar" (click)="voltar()">Voltar</button>
-        <button class="btn btns-formulario-cadastro-salvar" (click)="salvar()"
-            [disabled]="!formGroup.valid">Salvar</button>
     </div>
 </sb-layout-dashboard>
