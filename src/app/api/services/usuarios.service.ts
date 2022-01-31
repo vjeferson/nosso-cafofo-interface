@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { AtualizaUsuario } from '../models/atualiza-usuario';
+import { TrocaSenha } from '../models/troca-senha';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +17,7 @@ class UsuariosService extends __BaseService {
   static readonly getUsuarioPath = '/usuario';
   static readonly getUsuarioIdPath = '/usuario/{id}';
   static readonly putUsuarioIdPath = '/usuario/{id}';
+  static readonly putUsuarioIdTrocaSenhaPath = '/usuario/{id}/troca-senha';
 
   constructor(
     config: __Configuration,
@@ -182,6 +184,51 @@ class UsuariosService extends __BaseService {
   putUsuarioId(id: number,
     body: AtualizaUsuario): __Observable<null> {
     return this.putUsuarioIdResponse(id, body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Trocar Senha de Usuário
+   *
+   * Rota para alteração de senha de usuário.
+   * @param id Identificador do usuário
+   * @param body Novas informações de senha
+   */
+  putUsuarioIdTrocaSenhaResponse(id: number,
+    body: TrocaSenha): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    __body = body;
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/usuario/${encodeURIComponent(String(id))}/troca-senha`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Trocar Senha de Usuário
+   *
+   * Rota para alteração de senha de usuário.
+   * @param id Identificador do usuário
+   * @param body Novas informações de senha
+   */
+  putUsuarioIdTrocaSenha(id: number,
+    body: TrocaSenha): __Observable<null> {
+    return this.putUsuarioIdTrocaSenhaResponse(id, body).pipe(
       __map(_r => _r.body as null)
     );
   }

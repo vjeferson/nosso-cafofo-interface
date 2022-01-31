@@ -77,7 +77,88 @@
         </li>
         <li ngbNavItem>
             <a ngbNavLink>Ações Adicionais</a>
-            <ng-template ngbNavContent>Second content</ng-template>
+            <ng-template ngbNavContent>
+                <div class="container">
+                    <div class="row">
+                        <sb-card class="col-md-6">
+                            <div class="card-header">Trocar Senha</div>
+                            <div class="card-body">
+                                <form [formGroup]="formGroupTrocaSenha">
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="senhaAtual">Senha Atual</label>
+                                                <input class="form-control" id="senhaAtual" type="password"
+                                                    formControlName="senhaAtual" />
+
+                                                <show-erro-input [inputName]="'senhaAtual'" [formGroup]="formGroupTrocaSenha"
+                                                    [validationName]="'required'">
+                                                </show-erro-input>
+
+                                                <show-erro-input [inputName]="'senhaAtual'" [formGroup]="formGroupTrocaSenha"
+                                                    [validationName]="'minlength'"
+                                                    [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
+                                                </show-erro-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="novaSenha">Nova Senha</label>
+                                                <input class="form-control" id="novaSenha" type="password"
+                                                    formControlName="novaSenha" />
+
+                                                <show-erro-input [inputName]="'novaSenha'" [formGroup]="formGroupTrocaSenha"
+                                                    [validationName]="'required'">
+                                                </show-erro-input>
+
+                                                <show-erro-input [inputName]="'novaSenha'" [formGroup]="formGroupTrocaSenha"
+                                                    [validationName]="'minlength'"
+                                                    [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
+                                                </show-erro-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="confirmarSenha">Confirmar Senha</label>
+                                                <input class="form-control" id="confirmarSenha" type="password"
+                                                    formControlName="confirmarSenha" />
+
+                                                <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroupTrocaSenha"
+                                                    [validationName]="'required'">
+                                                </show-erro-input>
+
+                                                <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroupTrocaSenha"
+                                                    [validationName]="'minlength'"
+                                                    [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
+                                                </show-erro-input>
+
+                                                <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroupTrocaSenha"
+                                                    [validationName]="'confirmar'"
+                                                    [mensagemDeErro]="'Senhas não conferem'">
+                                                </show-erro-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btns-formulario-cadastro">
+                                        <button class="btn btns-formulario-cadastro-salvar"
+                                            (click)="salvarTrocaDeSenha()">Salvar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </sb-card>
+                        <sb-card class="col-md-6">
+                            <div class="card-header">Contas Sociais</div>
+                            <div class="card-body">
+                                teste
+                            </div>
+                        </sb-card>
+                    </div>
+                </div>
+            </ng-template>
         </li>
     </ul>
     <div [ngbNavOutlet]="nav"></div>

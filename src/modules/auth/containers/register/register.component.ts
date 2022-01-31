@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit {
 
         return (formControl.value >= this.formGroup.get('anoCriacaoRepublica').value) ? null : { anoEntradaInvalido: true };
     }
+    
     private confirmaSenha(formControl: FormControl) {
         if (!this.formGroup) {
             return null;
