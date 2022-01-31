@@ -6,6 +6,7 @@ export interface IUsuarioAutenticado {
   tipoPerfil: number;
   republicaId: number;
   moradorId?: number;
+  assinaturaId?: number;
   anoEntradaRepublica: number;
 }
 

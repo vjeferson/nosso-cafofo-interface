@@ -13,4 +13,12 @@ export const mapTiposPlanos = {
     [EnumTipoPlano.Anual]: 'Plano Anual',
     [EnumTipoPlano.PromocionalAnual]: 'Plano Promocional Anual',
     [EnumTipoPlano.Free]: 'Free (Grátis)'
-}
+};
+
+export const mapDescricaoTiposPlanos = {
+    'PlanoMensal': EnumTipoPlano.Mensal,
+    'PlanoSemestral': EnumTipoPlano.Semestral,
+    'PlanoAnual': EnumTipoPlano.Anual,
+    'PlanoPromocionalAnual': EnumTipoPlano.PromocionalAnual,
+    'Free': EnumTipoPlano.Free
+};

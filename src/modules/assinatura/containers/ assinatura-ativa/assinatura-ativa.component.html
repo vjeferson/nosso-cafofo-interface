@@ -1,4 +1,49 @@
 <sb-layout-dashboard>
     <sb-dashboard-head title="Informações de Assinatura" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <div class="row">
+        <sb-card class="col-md-12" *ngIf="assinaturaAtiva">
+            <div class="card-header">
+                <span>Plano Ativo</span>
+                <button disabled>{{mapDescricaoTiposPlanos.Free == assinaturaAtiva.tipoPlano ?
+                    'Free' : 'Premium'}}</button>
+            </div>
+            <div class="card-body informacoes">
+                <span>{{mapTituloTiposPlanos[assinaturaAtiva.tipoPlano]}}</span>
+                <p>{{assinaturaAtiva.descricao}}</p>
+            </div>
+        </sb-card>
+    </div>
 
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+            <a ngbNavLink>Planos</a>
+            <ng-template ngbNavContent>
+                <div class="container">
+                    <div class="row" *ngIf="planosAtivos">
+                        <sb-card *ngFor="let plano of planosAtivos" class="col-md-4">
+                            <div class="card-header">
+                                <span>{{mapTiposPlanos[plano.tipoPlano]}}</span>
+                                <button disabled>{{mapDescricaoTiposPlanos.Free == plano.tipoPlano ?
+                                    'Free' : 'Premium'}}</button>
+                            </div>
+                            <div class="card-body informacoes">
+                                <span>{{mapTituloTiposPlanos[plano.tipoPlano]}}</span>
+                                <p>{{plano.descricao}}</p>
+                                <button class="btn btns-formulario-cadastro-salvar" disabled>Assinar</button>
+                                <p class="mensagem-erro-input">
+                                   Opção de assinatura desabilitada temporariamente!
+                                </p>
+                            </div>
+                        </sb-card>
+                    </div>
+
+                    <div class="alert alert-primary" role="alert" *ngIf="planosAtivos && planosAtivos.length == 0">
+                        Nenhum registro de Plano ativo encontrado!
+                    </div>
+
+                </div>
+            </ng-template>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
 </sb-layout-dashboard>
