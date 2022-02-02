@@ -80,7 +80,44 @@
             <ng-template ngbNavContent>
                 <div class="container">
                     <div class="row">
-                        <sb-card class="col-md-6">
+                        <sb-card class="col-md-4">
+                            <div class="card-header">Contas Sociais</div>
+                            <div class="card-body">
+                                <div class="vinculacao-social">
+                                    <span *ngIf="facebookVinculado">
+                                        <fa-icon class="link" [icon]='["fas", "link"]'></fa-icon> Facebook vinculado
+                                    </span>
+                                    <span *ngIf="!facebookVinculado">
+                                        <fa-icon class="unlink" [icon]='["fas", "unlink"]'></fa-icon> Facebook não
+                                        vinculado
+                                    </span>
+                                    <button class="btn btns-facebook" *ngIf="!facebookVinculado"
+                                        (click)="vincularContaSocial('facebook')">
+                                        Vincular Facebook
+                                    </button>
+                                    <button class="btn btns-facebook" *ngIf="facebookVinculado"
+                                        (click)="desvincularContaSocial('facebook')">
+                                        Desvincular Facebook
+                                    </button>
+                                </div>
+                                <!-- <div class="vinculacao-social">
+                                    <span *ngIf="googleVinculado">
+                                        <fa-icon class="link" [icon]='["fas", "link"]'></fa-icon> Google vinculado
+                                    </span>
+                                    <span *ngIf="!googleVinculado">
+                                        <fa-icon class="unlink" [icon]='["fas", "unlink"]'></fa-icon> Google não
+                                        vinculado
+                                    </span>
+                                    <button class="btn btns-google" *ngIf="!googleVinculado">
+                                        Vincular Google
+                                    </button>
+                                    <button class="btn btns-google" *ngIf="googleVinculado" (click)="des">
+                                        Desvincular Google
+                                    </button>
+                                </div> -->
+                            </div>
+                        </sb-card>
+                        <sb-card class="col-md-8">
                             <div class="card-header">Trocar Senha</div>
                             <div class="card-body">
                                 <form [formGroup]="formGroupTrocaSenha">
@@ -91,12 +128,12 @@
                                                 <input class="form-control" id="senhaAtual" type="password"
                                                     formControlName="senhaAtual" />
 
-                                                <show-erro-input [inputName]="'senhaAtual'" [formGroup]="formGroupTrocaSenha"
-                                                    [validationName]="'required'">
+                                                <show-erro-input [inputName]="'senhaAtual'"
+                                                    [formGroup]="formGroupTrocaSenha" [validationName]="'required'">
                                                 </show-erro-input>
 
-                                                <show-erro-input [inputName]="'senhaAtual'" [formGroup]="formGroupTrocaSenha"
-                                                    [validationName]="'minlength'"
+                                                <show-erro-input [inputName]="'senhaAtual'"
+                                                    [formGroup]="formGroupTrocaSenha" [validationName]="'minlength'"
                                                     [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
                                                 </show-erro-input>
                                             </div>
@@ -109,12 +146,12 @@
                                                 <input class="form-control" id="novaSenha" type="password"
                                                     formControlName="novaSenha" />
 
-                                                <show-erro-input [inputName]="'novaSenha'" [formGroup]="formGroupTrocaSenha"
-                                                    [validationName]="'required'">
+                                                <show-erro-input [inputName]="'novaSenha'"
+                                                    [formGroup]="formGroupTrocaSenha" [validationName]="'required'">
                                                 </show-erro-input>
 
-                                                <show-erro-input [inputName]="'novaSenha'" [formGroup]="formGroupTrocaSenha"
-                                                    [validationName]="'minlength'"
+                                                <show-erro-input [inputName]="'novaSenha'"
+                                                    [formGroup]="formGroupTrocaSenha" [validationName]="'minlength'"
                                                     [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
                                                 </show-erro-input>
                                             </div>
@@ -127,17 +164,17 @@
                                                 <input class="form-control" id="confirmarSenha" type="password"
                                                     formControlName="confirmarSenha" />
 
-                                                <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroupTrocaSenha"
-                                                    [validationName]="'required'">
+                                                <show-erro-input [inputName]="'confirmarSenha'"
+                                                    [formGroup]="formGroupTrocaSenha" [validationName]="'required'">
                                                 </show-erro-input>
 
-                                                <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroupTrocaSenha"
-                                                    [validationName]="'minlength'"
+                                                <show-erro-input [inputName]="'confirmarSenha'"
+                                                    [formGroup]="formGroupTrocaSenha" [validationName]="'minlength'"
                                                     [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
                                                 </show-erro-input>
 
-                                                <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroupTrocaSenha"
-                                                    [validationName]="'confirmar'"
+                                                <show-erro-input [inputName]="'confirmarSenha'"
+                                                    [formGroup]="formGroupTrocaSenha" [validationName]="'confirmar'"
                                                     [mensagemDeErro]="'Senhas não conferem'">
                                                 </show-erro-input>
                                             </div>
@@ -150,18 +187,13 @@
                                 </form>
                             </div>
                         </sb-card>
-                        <sb-card class="col-md-6">
-                            <div class="card-header">Contas Sociais</div>
-                            <div class="card-body">
-                                teste
-                            </div>
-                        </sb-card>
                     </div>
                 </div>
             </ng-template>
         </li>
     </ul>
     <div [ngbNavOutlet]="nav"></div>
-
-
 </sb-layout-dashboard>
+<ngbd-modal-confirmacao #modalConfirmacao (confirma)="confirmaDesvinculacao($event)"
+    [titulo]="'Confirmar Desvinculação'" [conteudo]="'Deseja realmente realizar a desvinculação?'">
+</ngbd-modal-confirmacao>

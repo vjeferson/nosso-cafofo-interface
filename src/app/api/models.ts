@@ -4,4 +4,6 @@ export { AtualizaPlano } from './models/atualiza-plano';
 export { NovoCliente } from './models/novo-cliente';
 export { AtualizaUsuario } from './models/atualiza-usuario';
 export { TrocaSenha } from './models/troca-senha';
+export { InformacaoVinculacaoAccountSocial } from './models/informacao-vinculacao-account-social';
+export { InformacaoDesvinculacaoAccountSocial } from './models/informacao-desvinculacao-account-social';
 export { AtualizaRepublica } from './models/atualiza-republica';

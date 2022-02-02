@@ -18,9 +18,47 @@ sb-card{
     .card-header {
         background-color: var(--color-background-sb-cards);
     }
+    
     .card-body {
         background-color: var(--color-background-sb-cards); 
+
+        .vinculacao-social {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+
+            span {
+                margin-bottom: 0.5rem;
+                fa-icon{
+                    font-size: 14px;
+                    margin-right: 0.5rem;
+                }
+            }
+
+            .link {
+                color: #00EEA4 !important;     
+            }
+
+            .unlink {
+                color: #FF0000 !important;     
+            }
+            
+            .btns-facebook {
+                background-color: #3B5998;
+                color: #FFFFFF !important;
+                min-width: 250px;
+            }
+              
+            .btns-google {
+                background-color: #DB4437;
+                color: #FFFFFF !important;
+                min-width: 250px;
+            }
+
+        }
     }
+
     .selecao-imagem {
         display: flex;
         justify-content: center;
@@ -37,8 +75,6 @@ sb-card{
             width: 140px;
             font-size: 120px;
         }
-
-
     }
 
 }
