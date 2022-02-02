@@ -7,7 +7,7 @@ export const debug = (...args: any) => {
     }
 }
 
-export const mapTiposPlanos = {
+export const mapTiposPlanos: { [key: number]: string } = {
     [EnumTipoPlano.Mensal]: 'Plano Mensal',
     [EnumTipoPlano.Semestral]: 'Plano Semestral',
     [EnumTipoPlano.Anual]: 'Plano Anual',
@@ -15,7 +15,7 @@ export const mapTiposPlanos = {
     [EnumTipoPlano.Free]: 'Free (Grátis)'
 };
 
-export const mapDescricaoTiposPlanos = {
+export const mapDescricaoTiposPlanos: { [key: string]: number } = {
     'PlanoMensal': EnumTipoPlano.Mensal,
     'PlanoSemestral': EnumTipoPlano.Semestral,
     'PlanoAnual': EnumTipoPlano.Anual,

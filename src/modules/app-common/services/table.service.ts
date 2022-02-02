@@ -1,17 +1,17 @@
 import { DecimalPipe } from '@angular/common';
-import { Injectable, PipeTransform } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { SortDirection } from '@modules/tables/directives';
-import { Country } from '@modules/tables/models';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { debounceTime, delay, map, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { State } from '@app/models/state';
 import { SearchResult } from '@app/models/search-result';
+import { IAssinaturaAtiva } from '@app/models/assinatura-ativa-interface';
 
 @Injectable()
 export abstract class TableService<Service, Model>{
     private _loading$ = new BehaviorSubject<boolean>(true);
     private _search$ = new Subject<void>();
-    private _registros$ = new BehaviorSubject<Country[]>([]);
+    private _registros$ = new BehaviorSubject<any[]>([]);
     private _count$ = new BehaviorSubject<number>(0);
 
     private _state: Model | any;

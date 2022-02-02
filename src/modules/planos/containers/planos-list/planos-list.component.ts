@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlanosService } from '@app/api/services';
+import { IPlanoResult } from '@app/models/plano-result-interface';
 import { IFiltroPlanos } from '@app/models/search-planos';
 import { mapTiposPlanos } from '@app/utils/consts';
 import { FiltrosPlanosNgbdModal } from '@modules/planos/components';
@@ -24,7 +25,7 @@ export class PlanosComponent implements OnInit {
     private routeEdicaoPlanos: string = '/planos/edicao';
     public mapTiposPlanos = mapTiposPlanos;
     public pageSize = 2;
-    public registros$!: Observable<Country[]>;
+    public registros$!: Observable<IPlanoResult[]>;
     public total$!: Observable<number>;
     public sortedColumn!: string;
     public sortedDirection!: string;
