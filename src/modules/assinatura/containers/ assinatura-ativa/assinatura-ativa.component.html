@@ -8,7 +8,7 @@
                     'Free' : 'Premium'}}</button>
             </div>
             <div class="card-body informacoes">
-                <span>{{mapTituloTiposPlanos[assinaturaAtiva.tipoPlano]}}</span>
+                <span>{{mapTituloTiposPlanos[assinaturaAtiva?.tipoPlano]}}</span>
                 <p>{{assinaturaAtiva.descricao}}</p>
             </div>
         </sb-card>
@@ -27,7 +27,7 @@
                                     'Free' : 'Premium'}}</button>
                             </div>
                             <div class="card-body informacoes">
-                                <span>{{mapTituloTiposPlanos[plano.tipoPlano]}}</span>
+                                <span>{{mapTituloTiposPlanos[plano?.tipoPlano]}}</span>
                                 <p>{{plano.descricao}}</p>
                                 <button class="btn btns-formulario-cadastro-salvar" disabled>Assinar</button>
                                 <p class="mensagem-erro-input">

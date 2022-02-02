@@ -21,7 +21,7 @@ export class AssinaturaAtivaComponent implements OnInit {
     public planosAtivos: IPlanoResult[];
     public mapTiposPlanos = mapTiposPlanos;
     public mapDescricaoTiposPlanos = mapDescricaoTiposPlanos;
-    public mapTituloTiposPlanos = {
+    public mapTituloTiposPlanos: { [key: number]: string } = {
         [EnumTipoPlano.Mensal]: 'Nosso Cafofo Mensal',
         [EnumTipoPlano.Semestral]: 'Nosso Cafofo Semestral',
         [EnumTipoPlano.Anual]: 'Nosso Cafofo Anual',
