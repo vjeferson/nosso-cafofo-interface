@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
     @ViewChild('selectCidade', { static: true }) selectCidade: SelectCidadeComponent | any;
-    private formGroup: FormGroup | any;
+    public formGroup: FormGroup | any;
     public estadoId: string | any;
     public mensagemAnoMaximoAnoCriacao: string;
 

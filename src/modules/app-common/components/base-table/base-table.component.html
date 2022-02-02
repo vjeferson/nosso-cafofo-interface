@@ -13,7 +13,7 @@
             <tr *ngFor="let country of countries$ | async">
                 <th scope="row">{{ country.id }}</th>
                 <td *ngFor="let coluna of colunas">
-                    {{country[coluna.property] | numeral:colunas.mask}}
+                    {{country[coluna.property] | numeral:coluna.mask}}
                     <!-- <ngb-highlight [result]="country[coluna.property] | number" [term]="countryService.searchTerm"></ngb-highlight> -->
                 </td>
             </tr>

@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    private formGroup: FormGroup;
+    public formGroup: FormGroup;
 
     constructor(
         private readonly _autenticacaoService: AutenticacaoService,
