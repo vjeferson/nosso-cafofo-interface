@@ -12,8 +12,8 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./planos-form.component.scss'],
 })
 export class PlanosFormComponent implements OnInit {
-    private dadosRegistroFiltrado: any;
     private routePlanos: string = '/planos';
+    public dadosRegistroFiltrado: any;
     public isNew: boolean = true;
     public formGroup !: FormGroup;
     public title!: string;

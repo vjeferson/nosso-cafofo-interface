@@ -18,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AssinaturaAtivaComponent implements OnInit {
     private usuarioLogado: IUsuarioAutenticado;
     public assinaturaAtiva!: IAssinaturaAtiva;
-    public planosAtivos!: IPlanoResult;
+    public planosAtivos: IPlanoResult[];
     public mapTiposPlanos = mapTiposPlanos;
     public mapDescricaoTiposPlanos = mapDescricaoTiposPlanos;
     public mapTituloTiposPlanos = {
@@ -37,6 +37,7 @@ export class AssinaturaAtivaComponent implements OnInit {
         private _toastService: ToastrService,
         private readonly _usuarioLogadoService: UsuarioLogadoService
     ) {
+        this.planosAtivos = [];
         this.usuarioLogado = this._usuarioLogadoService.getDadosSession().usuario;
         this._assinaturaService.getAssinaturaId(this.usuarioLogado.assinaturaId as number).subscribe((res: any) => {
             if (res) {

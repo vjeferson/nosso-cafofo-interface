@@ -21,8 +21,8 @@ export class PlanosComponent implements OnInit {
     @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
     @ViewChild('modalFiltros', { static: true }) modalFiltros: FiltrosPlanosNgbdModal | any;
 
-    private routeCadastroPlanos: string = '/planos/cadastro';
     private routeEdicaoPlanos: string = '/planos/edicao';
+    public routeCadastroPlanos: string = '/planos/cadastro';
     public mapTiposPlanos = mapTiposPlanos;
     public pageSize = 2;
     public registros$!: Observable<IPlanoResult[]>;
