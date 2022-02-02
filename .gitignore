@@ -47,3 +47,5 @@ Thumbs.db
 
 # API
 # src/app/api
+
+.env
