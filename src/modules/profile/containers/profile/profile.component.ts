@@ -1,14 +1,13 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AtualizaUsuario, InformacaoDesvinculacaoAccountSocial, InformacaoVinculacaoAccountSocial, TrocaSenha } from '@app/api/models';
 import { UsuariosService } from '@app/api/services';
-import { AccountSocial } from '@app/models/account-social.models';
+import { ContaSocial } from '@app/models/account-social.models';
 import { IUsuarioAutenticado } from '@app/models/retorno-autenticacao';
 import { Utilitarios } from '@app/utils/utils.service';
 import { ConfirmacaoNgbdModal } from '@common/components';
 import { UsuarioLogadoService } from '@common/services';
-import { AccountSocialService } from '@common/services/account-social.service';
+import { ContaSocialService } from '@common/services/conta-social.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -29,10 +28,9 @@ export class ProfileComponent implements OnInit {
     constructor(
         private readonly _formBuilder: FormBuilder,
         private readonly _usuarioService: UsuariosService,
-        private readonly _socialService: AccountSocialService,
+        private readonly _contaSocialService: ContaSocialService,
         private readonly _usuarioLogadoService: UsuarioLogadoService,
         private _changeDetectorRef: ChangeDetectorRef,
-        private _router: Router,
         private _toastService: ToastrService
     ) {
         this.usuarioAutenticado = this._usuarioLogadoService.getDadosSession().usuario;
@@ -63,10 +61,10 @@ export class ProfileComponent implements OnInit {
         return (formControl.value === this.formGroupTrocaSenha.get('novaSenha').value) ? null : { confirmar: true };
     }
 
-    private trocaInformacoesUsuarioLogado(socialType: string | any = null, vincular: boolean = false) {
+    private trocaInformacoesUsuarioLogado(tipoConta: string | any = null, vincular: boolean = false) {
         const dadosSession = this._usuarioLogadoService.getDadosSession();
-        if (socialType) {
-            dadosSession.usuario[socialType === 'facebook' ? 'facebookVinculado' : 'googleVincualdo'] = vincular;
+        if (tipoConta) {
+            dadosSession.usuario[tipoConta === 'facebook' ? 'facebookVinculado' : 'googleVincualdo'] = vincular;
         } else {
             dadosSession.usuario.email = this.formGroup.value.email;
             dadosSession.usuario.nome = this.formGroup.value.nome;
@@ -75,24 +73,24 @@ export class ProfileComponent implements OnInit {
         this.usuarioAutenticado = dadosSession.usuario;
     }
 
-    private setStatusVinculacoes(socialType: string, vincular: boolean) {
-        this.trocaInformacoesUsuarioLogado(socialType, vincular);
+    private setStatusVinculacoes(tipoConta: string, vincular: boolean) {
+        this.trocaInformacoesUsuarioLogado(tipoConta, vincular);
         this.facebookVinculado = this.usuarioAutenticado.facebookVinculado ? true : false;
         this.googleVinculado = this.usuarioAutenticado.googleVinculado ? true : false;
         this._changeDetectorRef.detectChanges();
     }
 
-    private vinculando(accountSocial: AccountSocial) {
+    private vinculando(infoConta: ContaSocial) {
         const body: InformacaoVinculacaoAccountSocial = {
-            id: accountSocial.id,
-            socialType: accountSocial.socialType
+            id: infoConta.id,
+            socialType: infoConta.tipoConta
         };
         this._usuarioService.putUsuarioIdVincularAccountSocial(+this.usuarioAutenticado.id, body).subscribe((result: any) => {
             if (result) {
                 this._toastService.success('Conta vinculada com sucesso!', "Vinculação", {
                     timeOut: 3000,
                 });
-                this.setStatusVinculacoes(accountSocial.socialType, true);
+                this.setStatusVinculacoes(infoConta.tipoConta, true);
             }
         }, (err: any) => {
             this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
@@ -102,38 +100,32 @@ export class ProfileComponent implements OnInit {
         });
     }
 
-    public vincularContaSocial(socialType: string) {
-        if (socialType === 'facebook') {
-            this._socialService.authenticateFacebook().then(
-                (accountSocial: AccountSocial) => {
-                    if (accountSocial) {
-                        this.vinculando(accountSocial);
-                    }
-                }
-            );
-        } else if (socialType === 'google') {
-            this._socialService.authenticateGoogle().then(
-                (accountSocial: AccountSocial) => {
-                    if (accountSocial) {
-                        this.vinculando(accountSocial);
+    public vincularContaSocial(tipoConta: string) {
+        if (tipoConta === 'facebook') {
+            this._contaSocialService.autenticarComContaDoFacebook().then(
+                (infoConta: ContaSocial) => {
+                    if (infoConta) {
+                        this.vinculando(infoConta);
                     }
                 }
             );
         }
     }
 
-    public desvincularContaSocial(socialType: string) {
-        this.modalConfirmacao.socialType = socialType;
+    public desvincularContaSocial(infoTipoConta: string) {
+        this.modalConfirmacao.socialType = infoTipoConta;
         this.modalConfirmacao.open();
     }
 
-    public confirmaDesvinculacao(socialType: string) {
-        this._usuarioService.putUsuarioIdDesvincularAccountSocial(this.usuarioAutenticado.id, { socialType: socialType } as InformacaoDesvinculacaoAccountSocial).subscribe((res: any) => {
+    public confirmaDesvinculacao(infoTipoConta: string) {
+        this._usuarioService.putUsuarioIdDesvincularAccountSocial(this.usuarioAutenticado.id, {
+            socialType: infoTipoConta
+        } as InformacaoDesvinculacaoAccountSocial).subscribe((res: any) => {
             if (res) {
                 this._toastService.success('Conta desvinculada com sucesso!', "Desvinculação", {
                     timeOut: 3000,
                 });
-                this.setStatusVinculacoes(socialType, false);
+                this.setStatusVinculacoes(infoTipoConta, false);
             }
         }, err => {
             this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',

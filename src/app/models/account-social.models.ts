@@ -1,15 +1,6 @@
-export interface IAccountSocial {
-    id: string;
-    name: string;
-    email: string;
-    telefone: string;
-    socialType: string;
-}
-
-export class AccountSocial implements IAccountSocial {
+export class ContaSocial {
     id!: string;
     name!: string;
     email!: string;
-    telefone!: string;
-    socialType!: string;
+    tipoConta!: string;
 }
