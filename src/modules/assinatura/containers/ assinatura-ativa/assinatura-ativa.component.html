@@ -22,7 +22,7 @@
                     <div class="row" *ngIf="planosAtivos">
                         <sb-card *ngFor="let plano of planosAtivos" class="col-md-4">
                             <div class="card-header">
-                                <span>{{mapTiposPlanos[plano.tipoPlano]}}</span>
+                                <span>{{mapTiposPlanos[plano?.tipoPlano]}}</span>
                                 <button disabled>{{mapDescricaoTiposPlanos.Free == plano.tipoPlano ?
                                     'Free' : 'Premium'}}</button>
                             </div>
@@ -37,7 +37,7 @@
                         </sb-card>
                     </div>
 
-                    <div class="alert alert-primary" role="alert" *ngIf="planosAtivos && planosAtivos.length == 0">
+                    <div class="alert alert-primary" role="alert" *ngIf="planosAtivos && planosAtivos?.length == 0">
                         Nenhum registro de Plano ativo encontrado!
                     </div>
 

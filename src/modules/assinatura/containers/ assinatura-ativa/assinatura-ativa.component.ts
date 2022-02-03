@@ -18,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AssinaturaAtivaComponent implements OnInit {
     private usuarioLogado: IUsuarioAutenticado;
     public assinaturaAtiva!: IAssinaturaAtiva;
-    public planosAtivos: IPlanoResult[];
+    public planosAtivos!: IPlanoResult[];
     public mapTiposPlanos = mapTiposPlanos;
     public mapDescricaoTiposPlanos = mapDescricaoTiposPlanos;
     public mapTituloTiposPlanos: { [key: number]: string } = {
@@ -37,7 +37,6 @@ export class AssinaturaAtivaComponent implements OnInit {
         private _toastService: ToastrService,
         private readonly _usuarioLogadoService: UsuarioLogadoService
     ) {
-        this.planosAtivos = [];
         this.usuarioLogado = this._usuarioLogadoService.getDadosSession().usuario;
         this._assinaturaService.getAssinaturaId(this.usuarioLogado.assinaturaId as number).subscribe((res: any) => {
             if (res) {
@@ -63,14 +62,10 @@ export class AssinaturaAtivaComponent implements OnInit {
         this._planosService.getPlano({ offset: 0, limit: 50, ativo: true }).subscribe((res: any) => {
             if (res && res.rows) {
                 this.planosAtivos = res.rows.filter((plano: any) => plano.tipoPlano !== this.assinaturaAtiva.tipoPlano);
-                this._changeDetectorRef.detectChanges();
             } else {
-                this._toastService.info('Problemas ao carregar os planos ativos!',
-                    'Redirecionando', {
-                    timeOut: 3000
-                });
-                this._router.navigate(['/']);
+                this.planosAtivos = [];
             }
+            this._changeDetectorRef.detectChanges();
         }, err => {
             this._toastService.error(err.error && err.error.message ? err.error.message : 'Planos ativos não foram filtrados!',
                 err.error && err.error.error ? err.error.error : 'Busca de Planos', {
