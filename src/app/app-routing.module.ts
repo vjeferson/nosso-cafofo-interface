@@ -63,6 +63,13 @@ const routes: Routes = [
             )
     },
     {
+        path: 'usuarios',
+        loadChildren: () =>
+            import('modules/usuarios/usuarios-routing.module').then(
+                m => m.UsuariosRoutingModule
+            )
+    },
+    {
         path: 'auth',
         loadChildren: () =>
             import('modules/auth/auth-routing.module').then(m => m.AuthRoutingModule),
