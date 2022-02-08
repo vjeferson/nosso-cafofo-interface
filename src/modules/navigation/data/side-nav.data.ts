@@ -10,10 +10,7 @@ export const sideNavSections: SideNavSection[] = [
             'planos',
             'republica',
             'moradores',
-            'usuarios',
-            'contas',
-            'festas',
-            'reunioes'
+            'usuarios'
         ]
     }
 ];
