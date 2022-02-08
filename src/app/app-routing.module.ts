@@ -56,6 +56,13 @@ const routes: Routes = [
             )
     },
     {
+        path: 'moradores',
+        loadChildren: () =>
+            import('modules/moradores/moradores-routing.module').then(
+                m => m.MoradoresRoutingModule
+            )
+    },
+    {
         path: 'auth',
         loadChildren: () =>
             import('modules/auth/auth-routing.module').then(m => m.AuthRoutingModule),
