@@ -1,3 +1,80 @@
 <sb-layout-dashboard>
     <sb-dashboard-head title="Registros de Moradores" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <sb-card>
+        <div class="card-body">
+            <form>
+                <div class="form-group form-inline">
+                    <input class="form-control ml-2 mr-2 pesquisa-listagem" type="text" name="searchTerm"
+                        placeholder="Pesquisa" [(ngModel)]="serviceTable.searchTerm" />
+                    <span class="ml-8" *ngIf="serviceTable.loading$ | async">Loading...</span>
+                    <div class="botoes-acoes">
+                        <sb-button-cadastro [route]="routeCadastro"></sb-button-cadastro>
+                        <sb-button-filtros (openDialogFiltrar)="abrirModalFiltrar()"></sb-button-filtros>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" sbSortable="ativo" (sort)="onSort($event)"><span>Situação</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "ativo"' [direction]="sortedDirection">
+                                </sb-sort-icon>
+                            </th>
+                            <th scope="col" sbSortable="nome" (sort)="onSort($event)"><span>Nome</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "nome"' [direction]="sortedDirection">
+                                </sb-sort-icon>
+                            </th>
+                            <th scope="col" sbSortable="anoEntrada" (sort)="onSort($event)"><span>Ano de Entrada</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "anoEntrada"' [direction]="sortedDirection">
+                                </sb-sort-icon>
+                            </th>
+                            <th scope="col">Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let registro of registros$ | async">
+                            <th scope="row">{{ registro.id }}</th>
+                            <td>
+                                <ngb-highlight [result]="registro?.ativo ? 'Ativo' : 'Desativo'"
+                                    [term]="serviceTable.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="registro.nome" [term]="serviceTable.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="registro.anoEntrada" [term]="serviceTable.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm opcoes-listagens"
+                                    (click)="editar(registro.id)">Editar</button>
+                                <!-- <button type="button" *ngIf="registro.ativo"
+                                    class="btn btn-danger btn-sm opcoes-listagens"
+                                    (click)="desativar(registro)">Desativar</button>
+                                <button type="button" *ngIf="!registro.ativo" (click)="ativar(registro)"
+                                    class="btn btn-info btn-sm opcoes-listagens">Ativar</button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-primary" role="alert" *ngIf="((total$ | async) || 0) === 0">
+                    Nenhum registro encontrado!
+                </div>
+                <div class="d-flex justify-content-between p-2" *ngIf="((total$ | async)|| 0) > 0">
+                    <ngb-pagination [collectionSize]="(total$ | async)" [(page)]="serviceTable.page"
+                        [pageSize]="serviceTable.pageSize"></ngb-pagination>
+                    <select class="custom-select" style="width: auto" name="pageSize"
+                        [(ngModel)]="serviceTable.pageSize">
+                        <option [ngValue]="2">2 itens por página</option>
+                        <option [ngValue]="4">4 itens por página</option>
+                        <option [ngValue]="6">6 itens por página</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </sb-card>
 </sb-layout-dashboard>
+<ngbd-modal-filtros-moradores #modalFiltros [filtros]="filtros" (searchOutput)="filtrar()">
+</ngbd-modal-filtros-moradores>

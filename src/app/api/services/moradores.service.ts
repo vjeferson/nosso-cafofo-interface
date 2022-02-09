@@ -64,19 +64,27 @@ class MoradoresService extends __BaseService {
    * Consulta Moradores
    *
    * Rota para consulta de moradores.
-   * @param nome Nome do morador
-   * @param ativo Situação do morador. Morador esta ativo?
-   * @param anoEntrada Ano de entrada do morador
+   * @param params The `MoradoresService.GetMoradorParams` containing the following parameters:
+   *
+   * - `offset`: Offset da consulta (para paginação)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros por consulta)
+   *
+   * - `nome`: Nome do morador
+   *
+   * - `ativo`: Situação do morador. Morador esta ativo?
+   *
+   * - `anoEntrada`: Ano de entrada do morador
    */
-  getMoradorResponse(nome?: string,
-    ativo?: boolean,
-    anoEntrada?: number): __Observable<__StrictHttpResponse<null>> {
+  getMoradorResponse(params: MoradoresService.GetMoradorParams): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (nome != null) __params = __params.set('nome', nome.toString());
-    if (ativo != null) __params = __params.set('ativo', ativo.toString());
-    if (anoEntrada != null) __params = __params.set('anoEntrada', anoEntrada.toString());
+    if (params.offset != null) __params = __params.set('offset', params.offset.toString());
+    if (params.limit != null) __params = __params.set('limit', params.limit.toString());
+    if (params.nome != null) __params = __params.set('nome', params.nome.toString());
+    if (params.ativo != null) __params = __params.set('ativo', params.ativo.toString());
+    if (params.anoEntrada != null) __params = __params.set('anoEntrada', params.anoEntrada.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/morador`,
@@ -98,14 +106,20 @@ class MoradoresService extends __BaseService {
    * Consulta Moradores
    *
    * Rota para consulta de moradores.
-   * @param nome Nome do morador
-   * @param ativo Situação do morador. Morador esta ativo?
-   * @param anoEntrada Ano de entrada do morador
+   * @param params The `MoradoresService.GetMoradorParams` containing the following parameters:
+   *
+   * - `offset`: Offset da consulta (para paginação)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros por consulta)
+   *
+   * - `nome`: Nome do morador
+   *
+   * - `ativo`: Situação do morador. Morador esta ativo?
+   *
+   * - `anoEntrada`: Ano de entrada do morador
    */
-  getMorador(nome?: string,
-    ativo?: boolean,
-    anoEntrada?: number): __Observable<null> {
-    return this.getMoradorResponse(nome, ativo, anoEntrada).pipe(
+  getMorador(params: MoradoresService.GetMoradorParams): __Observable<null> {
+    return this.getMoradorResponse(params).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -192,6 +206,37 @@ class MoradoresService extends __BaseService {
 }
 
 module MoradoresService {
+
+  /**
+   * Parameters for getMorador
+   */
+  export interface GetMoradorParams {
+
+    /**
+     * Offset da consulta (para paginação)
+     */
+    offset: number;
+
+    /**
+     * Limit da consulta (para paginação: máximo de 50 registros por consulta)
+     */
+    limit: number;
+
+    /**
+     * Nome do morador
+     */
+    nome?: string;
+
+    /**
+     * Situação do morador. Morador esta ativo?
+     */
+    ativo?: boolean;
+
+    /**
+     * Ano de entrada do morador
+     */
+    anoEntrada?: number;
+  }
 }
 
 export { MoradoresService }

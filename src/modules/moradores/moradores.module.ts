@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MoradoresTableService } from './containers/moradores-list/moradores-table.service';
 
 /* Modules */
 import { AppCommonModule } from '@common/app-common.module';
@@ -30,7 +31,7 @@ import * as moradoresGuard from './guards';
         ChartsModule,
         TablesModule
     ],
-    providers: [...moradoresGuard.guards],
+    providers: [MoradoresTableService   , ...moradoresGuard.guards],
     declarations: [...moradoresContainers.containers, ...moradoresComponents.components],
     exports: [...moradoresContainers.containers, ...moradoresComponents.components],
 })
