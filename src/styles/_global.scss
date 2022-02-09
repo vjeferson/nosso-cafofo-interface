@@ -82,3 +82,10 @@ body, h1, h2, h3, h4, button, p, th, td {
   }
 
 }
+
+.page-item.active {
+  .page-link {
+    background-color: #7E00CC !important;
+    border-color: #7E00CC !important;
+  }
+}
