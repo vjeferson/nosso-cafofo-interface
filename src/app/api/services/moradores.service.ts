@@ -7,6 +7,8 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { NovoMorador } from '../models/novo-morador';
+import { AtualizaMorador } from '../models/atualiza-morador';
 @Injectable({
   providedIn: 'root',
 })
@@ -27,11 +29,13 @@ class MoradoresService extends __BaseService {
    * Cadastro de Morador
    *
    * Rota para criação de moradores no sistema.
+   * @param body Informações do novo morador
    */
-  postMoradorResponse(): __Observable<__StrictHttpResponse<null>> {
+  postMoradorResponse(body: NovoMorador): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    __body = body;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/morador`,
@@ -53,9 +57,10 @@ class MoradoresService extends __BaseService {
    * Cadastro de Morador
    *
    * Rota para criação de moradores no sistema.
+   * @param body Informações do novo morador
    */
-  postMorador(): __Observable<null> {
-    return this.postMoradorResponse().pipe(
+  postMorador(body: NovoMorador): __Observable<null> {
+    return this.postMoradorResponse(body).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -169,12 +174,15 @@ class MoradoresService extends __BaseService {
    *
    * Rota para alteração de morador.
    * @param id Identificador do registro
+   * @param body Novas informações do Morador
    */
-  putMoradorIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+  putMoradorIdResponse(id: number,
+    body: AtualizaMorador): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
+    __body = body;
     let req = new HttpRequest<any>(
       'PUT',
       this.rootUrl + `/morador/${encodeURIComponent(String(id))}`,
@@ -197,9 +205,11 @@ class MoradoresService extends __BaseService {
    *
    * Rota para alteração de morador.
    * @param id Identificador do registro
+   * @param body Novas informações do Morador
    */
-  putMoradorId(id: number): __Observable<null> {
-    return this.putMoradorIdResponse(id).pipe(
+  putMoradorId(id: number,
+    body: AtualizaMorador): __Observable<null> {
+    return this.putMoradorIdResponse(id, body).pipe(
       __map(_r => _r.body as null)
     );
   }

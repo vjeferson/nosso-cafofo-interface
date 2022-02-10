@@ -7,3 +7,5 @@ export { TrocaSenha } from './models/troca-senha';
 export { InformacaoVinculacaoAccountSocial } from './models/informacao-vinculacao-account-social';
 export { InformacaoDesvinculacaoAccountSocial } from './models/informacao-desvinculacao-account-social';
 export { AtualizaRepublica } from './models/atualiza-republica';
+export { NovoMorador } from './models/novo-morador';
+export { AtualizaMorador } from './models/atualiza-morador';
