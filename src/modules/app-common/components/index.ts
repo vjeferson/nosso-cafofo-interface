@@ -7,6 +7,7 @@ import { ErroInputComponent } from './erro-input/erro-input.component';
 import { ConfirmacaoNgbdModal } from './modal-confirm/modal-confirm.component';
 import { SelectCidadeComponent } from './select-cidade/select-cidade.component';
 import { SelectEstadoComponent } from './select-estado/select-estado.component';
+import { SelectPerfilComponent } from './select-perfil/select-perfil.component';
 import { SelectSituacaoRegistroComponent } from './select-situacao-registro-default/select-situacao-registro-default.component';
 import { SelectTiposPlanosComponent } from './select-tipo-plano/select-tipo-plano.component';
 
@@ -21,7 +22,8 @@ export const components = [
     ButtonCadastroComponent,
     ButtonFiltrosComponent,
     ConfirmacaoNgbdModal,
-    SelectSituacaoRegistroComponent
+    SelectSituacaoRegistroComponent,
+    SelectPerfilComponent
 ];
 
 export * from './card/card.component';
@@ -35,3 +37,4 @@ export * from './button-cadastro/button-cadastro.component';
 export * from './button-filtros/button-filtros.component';
 export * from './modal-confirm/modal-confirm.component';
 export * from './select-situacao-registro-default/select-situacao-registro-default.component';
+export * from './select-perfil/select-perfil.component';
