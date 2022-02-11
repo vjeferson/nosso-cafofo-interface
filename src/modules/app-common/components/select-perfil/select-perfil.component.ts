@@ -79,11 +79,7 @@ export class SelectPerfilComponent implements OnInit, AfterViewInit, ControlValu
 
     pesquisa(filtro: string | any = null) {
         this._loading = true;
-        const params: any = {
-            tipoPerfil: null,
-            descricao: null
-        };
-        this._perfisService.getPerfil(params).subscribe((res: any) => {
+        this._perfisService.getPerfil(undefined, filtro).subscribe((res: any) => {
             this._loading = false;
             this.perfis = res;
             this._cd.detectChanges();
