@@ -23,10 +23,46 @@ export const ROUTES: Routes = [
                     text: 'Moradores',
                     active: true
                 }
-            ],
+            ]
         } as SBRouteData,
         canActivate: [MoradoresGuard],
         component: moradoresContainers.MoradoresComponent
+    },
+    {
+        path: 'cadastro',
+        data: {
+            title: 'Cadastro de Morador',
+            breadcrumbs: [
+                {
+                    text: 'Moradores',
+                    link: '/moradores',
+                },
+                {
+                    text: 'Cadastro',
+                    active: true
+                }
+            ]
+        } as SBRouteData,
+        canActivate: [MoradoresGuard],
+        component: moradoresContainers.MoradoresFormComponent
+    },
+    {
+        path: 'edicao',
+        data: {
+            title: 'Edição de Morador',
+            breadcrumbs: [
+                {
+                    text: 'Moradores',
+                    link: '/moradores',
+                },
+                {
+                    text: 'Edição',
+                    active: true
+                }
+            ]
+        } as SBRouteData,
+        canActivate: [MoradoresGuard],
+        component: moradoresContainers.MoradoresFormComponent
     }
 ];
 

@@ -19,8 +19,8 @@ export class MoradoresComponent implements OnInit {
     @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
     @ViewChild('modalFiltros', { static: true }) modalFiltros: FiltrosMoradoresNgbdModal | any;
 
-    private routeEdicao: string = '/planos/edicao';
-    public routeCadastro: string = '/planos/cadastro';
+    private routeEdicao: string = '/moradores/edicao';
+    public routeCadastro: string = '/moradores/cadastro';
     public pageSize = 2;
     public registros$!: Observable<IMoradorResult[]>;
     public total$!: Observable<number>;
