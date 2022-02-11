@@ -64,43 +64,43 @@ export class MoradoresComponent implements OnInit {
     }
 
     ativar(morador: any) {
-        // this._moradoresService.putPlanoAtivarId(plano.id).subscribe((res: any) => {
-        //     if (res) {
-        //         this._toastService.success('Registro ativo com sucesso!', "Ativação", {
-        //             timeOut: 3000
-        //         });
-        //     } else {
-        //         this._toastService.error('Ativação do Plano não foi feita!', "Ativação", {
-        //             timeOut: 3000
-        //         });
-        //     }
-        //     this.filtrar();
-        // }, (err: any) => {
-        //     this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-        //         err.error && err.error.error ? err.error.error : "Ativação inválida", {
-        //         timeOut: 3000
-        //     });
-        // });
+        this._moradoresService.putMoradorAtivarId(morador.id).subscribe((res: any) => {
+            if (res) {
+                this._toastService.success('Registro ativo com sucesso!', "Ativação", {
+                    timeOut: 3000
+                });
+            } else {
+                this._toastService.error('Ativação do Morador não foi feita!', "Ativação", {
+                    timeOut: 3000
+                });
+            }
+            this.filtrar();
+        }, (err: any) => {
+            this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                err.error && err.error.error ? err.error.error : "Ativação inválida", {
+                timeOut: 3000
+            });
+        });
     }
 
     desativar(morador: any) {
-        // this._planosService.putPlanoDesativarId(plano.id).subscribe((res: any) => {
-        //     if (res) {
-        //         this.toastService.success('Registro desativado com sucesso!', "Desativação", {
-        //             timeOut: 3000
-        //         });
-        //     } else {
-        //         this.toastService.error('Desativação do Plano não foi feita!', "Desativação", {
-        //             timeOut: 3000
-        //         });
-        //     }
-        //     this.filtrar();
-        // }, (err: any) => {
-        //     this.toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-        //         err.error && err.error.error ? err.error.error : "Desativação inválida", {
-        //         timeOut: 3000
-        //     });
-        // });
+        this._moradoresService.putMoradorDesativarId(morador.id).subscribe((res: any) => {
+            if (res) {
+                this._toastService.success('Registro desativado com sucesso!', "Desativação", {
+                    timeOut: 3000
+                });
+            } else {
+                this._toastService.error('Desativação do Morador não foi feita!', "Desativação", {
+                    timeOut: 3000
+                });
+            }
+            this.filtrar();
+        }, (err: any) => {
+            this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                err.error && err.error.error ? err.error.error : "Desativação inválida", {
+                timeOut: 3000
+            });
+        });
     }
 
 }

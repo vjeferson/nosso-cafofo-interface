@@ -17,6 +17,8 @@ class MoradoresService extends __BaseService {
   static readonly getMoradorPath = '/morador';
   static readonly getMoradorIdPath = '/morador/{id}';
   static readonly putMoradorIdPath = '/morador/{id}';
+  static readonly putMoradorAtivarIdPath = '/morador/ativar/{id}';
+  static readonly putMoradorDesativarIdPath = '/morador/desativar/{id}';
 
   constructor(
     config: __Configuration,
@@ -210,6 +212,86 @@ class MoradoresService extends __BaseService {
   putMoradorId(id: number,
     body: AtualizaMorador): __Observable<null> {
     return this.putMoradorIdResponse(id, body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Ativar Morador
+   *
+   * Rota para ativação de morador.
+   * @param id Identificador do registro
+   */
+  putMoradorAtivarIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/morador/ativar/${encodeURIComponent(String(id))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Ativar Morador
+   *
+   * Rota para ativação de morador.
+   * @param id Identificador do registro
+   */
+  putMoradorAtivarId(id: number): __Observable<null> {
+    return this.putMoradorAtivarIdResponse(id).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Desativar Morador
+   *
+   * Rota para desativação de morador.
+   * @param id Identificador do registro
+   */
+  putMoradorDesativarIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/morador/desativar/${encodeURIComponent(String(id))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Desativar Morador
+   *
+   * Rota para desativação de morador.
+   * @param id Identificador do registro
+   */
+  putMoradorDesativarId(id: number): __Observable<null> {
+    return this.putMoradorDesativarIdResponse(id).pipe(
       __map(_r => _r.body as null)
     );
   }
