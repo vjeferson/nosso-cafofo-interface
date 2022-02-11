@@ -118,13 +118,13 @@ export const sideNavItems: SideNavItems = {
         ]
     },
     moradores: {
-        icon: 'table',
+        icon: 'house-user',
         text: 'Moradores',
         link: '/moradores',
         tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
     },
     usuarios: {
-        icon: 'table',
+        icon: 'users',
         text: 'Usuários',
         link: '/usuarios',
         tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
