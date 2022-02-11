@@ -64,43 +64,43 @@ export class UsuariosComponent implements OnInit {
     }
 
     ativar(registro: any) {
-        // this._service.putUsuarioAtivarId(registro.id).subscribe((res: any) => {
-        //     if (res) {
-        //         this._toastService.success('Registro ativo com sucesso!', "Ativação", {
-        //             timeOut: 3000
-        //         });
-        //     } else {
-        //         this._toastService.error('Ativação do Usuário não foi feita!', "Ativação", {
-        //             timeOut: 3000
-        //         });
-        //     }
-        //     this.filtrar();
-        // }, (err: any) => {
-        //     this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-        //         err.error && err.error.error ? err.error.error : "Ativação inválida", {
-        //         timeOut: 3000
-        //     });
-        // });
+        this._service.putUsuarioAtivarId(registro.id).subscribe((res: any) => {
+            if (res) {
+                this._toastService.success('Registro ativo com sucesso!', "Ativação", {
+                    timeOut: 3000
+                });
+            } else {
+                this._toastService.error('Ativação do Usuário não foi feita!', "Ativação", {
+                    timeOut: 3000
+                });
+            }
+            this.filtrar();
+        }, (err: any) => {
+            this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                err.error && err.error.error ? err.error.error : "Ativação inválida", {
+                timeOut: 3000
+            });
+        });
     }
 
     desativar(registro: any) {
-        // this._service.putUsuarioDesativarId(registro.id).subscribe((res: any) => {
-        //     if (res) {
-        //         this._toastService.success('Registro desativado com sucesso!', "Desativação", {
-        //             timeOut: 3000
-        //         });
-        //     } else {
-        //         this._toastService.error('Desativação do Usuário não foi feita!', "Desativação", {
-        //             timeOut: 3000
-        //         });
-        //     }
-        //     this.filtrar();
-        // }, (err: any) => {
-        //     this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-        //         err.error && err.error.error ? err.error.error : "Desativação inválida", {
-        //         timeOut: 3000
-        //     });
-        // });
+        this._service.putUsuarioDesativarId(registro.id).subscribe((res: any) => {
+            if (res) {
+                this._toastService.success('Registro desativado com sucesso!', "Desativação", {
+                    timeOut: 3000
+                });
+            } else {
+                this._toastService.error('Desativação do Usuário não foi feita!', "Desativação", {
+                    timeOut: 3000
+                });
+            }
+            this.filtrar();
+        }, (err: any) => {
+            this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                err.error && err.error.error ? err.error.error : "Desativação inválida", {
+                timeOut: 3000
+            });
+        });
     }
 
 }

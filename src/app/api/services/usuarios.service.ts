@@ -19,6 +19,8 @@ class UsuariosService extends __BaseService {
   static readonly getUsuarioPath = '/usuario';
   static readonly getUsuarioIdPath = '/usuario/{id}';
   static readonly putUsuarioIdPath = '/usuario/{id}';
+  static readonly putUsuarioAtivarIdPath = '/usuario/ativar/{id}';
+  static readonly putUsuarioDesativarIdPath = '/usuario/desativar/{id}';
   static readonly putUsuarioIdTrocaSenhaPath = '/usuario/{id}/troca-senha';
   static readonly putUsuarioIdVincularAccountSocialPath = '/usuario/{id}/vincular-account-social';
   static readonly putUsuarioIdDesvincularAccountSocialPath = '/usuario/{id}/desvincular-account-social';
@@ -207,6 +209,86 @@ class UsuariosService extends __BaseService {
   putUsuarioId(id: number,
     body: AtualizaUsuario): __Observable<null> {
     return this.putUsuarioIdResponse(id, body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Ativar Usuários
+   *
+   * Rota para ativação de usuários.
+   * @param id Identificador do registro
+   */
+  putUsuarioAtivarIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/usuario/ativar/${encodeURIComponent(String(id))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Ativar Usuários
+   *
+   * Rota para ativação de usuários.
+   * @param id Identificador do registro
+   */
+  putUsuarioAtivarId(id: number): __Observable<null> {
+    return this.putUsuarioAtivarIdResponse(id).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Desativar Usuário
+   *
+   * Rota para desativação de usuário.
+   * @param id Identificador do registro
+   */
+  putUsuarioDesativarIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/usuario/desativar/${encodeURIComponent(String(id))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Desativar Usuário
+   *
+   * Rota para desativação de usuário.
+   * @param id Identificador do registro
+   */
+  putUsuarioDesativarId(id: number): __Observable<null> {
+    return this.putUsuarioDesativarIdResponse(id).pipe(
       __map(_r => _r.body as null)
     );
   }
