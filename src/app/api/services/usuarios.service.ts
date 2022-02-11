@@ -71,13 +71,24 @@ class UsuariosService extends __BaseService {
    * Consulta Usuários
    *
    * Rota para consulta de usuários.
-   * @param nome Nome do usuário para busca
+   * @param params The `UsuariosService.GetUsuarioParams` containing the following parameters:
+   *
+   * - `offset`: Offset da consulta (para paginação)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros por consulta)
+   *
+   * - `nome`: Nome do usuário para busca
+   *
+   * - `ativo`: Buscar usuários ativos?
    */
-  getUsuarioResponse(nome?: string): __Observable<__StrictHttpResponse<null>> {
+  getUsuarioResponse(params: UsuariosService.GetUsuarioParams): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (nome != null) __params = __params.set('nome', nome.toString());
+    if (params.offset != null) __params = __params.set('offset', params.offset.toString());
+    if (params.limit != null) __params = __params.set('limit', params.limit.toString());
+    if (params.nome != null) __params = __params.set('nome', params.nome.toString());
+    if (params.ativo != null) __params = __params.set('ativo', params.ativo.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/usuario`,
@@ -99,10 +110,18 @@ class UsuariosService extends __BaseService {
    * Consulta Usuários
    *
    * Rota para consulta de usuários.
-   * @param nome Nome do usuário para busca
+   * @param params The `UsuariosService.GetUsuarioParams` containing the following parameters:
+   *
+   * - `offset`: Offset da consulta (para paginação)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros por consulta)
+   *
+   * - `nome`: Nome do usuário para busca
+   *
+   * - `ativo`: Buscar usuários ativos?
    */
-  getUsuario(nome?: string): __Observable<null> {
-    return this.getUsuarioResponse(nome).pipe(
+  getUsuario(params: UsuariosService.GetUsuarioParams): __Observable<null> {
+    return this.getUsuarioResponse(params).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -329,6 +348,32 @@ class UsuariosService extends __BaseService {
 }
 
 module UsuariosService {
+
+  /**
+   * Parameters for getUsuario
+   */
+  export interface GetUsuarioParams {
+
+    /**
+     * Offset da consulta (para paginação)
+     */
+    offset: number;
+
+    /**
+     * Limit da consulta (para paginação: máximo de 50 registros por consulta)
+     */
+    limit: number;
+
+    /**
+     * Nome do usuário para busca
+     */
+    nome?: string;
+
+    /**
+     * Buscar usuários ativos?
+     */
+    ativo?: boolean;
+  }
 }
 
 export { UsuariosService }

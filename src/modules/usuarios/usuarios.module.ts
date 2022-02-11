@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UsuariosTableService } from './containers/usuarios-list/usuarios-table.service';
 
 /* Modules */
 import { AppCommonModule } from '@common/app-common.module';
@@ -30,7 +31,7 @@ import * as usuariosGuard from './guards';
         ChartsModule,
         TablesModule
     ],
-    providers: [...usuariosGuard.guards],
+    providers: [UsuariosTableService, ...usuariosGuard.guards],
     declarations: [...usuariosContainers.containers, ...usuariosComponents.components],
     exports: [...usuariosContainers.containers, ...usuariosComponents.components],
 })
