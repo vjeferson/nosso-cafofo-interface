@@ -31,12 +31,7 @@ export class MoradoresFormComponent implements OnInit {
         private _toastService: ToastrService
     ) {
         this.mensagemAnoMaximoEntrada = `Valor máximo: ${(new Date()).getFullYear()}`;
-        this._activeRoute.data.subscribe(data => {
-            this.title = data.title;
-        });
-    }
 
-    ngOnInit() {
         this.formGroup = this._formBuilder.group({
             nome: [null, [Validators.required, Validators.maxLength(50)]],
             anoEntrada: [null, [Validators.required, Validators.min(1900), Validators.max((new Date()).getFullYear())]],
@@ -51,6 +46,12 @@ export class MoradoresFormComponent implements OnInit {
             perfilId: [null, [Validators.required]]
         });
 
+        this._activeRoute.data.subscribe(data => {
+            this.title = data.title;
+        });
+    }
+
+    ngOnInit() {
         this._activeRoute.params.subscribe(params => {
             if (params['id'] && !isNaN(+params['id'])) {
                 this.loadRegistro(+params['id']);
