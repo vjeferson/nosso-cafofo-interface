@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AtualizaUsuario } from '@app/api/models';
@@ -6,7 +6,6 @@ import { NovoUsuario } from '@app/api/models/novo-usuario';
 import { UsuariosService } from '@app/api/services';
 import { IUsuarioResult } from '@app/models/usuario-result-interface';
 import { Utilitarios } from '@app/utils/utils.service';
-import { SelectMoradorComponent } from '@common/components';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,7 +18,6 @@ export class UsuariosFormComponent implements OnInit {
     private route: string = '/usuarios';
     public dadosRegistroFiltrado: any;
     public isNew: boolean = true;
-    //public carregamentoInicialFeito: boolean = false;
     public formGroup !: FormGroup | any;
     public title!: string;
 
@@ -64,7 +62,6 @@ export class UsuariosFormComponent implements OnInit {
         });
         this.dadosRegistroFiltrado = {};
         this.isNew = true;
-        //this.carregamentoInicialFeito = true;
         this._changeDetectorRef.detectChanges();
     }
 
@@ -153,7 +150,6 @@ export class UsuariosFormComponent implements OnInit {
     }
 
     private trataDadosParaSalvar(): AtualizaUsuario {
-        debugger
         return {
             email: this.formGroup.value.email,
             nome: this.formGroup.value.moradorId && this.formGroup.value.moradorId.nome ? this.formGroup.value.moradorId.nome : this.dadosRegistroFiltrado.nome,
