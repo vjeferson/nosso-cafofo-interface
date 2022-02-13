@@ -81,6 +81,8 @@ class MoradoresService extends __BaseService {
    *
    * - `ativo`: Situação do morador. Morador esta ativo?
    *
+   * - `apenasMoradoresNaoVinculadosEmUsuario`: Verificar vinculação de Morador a algum Usuário. Morador já está vinculado a algum usuário?
+   *
    * - `anoEntrada`: Ano de entrada do morador
    */
   getMoradorResponse(params: MoradoresService.GetMoradorParams): __Observable<__StrictHttpResponse<null>> {
@@ -91,6 +93,7 @@ class MoradoresService extends __BaseService {
     if (params.limit != null) __params = __params.set('limit', params.limit.toString());
     if (params.nome != null) __params = __params.set('nome', params.nome.toString());
     if (params.ativo != null) __params = __params.set('ativo', params.ativo.toString());
+    if (params.apenasMoradoresNaoVinculadosEmUsuario != null) __params = __params.set('apenasMoradoresNaoVinculadosEmUsuario', params.apenasMoradoresNaoVinculadosEmUsuario.toString());
     if (params.anoEntrada != null) __params = __params.set('anoEntrada', params.anoEntrada.toString());
     let req = new HttpRequest<any>(
       'GET',
@@ -122,6 +125,8 @@ class MoradoresService extends __BaseService {
    * - `nome`: Nome do morador
    *
    * - `ativo`: Situação do morador. Morador esta ativo?
+   *
+   * - `apenasMoradoresNaoVinculadosEmUsuario`: Verificar vinculação de Morador a algum Usuário. Morador já está vinculado a algum usuário?
    *
    * - `anoEntrada`: Ano de entrada do morador
    */
@@ -323,6 +328,11 @@ module MoradoresService {
      * Situação do morador. Morador esta ativo?
      */
     ativo?: boolean;
+
+    /**
+     * Verificar vinculação de Morador a algum Usuário. Morador já está vinculado a algum usuário?
+     */
+    apenasMoradoresNaoVinculadosEmUsuario?: boolean;
 
     /**
      * Ano de entrada do morador
