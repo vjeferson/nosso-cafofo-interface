@@ -27,6 +27,42 @@ export const ROUTES: Routes = [
         } as SBRouteData,
         canActivate: [UsuariosGuard],
         component: usuariosContainers.UsuariosComponent
+    },
+    {
+        path: 'cadastro',
+        data: {
+            title: 'Cadastro de Usuário',
+            breadcrumbs: [
+                {
+                    text: 'Usuários',
+                    link: '/usuarios',
+                },
+                {
+                    text: 'Cadastro',
+                    active: true
+                }
+            ]
+        } as SBRouteData,
+        canActivate: [UsuariosGuard],
+        component: usuariosContainers.UsuariosFormComponent
+    },
+    {
+        path: 'edicao',
+        data: {
+            title: 'Edição de Usuário',
+            breadcrumbs: [
+                {
+                    text: 'Usuários',
+                    link: '/usuarios',
+                },
+                {
+                    text: 'Edição',
+                    active: true
+                }
+            ]
+        } as SBRouteData,
+        canActivate: [UsuariosGuard],
+        component: usuariosContainers.UsuariosFormComponent
     }
 ];
 

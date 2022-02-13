@@ -88,7 +88,7 @@ export class SelectMoradorComponent implements OnInit, AfterViewInit, ControlVal
             nome: filtro,
             ativo: true,
             anoEntrada: null,
-            apenasMoradoresNaoVinculadosEmUsuario: false
+            apenasMoradoresNaoVinculadosEmUsuario: this.apenasMoradoresNaoVinculadosEmUsuario
         };
         this._service.getMorador(params).subscribe((res: any) => {
             this._loading = false;

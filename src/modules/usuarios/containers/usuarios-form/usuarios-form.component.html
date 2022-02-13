@@ -1,0 +1,88 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head [title]="title" [hideBreadcrumbs]="false"></sb-dashboard-head>
+
+    <form [formGroup]="formGroup" *ngIf="formGroup">
+        <div class="form-row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label class="small mb-1" for="email">Email</label>
+                    <input class="form-control" id="email" type="email" formControlName="email"
+                        placeholder="Informe seu email" required [readonly]="!isNew" />
+
+                    <show-erro-input [inputName]="'email'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                    <show-erro-input [inputName]="'email'" [formGroup]="formGroup" [validationName]="'email'"
+                        [mensagemDeErro]="'Informe um email válido'">
+                    </show-erro-input>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <form-select-perfil formControlName="perfilId">
+                    </form-select-perfil>
+                    <show-erro-input [inputName]="'perfilId'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+        </div>
+        <div class="form-row" *ngIf="isNew">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="small mb-1" for="senha">Senha</label>
+                    <input class="form-control" id="senha" type="password" formControlName="senha"
+                        placeholder="Informe sua senha" required />
+                    <show-erro-input [inputName]="'senha'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+
+                    <show-erro-input [inputName]="'senha'" [formGroup]="formGroup" [validationName]="'minlength'"
+                        [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
+                    </show-erro-input>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="small mb-1" for="confirmarSenha">Confirmar Senha</label>
+                    <input class="form-control" id="confirmarSenha" type="password" formControlName="confirmarSenha"
+                        placeholder="Confirme sua senha" required />
+                    <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroup"
+                        [validationName]="'required'">
+                    </show-erro-input>
+
+                    <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroup"
+                        [validationName]="'minlength'" [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
+                    </show-erro-input>
+
+                    <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroup"
+                        [validationName]="'confirmar'" [mensagemDeErro]="'Senhas não conferem'">
+                    </show-erro-input>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <form-select-morador formControlName="moradorId" [apenasMoradoresNaoVinculadosEmUsuario]="isNew"
+                        [_readonly]="!isNew">
+                    </form-select-morador>
+                    <show-erro-input [inputName]="'moradorId'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-8">
+                <div class="form-group" *ngIf="!isNew">
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="ativo" type="checkbox" formControlName="ativo" />
+                        <label class="custom-control-label" for="ativo">Usuário Ativo?</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="btns-formulario-cadastro">
+        <button class="btn btns-formulario-cadastro-voltar" (click)="voltar()">Voltar</button>
+        <button class="btn btns-formulario-cadastro-salvar" (click)="salvar()">Salvar</button>
+    </div>
+</sb-layout-dashboard>
