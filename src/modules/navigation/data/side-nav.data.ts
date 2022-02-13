@@ -127,7 +127,7 @@ export const sideNavItems: SideNavItems = {
         icon: 'users',
         text: 'Usuários',
         link: '/usuarios',
-        tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
+        tipoPerfil: [EnumTipoPerfil.MoradorAdministrador]
     },
     contas: {
         icon: 'table',
