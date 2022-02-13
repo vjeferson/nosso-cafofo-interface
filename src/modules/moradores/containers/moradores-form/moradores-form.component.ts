@@ -17,7 +17,7 @@ export class MoradoresFormComponent implements OnInit {
     private route: string = '/moradores';
     public dadosRegistroFiltrado: any;
     public isNew: boolean = true;
-    public formGroup !: FormGroup;
+    public formGroup !: FormGroup | any;
     public formGroupCadastroUsuario !: FormGroup | any;
     public title!: string;
     public mensagemAnoMaximoEntrada: string;
@@ -169,7 +169,7 @@ export class MoradoresFormComponent implements OnInit {
             email: this.formGroupCadastroUsuario.value.email,
             senha: this.formGroupCadastroUsuario.value.senha,
             confirmarSenha: this.formGroupCadastroUsuario.value.confirmarSenha,
-            perfilId: this.formGroupCadastroUsuario.value.perfilId ? this.formGroupCadastroUsuario.value.perfilId.id : null  
+            perfilId: this.formGroupCadastroUsuario.value.perfilId ? this.formGroupCadastroUsuario.value.perfilId.id : null
         }
     }
 
