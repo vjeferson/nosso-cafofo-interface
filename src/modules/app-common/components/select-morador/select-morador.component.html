@@ -1,0 +1,5 @@
+<label class="small mb-1" for="moradores | async">Morador</label>
+<ng-select #select [items]="moradores" bindLabel="nome" bindValue="id" appendTo="body" placeholder="Selecione um Morador para vincular ao Usuário"
+    [closeOnSelect]="true" [hideSelected]="true" [loading]="_loading" [readonly]="_readonly" [(ngModel)]="_value"
+    [disabled]="_disabled" [typeahead]="filtro$" (change)="_onChange($event)" (focus)="_onTouched($event)">
+</ng-select>
