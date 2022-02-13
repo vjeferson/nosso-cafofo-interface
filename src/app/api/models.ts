@@ -1,4 +1,5 @@
 export { Autenticar } from './models/autenticar';
+export { AutenticarContaSocial } from './models/autenticar-conta-social';
 export { NovoPlano } from './models/novo-plano';
 export { AtualizaPlano } from './models/atualiza-plano';
 export { NovoCliente } from './models/novo-cliente';

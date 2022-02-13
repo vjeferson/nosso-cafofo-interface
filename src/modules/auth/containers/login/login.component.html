@@ -42,14 +42,17 @@
                                 <a class="small" routerLink="/auth/forgot-password">Esqueci minha senha.</a>
                             </div> -->
                             <div id="logar">
-                                <button class="btn" (click)="logar()" [disabled]="!formGroup.valid">Entrar</button>
+                                <button class="btn" (click)="logar()">Entrar</button>
                             </div>
                         </form>
-                        <!-- <div class="row" id="divisor">
+                        <div class="row" id="divisor">
                             <hr />
                             <p>ou</p>
                             <hr />
-                        </div> -->
+                        </div>
+                        <div class="buttons-contas-sociais">
+                            <button class="btn btns-facebook" (click)="logarComContaSocial('facebook')">Facebook</button>
+                        </div>
                     </div>
                     <div class="card-footer text-center">
                         <p>Ainda não possui um cadastro?</p>

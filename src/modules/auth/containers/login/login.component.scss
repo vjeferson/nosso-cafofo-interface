@@ -19,7 +19,7 @@
 #divisor { 
     color: #808588;
     display: flex;
-    margin: 0.5rem 0rem 0.5rem 0rem;
+    margin: 1rem 0rem 0.5rem 0rem;
     hr{
         width: 30%;
     }
@@ -38,4 +38,13 @@
 .mensagem-erro-input {
     color: red;
     font-size: 12px;
+}
+
+.buttons-contas-sociais{
+    display: flex;
+    justify-content: center;
+
+    button{
+        width: 45%;
+    }
 }
