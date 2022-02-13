@@ -14,7 +14,7 @@
                 {{usuario.nome}}
             </span>
             <span class="navbar-text" data-toggle="collapse" data-target=".navbar-collapse.show">
-                Administrador
+                {{mapTiposPerfis[usuario.tipoPerfil]}}
             </span>
         </div>
         <sb-top-nav-user [usuario]="usuario"></sb-top-nav-user>

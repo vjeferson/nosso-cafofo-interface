@@ -1,5 +1,5 @@
-import { environment } from "environments/environment";
-import { EnumTipoPlano } from "./enums";
+import { environment } from 'environments/environment';
+import { EnumTipoPerfil, EnumTipoPlano } from './enums';
 
 export const debug = (...args: any) => {
     if (environment.debug) {
@@ -21,4 +21,10 @@ export const mapDescricaoTiposPlanos: { [key: string]: number } = {
     'PlanoAnual': EnumTipoPlano.Anual,
     'PlanoPromocionalAnual': EnumTipoPlano.PromocionalAnual,
     'Free': EnumTipoPlano.Free
+};
+
+export const mapTiposPerfis: { [key: number]: string } = {
+    [EnumTipoPerfil.AdministradorNossoCafofo]: 'Administrador',
+    [EnumTipoPerfil.MoradorAdministrador]: 'Morador Adm.',
+    [EnumTipoPerfil.Morador]: 'Morador'
 };

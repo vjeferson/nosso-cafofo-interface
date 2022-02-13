@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUsuarioAutenticado } from '@app/models/retorno-autenticacao';
+import { mapTiposPerfis } from '@app/utils/consts';
 import { UsuarioLogadoService } from '@common/services';
 import { NavigationService } from '@modules/navigation/services';
 
@@ -12,7 +13,8 @@ import { NavigationService } from '@modules/navigation/services';
 })
 export class TopNavComponent implements OnInit {
     public usuario: IUsuarioAutenticado;
-
+    public mapTiposPerfis = mapTiposPerfis;
+    
     constructor(private navigationService: NavigationService,
         private readonly _usuarioLogadoService: UsuarioLogadoService
     ) {
