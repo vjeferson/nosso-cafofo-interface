@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Injector, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { EstadosService } from '@app/api/services';
 import { NgSelectComponent } from '@ng-select/ng-select';
@@ -19,6 +19,7 @@ import { Observable, Subject } from 'rxjs';
 export class SelectEstadoComponent implements OnInit, AfterViewInit, ControlValueAccessor {
     @ViewChild('select', { static: true }) select: NgSelectComponent | any;
     @Output() escolheEstado = new EventEmitter<any>();
+    @Input() required: boolean = false;
     _onChange: any;
     _onTouched: any;
     control: any;

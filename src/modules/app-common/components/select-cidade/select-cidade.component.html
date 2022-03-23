@@ -1,4 +1,4 @@
-<label class="small mb-1" for="cidades | async">Cidade</label>
+<show-custom-label [textLabel]="'Cidade'" [required]="required"></show-custom-label>
 <ng-select #select [items]="cidades" bindLabel="cidade" appendTo="body" placeholder="Selecione uma Cidade"
     [loading]="_loading" [readonly]="_readonly" [(ngModel)]="_value" [disabled]="_disabled" [typeahead]="filtro$"
     (change)="_onChange($event)" (focus)="_onTouched($event)">

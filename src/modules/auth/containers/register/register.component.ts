@@ -19,6 +19,19 @@ export class RegisterComponent implements OnInit {
     public formGroup: FormGroup | any;
     public estadoId: string | any;
     public mensagemAnoMaximoAnoCriacao: string;
+    public requiredControls = [
+        'nome', 
+        'nomeRepublica', 
+        'anoCriacaoRepublica',
+        'anoEntradaMorador',
+        'logradouro',
+        'numero',
+        'email',
+        'senha',
+        'confirmaSenha',
+        'estadoId',
+        'cidadeId'
+    ];
 
     constructor(
         private readonly _clienteService: ClientesService,
@@ -55,7 +68,7 @@ export class RegisterComponent implements OnInit {
 
         return (formControl.value >= this.formGroup.get('anoCriacaoRepublica').value) ? null : { anoEntradaInvalido: true };
     }
-    
+
     private confirmaSenha(formControl: FormControl) {
         if (!this.formGroup) {
             return null;

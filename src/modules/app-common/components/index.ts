@@ -3,6 +3,7 @@ import { ButtonCadastroComponent } from './button-cadastro/button-cadastro.compo
 import { ButtonFiltrosComponent } from './button-filtros/button-filtros.component';
 import { CardViewDetailsComponent } from './card-view-details/card-view-details.component';
 import { CardComponent } from './card/card.component';
+import { CustomLabelComponent } from './custom-label/custom-label.component';
 import { ErroInputComponent } from './erro-input/erro-input.component';
 import { ConfirmacaoNgbdModal } from './modal-confirm/modal-confirm.component';
 import { SelectCidadeComponent } from './select-cidade/select-cidade.component';
@@ -25,11 +26,13 @@ export const components = [
     ConfirmacaoNgbdModal,
     SelectSituacaoRegistroComponent,
     SelectPerfilComponent,
-    SelectMoradorComponent
+    SelectMoradorComponent,
+    CustomLabelComponent
 ];
 
 export * from './card/card.component';
 export * from './card-view-details/card-view-details.component';
+export * from './custom-label/custom-label.component';
 export * from './erro-input/erro-input.component';
 export * from './select-estado/select-estado.component';
 export * from './select-cidade/select-cidade.component';

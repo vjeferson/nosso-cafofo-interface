@@ -19,6 +19,7 @@ import { Subject } from 'rxjs';
 export class SelectCidadeComponent implements OnInit, AfterViewInit, ControlValueAccessor {
     @ViewChild('select', { static: true }) select: NgSelectComponent | any;
     @Input() estadoId: string | any;
+    @Input() required: boolean = false;
     _onChange: any;
     _onTouched: any;
     control: any;

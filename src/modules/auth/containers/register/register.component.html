@@ -11,10 +11,9 @@
                             <div class="form-row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="nome">
-                                            Nome</label><input class="form-control py-4" id="nome" type="text"
+                                        <show-custom-label [textLabel]="'Nome'" [required]="true"></show-custom-label>
+                                        <input class="form-control py-4" id="nome" type="text"
                                             placeholder="Informe seu nome" formControlName="nome" />
-
                                         <show-erro-input [inputName]="'nome'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
@@ -27,13 +26,12 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="nomeRepublica">
-                                            Nome da República</label><input class="form-control py-4" id="nomeRepublica"
-                                            type="text" placeholder="Informe o nome da República"
-                                            formControlName="nomeRepublica" />
-
+                                        <show-custom-label [textLabel]="'Nome da República'" [required]="true">
+                                        </show-custom-label>
+                                        <input class="form-control py-4" id="nomeRepublica" type="text"
+                                            placeholder="Informe o nome da República" formControlName="nomeRepublica" />
                                         <show-erro-input [inputName]="'nomeRepublica'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
@@ -43,14 +41,14 @@
                                         </show-erro-input>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="anoCriacaoRepublica">
-                                            Ano de Criação da República</label><input class="form-control py-4"
-                                            id="anoCriacaoRepublica" type="number"
+                                        <show-custom-label [textLabel]="'Ano de Criação da República'"
+                                            [required]="true">
+                                        </show-custom-label>
+                                        <input class="form-control py-4" id="anoCriacaoRepublica" type="number"
                                             placeholder="Informe o ano de criação da República"
                                             formControlName="anoCriacaoRepublica" />
-
                                         <show-erro-input [inputName]="'anoCriacaoRepublica'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
@@ -67,12 +65,12 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="diaPagamentoContas">
-                                            Dia de Pagamento das Contas</label><input class="form-control py-4"
-                                            id="diaPagamentoContas" type="number"
+                                        <show-custom-label [textLabel]="'Dia de Pagamento das Contas'"
+                                            [required]="true">
+                                        </show-custom-label>
+                                        <input class="form-control py-4" id="diaPagamentoContas" type="number"
                                             placeholder="Informe o dia de Pagamento das Contas"
                                             formControlName="diaPagamentoContas" />
-
                                         <show-erro-input [inputName]="'diaPagamentoContas'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
@@ -86,11 +84,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="anoEntradaMorador">
-                                            Ano de Entrada na República</label><input class="form-control py-4"
-                                            id="anoEntradaMorador" type="number" placeholder="Informe o ano de entrada"
+                                        <show-custom-label [textLabel]="'Ano de Entrada na República'"
+                                            [required]="true">
+                                        </show-custom-label>
+                                        <input class="form-control py-4" id="anoEntradaMorador" type="number"
+                                            placeholder="Informe o ano de entrada"
                                             formControlName="anoEntradaMorador" />
-
                                         <show-erro-input [inputName]="'anoEntradaMorador'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
@@ -105,14 +104,13 @@
                             <div class="form-row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="logradouro">
-                                            Endereço</label><input class="form-control py-4" id="logradouro" type="text"
+                                        <show-custom-label [textLabel]="'Endereço'" [required]="true">
+                                        </show-custom-label>
+                                        <input class="form-control py-4" id="logradouro" type="text"
                                             placeholder="Informe o endereço" formControlName="logradouro" />
-
                                         <show-erro-input [inputName]="'logradouro'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
-
                                         <show-erro-input [inputName]="'logradouro'" [formGroup]="formGroup"
                                             [validationName]="'maxlength'"
                                             [mensagemDeErro]="'Tamanho máximo de 70 caracteres'">
@@ -124,11 +122,10 @@
                             <div class="form-row">
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="complemento">
-                                            Complemento</label><input class="form-control py-4" id="complemento"
-                                            type="text" placeholder="Informe o complemento"
-                                            formControlName="complemento" />
-
+                                        <show-custom-label [textLabel]="'Complemento'" [required]="false">
+                                        </show-custom-label>
+                                        <input class="form-control py-4" id="complemento" type="text"
+                                            placeholder="Informe o complemento" formControlName="complemento" />
                                         <show-erro-input [inputName]="'complemento'" [formGroup]="formGroup"
                                             [validationName]="'maxlength'"
                                             [mensagemDeErro]="'Tamanho máximo de 45 caracteres'">
@@ -137,10 +134,10 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="numero">
-                                            Número</label><input class="form-control py-4" id="numero" type="text"
+                                        <show-custom-label [textLabel]="'Número'" [required]="true">
+                                        </show-custom-label>
+                                        <input class="form-control py-4" id="numero" type="text"
                                             placeholder="Informe o número" formControlName="numero" />
-
                                         <show-erro-input [inputName]="'numero'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
@@ -155,10 +152,10 @@
                             <div class="form-row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="email">Email</label>
+                                        <show-custom-label [textLabel]="'Email'" [required]="true">
+                                        </show-custom-label>
                                         <input class="form-control py-4" id="email" type="email" formControlName="email"
                                             placeholder="Informe seu email" required />
-
                                         <show-erro-input [inputName]="'email'" [formGroup]="formGroup"
                                             [validationName]="'required'"></show-erro-input>
                                         <show-erro-input [inputName]="'email'" [formGroup]="formGroup"
@@ -171,13 +168,13 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="senha">Senha</label>
+                                        <show-custom-label [textLabel]="'Senha'" [required]="true">
+                                        </show-custom-label>
                                         <input class="form-control py-4" id="senha" type="password"
                                             formControlName="senha" placeholder="Informe sua senha" required />
                                         <show-erro-input [inputName]="'senha'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
-
                                         <show-erro-input [inputName]="'senha'" [formGroup]="formGroup"
                                             [validationName]="'minlength'"
                                             [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
@@ -186,13 +183,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="confirmaSenha">Confirmar Senha</label>
+                                        <show-custom-label [textLabel]="'Confirmar Senha'" [required]="true">
+                                        </show-custom-label>
                                         <input class="form-control py-4" id="confirmaSenha" type="password"
                                             formControlName="confirmaSenha" placeholder="Confirme sua senha" required />
                                         <show-erro-input [inputName]="'confirmaSenha'" [formGroup]="formGroup"
                                             [validationName]="'required'">
                                         </show-erro-input>
-
                                         <show-erro-input [inputName]="'confirmaSenha'" [formGroup]="formGroup"
                                             [validationName]="'minlength'"
                                             [mensagemDeErro]="'Tamanho mínimo de 8 caracteres'">
@@ -207,7 +204,7 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <form-select-estado formControlName="estadoId"
+                                        <form-select-estado formControlName="estadoId" [required]="true"
                                             (escolheEstado)="getEstadoSelecionado($event)"></form-select-estado>
 
                                         <show-erro-input [inputName]="'estadoId'" [formGroup]="formGroup"
@@ -219,7 +216,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <form-select-cidade #selectCidade formControlName="cidadeId"
-                                            [_readonly]="!estadoId">
+                                            [_readonly]="!estadoId" [required]="true">
                                         </form-select-cidade>
 
                                         <show-erro-input [inputName]="'cidadeId'" [formGroup]="formGroup"

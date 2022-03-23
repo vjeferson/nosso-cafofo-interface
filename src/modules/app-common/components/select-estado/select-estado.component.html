@@ -1,4 +1,4 @@
-<label class="small mb-1" for="estados | async">Estado</label>
+<show-custom-label [textLabel]="'Estado'" [required]="required"></show-custom-label>
 <ng-select #select [items]="estados" bindLabel="estado" appendTo="body"
     placeholder="Selecione um Estado" [closeOnSelect]="true" [hideSelected]="true" [loading]="_loading"
     [readonly]="_readonly" [(ngModel)]="_value" [disabled]="_disabled" [typeahead]="filtro$"
