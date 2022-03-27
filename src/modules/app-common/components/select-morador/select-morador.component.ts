@@ -29,7 +29,7 @@ export class SelectMoradorComponent implements OnInit, AfterViewInit, ControlVal
     @ViewChild('select', { static: true }) select: NgSelectComponent | any;
     @Input() apenasMoradoresNaoVinculadosEmUsuario: boolean = false;
     @Input() _readonly: boolean;
-
+    @Input() required: boolean = false;
     _onChange: any;
     _onTouched: any;
     control: any;

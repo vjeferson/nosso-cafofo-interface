@@ -5,7 +5,7 @@
         <div class="form-row">
             <div class="col-md-8">
                 <div class="form-group">
-                    <label class="small mb-1" for="email">Email</label>
+                    <show-custom-label [textLabel]="'Email'" [required]="true"></show-custom-label>
                     <input class="form-control" id="email" type="email" formControlName="email"
                         placeholder="Informe seu email" required [readonly]="!isNew" />
 
@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <form-select-perfil formControlName="perfilId">
+                    <form-select-perfil formControlName="perfilId" [required]="true">
                     </form-select-perfil>
                     <show-erro-input [inputName]="'perfilId'" [formGroup]="formGroup" [validationName]="'required'">
                     </show-erro-input>
@@ -28,7 +28,7 @@
         <div class="form-row" *ngIf="isNew">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="small mb-1" for="senha">Senha</label>
+                    <show-custom-label [textLabel]="'Senha'" [required]="true"></show-custom-label>
                     <input class="form-control" id="senha" type="password" formControlName="senha"
                         placeholder="Informe sua senha" required />
                     <show-erro-input [inputName]="'senha'" [formGroup]="formGroup" [validationName]="'required'">
@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="small mb-1" for="confirmarSenha">Confirmar Senha</label>
+                    <show-custom-label [textLabel]="'Confirmar Senha'" [required]="true"></show-custom-label>
                     <input class="form-control" id="confirmarSenha" type="password" formControlName="confirmarSenha"
                         placeholder="Confirme sua senha" required />
                     <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroup"
@@ -62,7 +62,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <form-select-morador formControlName="moradorId" [apenasMoradoresNaoVinculadosEmUsuario]="isNew"
-                        [_readonly]="!isNew">
+                        [_readonly]="!isNew" [required]="true">
                     </form-select-morador>
                     <show-erro-input [inputName]="'moradorId'" [formGroup]="formGroup" [validationName]="'required'">
                     </show-erro-input>
