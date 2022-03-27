@@ -43,7 +43,6 @@ export class FiltrosMoradoresNgbdModal implements AfterViewInit {
     }
 
     private trataFiltrosParaPesquisa() {
-        debugger
         this.filtros.anoEntrada = this.formGroup.value.anoEntrada;
         this.filtros.ativo = this.formGroup.value.ativo && this.formGroup.value.ativo.valor !== 'todos' ?
             this.formGroup.value.ativo.valor : undefined;

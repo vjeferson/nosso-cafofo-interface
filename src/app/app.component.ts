@@ -28,5 +28,6 @@ export class AppComponent {
             // No servidor 48 esta ocorrendo erro.
             // this.installPwa();
         }
+        console.log('Nosso Cafofo - Versão 1.0.0');
     }
 }

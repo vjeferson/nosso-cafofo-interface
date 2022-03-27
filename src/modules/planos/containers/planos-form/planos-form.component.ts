@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AtualizaPlano, NovoPlano } from '@app/api/models';
 import { PlanosService } from '@app/api/services';
+import { Utilitarios } from '@app/utils/utils.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -121,6 +122,11 @@ export class PlanosFormComponent implements OnInit {
                     });
                 });
             }
+        } else {
+            Utilitarios.validateAllFormFields(this.formGroup);
+            this.toastService.error("Por favor preencha corretamente as informações", 'Formulário inválido!', {
+                timeOut: 3000
+            });
         }
     }
 
