@@ -203,7 +203,7 @@ export class ProfileComponent implements OnInit {
             });
 
         } else {
-            Utilitarios.validateAllFormFields(this.formGroup);
+            Utilitarios.validateAllFormFields(this.formGroupTrocaSenha);
             this._toastService.error("Por favor preencha corretamente as informações", 'Formulário inválido!', {
                 timeOut: 3000
             });

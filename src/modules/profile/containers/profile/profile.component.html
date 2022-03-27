@@ -14,8 +14,12 @@
                                 <div class="small text-white">
                                     <fa-icon [icon]='["fas", "user-circle"]'></fa-icon>
                                 </div>
-                                <button class="btn btns-formulario-cadastro-salvar" (click)="trocarImagem()">Trocar
+                                <button class="btn btns-formulario-cadastro-salvar" disabled
+                                    (click)="trocarImagem()">Trocar
                                     imagem</button>
+                                <p class="mensagem-erro-input">
+                                    Opção de troca de imagem desabilitada temporariamente!
+                                </p>
                             </div>
                         </sb-card>
 
@@ -26,7 +30,8 @@
                                     <div class="form-row">
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="nome">Nome</label>
+                                                <show-custom-label [textLabel]="'Nome'" [required]="true">
+                                                </show-custom-label>
                                                 <input class="form-control" id="nome" type="text"
                                                     placeholder="Informe o nome" formControlName="nome" />
 
@@ -41,7 +46,8 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="ano">Ano de Entrada na República</label>
+                                                <show-custom-label [textLabel]="'Ano de Entrada na República'"
+                                                    [required]="false"></show-custom-label>
                                                 <input class="form-control" id="ano" type="number" placeholder="Ano"
                                                     formControlName="ano" readonly />
                                             </div>
@@ -50,7 +56,8 @@
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="email">Email</label>
+                                                <show-custom-label [textLabel]="'Email'" [required]="true">
+                                                </show-custom-label>
                                                 <input class="form-control" id="email" type="email"
                                                     placeholder="Informe o email" formControlName="email" />
 
@@ -124,7 +131,8 @@
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="senhaAtual">Senha Atual</label>
+                                                <show-custom-label [textLabel]="'Senha Atual'" [required]="true">
+                                                </show-custom-label>
                                                 <input class="form-control" id="senhaAtual" type="password"
                                                     formControlName="senhaAtual" />
 
@@ -142,7 +150,8 @@
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="novaSenha">Nova Senha</label>
+                                                <show-custom-label [textLabel]="'Nova Senha'" [required]="true">
+                                                </show-custom-label>
                                                 <input class="form-control" id="novaSenha" type="password"
                                                     formControlName="novaSenha" />
 
@@ -160,7 +169,8 @@
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="confirmarSenha">Confirmar Senha</label>
+                                                <show-custom-label [textLabel]="'Confirmar Senha'" [required]="true">
+                                                </show-custom-label>
                                                 <input class="form-control" id="confirmarSenha" type="password"
                                                     formControlName="confirmarSenha" />
 

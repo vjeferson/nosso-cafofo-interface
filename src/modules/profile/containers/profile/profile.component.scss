@@ -47,13 +47,13 @@ sb-card{
             .btns-facebook {
                 background-color: #3B5998;
                 color: #FFFFFF !important;
-                min-width: 250px;
+                min-width: 80%;;
             }
               
             .btns-google {
                 background-color: #DB4437;
                 color: #FFFFFF !important;
-                min-width: 250px;
+                min-width: 80%;
             }
 
         }
@@ -75,6 +75,13 @@ sb-card{
             width: 140px;
             font-size: 120px;
         }
+    }
+
+    .mensagem-erro-input {
+        color: red !important;
+        font-size: 12px;
+        text-align:  center;
+        margin-top: 1rem;
     }
 
 }

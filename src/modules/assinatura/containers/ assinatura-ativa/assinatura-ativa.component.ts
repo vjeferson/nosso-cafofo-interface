@@ -38,10 +38,30 @@ export class AssinaturaAtivaComponent implements OnInit {
         private readonly _usuarioLogadoService: UsuarioLogadoService
     ) {
         this.usuarioLogado = this._usuarioLogadoService.getDadosSession().usuario;
+
+    }
+
+    ngOnInit() {
         this._assinaturaService.getAssinaturaId(this.usuarioLogado.assinaturaId as number).subscribe((res: any) => {
             if (res) {
                 this.assinaturaAtiva = res;
                 this._changeDetectorRef.detectChanges();
+
+                this._planosService.getPlano({ offset: 0, limit: 50, ativo: true }).subscribe((res: any) => {
+                    if (res && res.rows) {
+                        this.planosAtivos = res.rows.filter((plano: any) => plano.tipoPlano !== this.assinaturaAtiva.tipoPlano);
+                    } else {
+                        this.planosAtivos = [];
+                    }
+                    this._changeDetectorRef.detectChanges();
+                }, err => {
+                    this._toastService.error(err.error && err.error.message ? err.error.message : 'Planos ativos não foram filtrados!',
+                        err.error && err.error.error ? err.error.error : 'Busca de Planos', {
+                        timeOut: 3000
+                    });
+                    this._router.navigate(['/']);
+                });
+
             } else {
                 this._toastService.info('Problemas ao carregar a assinatura ativa!',
                     'Redirecionando', {
@@ -53,23 +73,6 @@ export class AssinaturaAtivaComponent implements OnInit {
             this._toastService.error(err.error && err.error.message ? err.error.message : 'Assinatura não encontrada!',
                 err.error && err.error.error ? err.error.error : 'Busca de Assinatura', {
                 timeOut: 3000,
-            });
-            this._router.navigate(['/']);
-        });
-    }
-
-    ngOnInit() {
-        this._planosService.getPlano({ offset: 0, limit: 50, ativo: true }).subscribe((res: any) => {
-            if (res && res.rows) {
-                this.planosAtivos = res.rows.filter((plano: any) => plano.tipoPlano !== this.assinaturaAtiva.tipoPlano);
-            } else {
-                this.planosAtivos = [];
-            }
-            this._changeDetectorRef.detectChanges();
-        }, err => {
-            this._toastService.error(err.error && err.error.message ? err.error.message : 'Planos ativos não foram filtrados!',
-                err.error && err.error.error ? err.error.error : 'Busca de Planos', {
-                timeOut: 3000
             });
             this._router.navigate(['/']);
         });

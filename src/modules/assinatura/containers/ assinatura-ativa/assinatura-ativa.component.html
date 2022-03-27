@@ -19,8 +19,8 @@
             <a ngbNavLink>Planos</a>
             <ng-template ngbNavContent>
                 <div class="container">
-                    <div class="row" *ngIf="planosAtivos">
-                        <sb-card *ngFor="let plano of planosAtivos" class="col-md-4">
+                    <div class="row planos" *ngIf="planosAtivos">
+                        <sb-card *ngFor="let plano of planosAtivos" class="col-sm-12 col-md-6">
                             <div class="card-header">
                                 <span>{{mapTiposPlanos[plano?.tipoPlano]}}</span>
                                 <button disabled>{{mapDescricaoTiposPlanos.Free == plano.tipoPlano ?
