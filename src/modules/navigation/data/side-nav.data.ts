@@ -105,16 +105,16 @@ export const sideNavItems: SideNavItems = {
                 link: '/republica/info-cadastro',
                 tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
             },
-            {
-                text: 'Caixa',
-                link: '/republica/caixa',
-                tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
-            },
-            {
-                text: 'Entradas e Saídas',
-                link: '/republica/entradas-saidas',
-                tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
-            }
+            // {
+            //     text: 'Caixa',
+            //     link: '/republica/caixa',
+            //     tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
+            // },
+            // {
+            //     text: 'Entradas e Saídas',
+            //     link: '/republica/entradas-saidas',
+            //     tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
+            // }
         ]
     },
     moradores: {

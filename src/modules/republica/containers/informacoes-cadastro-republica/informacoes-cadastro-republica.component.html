@@ -7,7 +7,7 @@
                     <div class="form-row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="small mb-1" for="nome">Nome</label>
+                                <show-custom-label [textLabel]="'Nome'" [required]="true"></show-custom-label>
                                 <input class="form-control py-4 " id="nome" type="text" placeholder="Informe seu nome"
                                     formControlName="nome" />
 
@@ -24,7 +24,7 @@
                     <div class="form-row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="small mb-1" for="logradouro">Endereço</label>
+                                <show-custom-label [textLabel]="'Endereço'" [required]="true"></show-custom-label>
                                 <input class="form-control py-4" id="logradouro" type="text"
                                     placeholder="Informe o endereço" formControlName="logradouro" />
 
@@ -42,7 +42,7 @@
                     <div class="form-row">
                         <div class="col-md-8">
                             <div class="form-group">
-                                <label class="small mb-1" for="complemento">Complemento</label>
+                                <show-custom-label [textLabel]="'Complemento'" [required]="false"></show-custom-label>
                                 <input class="form-control py-4" id="complemento" type="text"
                                     placeholder="Informe o complemento" formControlName="complemento" />
 
@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="small mb-1" for="numero">Número</label>
+                                <show-custom-label [textLabel]="'Número'" [required]="true"></show-custom-label>
                                 <input class="form-control py-4" id="numero" type="text"
                                     placeholder="Informe o nome da república" formControlName="numero" />
 
@@ -70,7 +70,7 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <form-select-estado formControlName="estadoId"
+                                <form-select-estado formControlName="estadoId" [required]="true"
                                     (escolheEstado)="getEstadoSelecionado($event)"></form-select-estado>
 
                                 <show-erro-input [inputName]="'estadoId'" [formGroup]="formGroup"
@@ -81,7 +81,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <form-select-cidade #selectCidade formControlName="cidadeId" [_readonly]="!estadoId">
+                                <form-select-cidade #selectCidade formControlName="cidadeId" [_readonly]="!estadoId"
+                                    [required]="true">
                                 </form-select-cidade>
 
                                 <show-erro-input [inputName]="'cidadeId'" [formGroup]="formGroup"
@@ -94,11 +95,11 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="dataPagamentoContas">
-                                    Dia de Pagamento das Contas</label><input class="form-control py-4"
-                                    id="dataPagamentoContas" type="number" placeholder="Informe o dia de Pagamento das Contas"
+                                <show-custom-label [textLabel]="'Dia de Pagamento das Contas'" [required]="true">
+                                </show-custom-label>
+                                <input class="form-control py-4" id="dataPagamentoContas" type="number"
+                                    placeholder="Informe o dia de Pagamento das Contas"
                                     formControlName="dataPagamentoContas" />
-
                                 <show-erro-input [inputName]="'dataPagamentoContas'" [formGroup]="formGroup"
                                     [validationName]="'required'">
                                 </show-erro-input>
@@ -112,11 +113,11 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="anoCriacao">Ano de Criação</label>
+                                <show-custom-label [textLabel]="'Ano de Criação'" [required]="true"></show-custom-label>
                                 <input class="form-control py-4" id="anoCriacao" type="number"
                                     placeholder="Informe o ano de entrada" formControlName="anoCriacao" />
 
-                                    <show-erro-input [inputName]="'anoCriacao'" [formGroup]="formGroup"
+                                <show-erro-input [inputName]="'anoCriacao'" [formGroup]="formGroup"
                                     [validationName]="'required'">
                                 </show-erro-input>
                                 <show-erro-input [inputName]="'anoCriacao'" [formGroup]="formGroup"
