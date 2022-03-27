@@ -150,6 +150,10 @@ export class MoradoresFormComponent implements OnInit {
             this._toastService.error("Por favor preencha corretamente as informações", 'Formulário inválido!', {
                 timeOut: 3000
             });
+
+            if (this.formGroup.get('realizarCadastroDeUsuario').value && !this.formGroupCadastroUsuario.valid) {
+                Utilitarios.validateAllFormFields(this.formGroupCadastroUsuario);
+            }
         }
     }
 

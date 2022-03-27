@@ -27,6 +27,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class SelectPerfilComponent implements OnInit, AfterViewInit, ControlValueAccessor {
     @ViewChild('select', { static: true }) select: NgSelectComponent | any;
+    @Input() required: boolean = false;
     _onChange: any;
     _onTouched: any;
     control: any;

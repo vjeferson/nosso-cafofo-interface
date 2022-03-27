@@ -5,7 +5,7 @@
         <div class="form-row">
             <div class="col-md-8">
                 <div class="form-group">
-                    <label class="small mb-1" for="nome">Nome</label>
+                    <show-custom-label [textLabel]="'Nome'" [required]="true"></show-custom-label>
                     <input class="form-control" id="nome" type="text" placeholder="Informe o nome do Morador"
                         formControlName="nome" maxlength="50" />
 
@@ -16,7 +16,7 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="small mb-1" for="anoEntrada">Ano de Entrada na República</label>
+                    <show-custom-label [textLabel]="'Ano de Entrada na República'" [required]="true"></show-custom-label>
                     <input class="form-control" id="anoEntrada" type="number"
                         placeholder="Informe o ano de entrada na República" formControlName="anoEntrada" />
 
@@ -57,7 +57,7 @@
         <div class="form-row">
             <div class="col-md-8">
                 <div class="form-group">
-                    <label class="small mb-1" for="email">Email</label>
+                    <show-custom-label [textLabel]="'Email'" [required]="true"></show-custom-label>
                     <input class="form-control" id="email" type="email" formControlName="email"
                         placeholder="Informe seu email" required />
 
@@ -70,7 +70,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <form-select-perfil formControlName="perfilId">
+                    <form-select-perfil formControlName="perfilId" [required]="true">
                     </form-select-perfil>
                     <show-erro-input [inputName]="'perfilId'" [formGroup]="formGroupCadastroUsuario"
                         [validationName]="'required'">
@@ -81,7 +81,7 @@
         <div class="form-row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="small mb-1" for="senha">Senha</label>
+                    <show-custom-label [textLabel]="'Senha'" [required]="true"></show-custom-label>
                     <input class="form-control" id="senha" type="password" formControlName="senha"
                         placeholder="Informe sua senha" required />
                     <show-erro-input [inputName]="'senha'" [formGroup]="formGroupCadastroUsuario"
@@ -95,7 +95,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="small mb-1" for="confirmarSenha">Confirmar Senha</label>
+                    <show-custom-label [textLabel]="'Confirmar Senha'" [required]="true"></show-custom-label>
                     <input class="form-control" id="confirmarSenha" type="password" formControlName="confirmarSenha"
                         placeholder="Confirme sua senha" required />
                     <show-erro-input [inputName]="'confirmarSenha'" [formGroup]="formGroupCadastroUsuario"

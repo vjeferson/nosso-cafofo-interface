@@ -1,4 +1,4 @@
-<label class="small mb-1" for="perfis | async">Perfil</label>
+<show-custom-label [textLabel]="'Perfil'" [required]="required"></show-custom-label>
 <ng-select #select [items]="perfis" bindLabel="descricao" bindValue="id" appendTo="body" placeholder="Selecione um Perfil de Usuário"
     [closeOnSelect]="true" [hideSelected]="true" [loading]="_loading" [readonly]="_readonly" [(ngModel)]="_value"
     [disabled]="_disabled" [typeahead]="filtro$" (change)="_onChange($event)" (focus)="_onTouched($event)">
