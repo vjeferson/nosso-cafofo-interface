@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MoradoresService } from '@app/api/services';
 import { IMoradorResult } from '@app/models/morador-result-interface';
 import { IFiltroMoradores } from '@app/models/search-moradores';
+import { _PAGE_SIZE } from '@app/utils/consts';
 import { FiltrosMoradoresNgbdModal } from '@modules/moradores/components';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +22,7 @@ export class MoradoresComponent implements OnInit {
 
     private routeEdicao: string = '/moradores/edicao';
     public routeCadastro: string = '/moradores/cadastro';
-    public pageSize = 2;
+    public pageSize = _PAGE_SIZE;
     public registros$!: Observable<IMoradorResult[]>;
     public total$!: Observable<number>;
     public sortedColumn!: string;

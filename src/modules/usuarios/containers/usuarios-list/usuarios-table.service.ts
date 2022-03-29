@@ -5,13 +5,16 @@ import { UsuariosService } from '@app/api/services';
 import { DecimalPipe } from '@angular/common';
 import { SearchResult } from '@app/models/search-result';
 import { IFiltroUsuarios } from '@app/models/search-usuarios';
+import { ToastrService } from 'ngx-toastr';
+import { _PAGE_SIZE } from '@app/utils/consts';
 
 @Injectable({ providedIn: 'root' })
 export class UsuariosTableService extends TableService<UsuariosService, IFiltroUsuarios> {
-    constructor(pipe: DecimalPipe, service: UsuariosService) {
+    constructor(pipe: DecimalPipe, service: UsuariosService,
+        private readonly _toastService: ToastrService) {
         super(pipe, service, {
             page: 1,
-            pageSize: 2,
+            pageSize: _PAGE_SIZE,
             searchTerm: '',
             sortColumn: '',
             sortDirection: '',
@@ -28,7 +31,11 @@ export class UsuariosTableService extends TableService<UsuariosService, IFiltroU
                 observer.next(res);
                 observer.complete();
             }, (err: any) => {
-                observer.error(err);
+                this._toastService.error(err.error && err.error.message ? err.error.message : 'Consulta inválida!',
+                    err.error && err.error.error ? err.error.error : "Consulta inválida", {
+                    timeOut: 3000,
+                });
+                observer.next({ rows: [], count: 0 });
                 observer.complete();
             });
         });

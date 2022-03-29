@@ -1,8 +1,8 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UsuarioLogadoService } from '@common/services';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
-import { UsuarioLogadoService } from './services';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {

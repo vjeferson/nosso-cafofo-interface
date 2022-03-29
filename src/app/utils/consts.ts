@@ -1,6 +1,7 @@
 import { environment } from 'environments/environment';
 import { EnumTipoPerfil, EnumTipoPlano } from './enums';
 
+export const _PAGE_SIZE = 6;
 export const debug = (...args: any) => {
     if (environment.debug) {
         console.info(...args);

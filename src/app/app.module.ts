@@ -2,8 +2,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ApiInterceptor } from '@common/api.interceptor';
-import { LoaderInterceptor } from '@common/loader/loader.interceptor';
 import { LoaderModule } from '@common/loader/loader.module';
 import { UsuarioLogadoService } from '@common/services';
 import { environment } from 'environments/environment';
@@ -11,6 +9,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { ApiConfiguration } from './api/api-configuration';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ApiInterceptor } from './interceptors/api.interceptor';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 declare module "@angular/core" {
     interface ModuleWithProviders<T = any> {

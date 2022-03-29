@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UsuariosService } from '@app/api/services';
 import { IFiltroUsuarios } from '@app/models/search-usuarios';
 import { IUsuarioResult } from '@app/models/usuario-result-interface';
+import { _PAGE_SIZE } from '@app/utils/consts';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { FiltrosUsuariosNgbdModal } from '@modules/usuarios/components';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +22,7 @@ export class UsuariosComponent implements OnInit {
 
     private routeEdicao: string = '/usuarios/edicao';
     public routeCadastro: string = '/usuarios/cadastro';
-    public pageSize = 2;
+    public pageSize = _PAGE_SIZE;
     public registros$!: Observable<IUsuarioResult[]>;
     public total$!: Observable<number>;
     public sortedColumn!: string;

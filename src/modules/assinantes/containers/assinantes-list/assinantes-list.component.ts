@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryLis
 import { Router } from '@angular/router';
 import { IResultAssinante } from '@app/models/assinante-result-interface';
 import { IFiltroPlanos } from '@app/models/search-planos';
-import { mapTiposPlanos } from '@app/utils/consts';
+import { mapTiposPlanos, _PAGE_SIZE } from '@app/utils/consts';
 import { FiltrosAssinantesNgbdModal } from '@modules/assinantes/components';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +21,7 @@ export class AssinantesComponent implements OnInit {
 
     private route: string = '/assinantes';
     public mapTiposPlanos = mapTiposPlanos;
-    public pageSize = 2;
+    public pageSize = _PAGE_SIZE;
     public registros$!: Observable<IResultAssinante[]>;
     public total$!: Observable<number>;
     public sortedColumn!: string;

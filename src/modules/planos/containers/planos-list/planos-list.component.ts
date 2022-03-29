@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { PlanosService } from '@app/api/services';
 import { IPlanoResult } from '@app/models/plano-result-interface';
 import { IFiltroPlanos } from '@app/models/search-planos';
-import { mapTiposPlanos } from '@app/utils/consts';
+import { mapTiposPlanos, _PAGE_SIZE } from '@app/utils/consts';
 import { FiltrosPlanosNgbdModal } from '@modules/planos/components';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { Country } from '@modules/tables/models';
@@ -24,7 +24,7 @@ export class PlanosComponent implements OnInit {
     private routeEdicaoPlanos: string = '/planos/edicao';
     public routeCadastroPlanos: string = '/planos/cadastro';
     public mapTiposPlanos = mapTiposPlanos;
-    public pageSize = 2;
+    public pageSize = _PAGE_SIZE;
     public registros$!: Observable<IPlanoResult[]>;
     public total$!: Observable<number>;
     public sortedColumn!: string;

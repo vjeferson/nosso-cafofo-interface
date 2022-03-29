@@ -7,13 +7,14 @@ import { SearchResult } from '@app/models/search-result';
 import { IFiltroPlanos } from '@app/models/search-planos';
 import { IFiltroAssinantes } from '@app/models/search-assinantes';
 import { ToastrService } from 'ngx-toastr';
+import { _PAGE_SIZE } from '@app/utils/consts';
 
 @Injectable({ providedIn: 'root' })
 export class AssinantesTableService extends TableService<AssinantesService, IFiltroAssinantes> {
     constructor(pipe: DecimalPipe, service: AssinantesService, private readonly _toastService: ToastrService) {
         super(pipe, service, {
             page: 1,
-            pageSize: 2,
+            pageSize: _PAGE_SIZE,
             searchTerm: '',
             sortColumn: '',
             sortDirection: '',
@@ -43,7 +44,7 @@ export class AssinantesTableService extends TableService<AssinantesService, IFil
                     err.error && err.error.error ? err.error.error : "Consulta inválida", {
                     timeOut: 3000,
                 });
-                observer.error(err);
+                observer.next({ rows: [], count: 0 });
                 observer.complete();
             });
         });
