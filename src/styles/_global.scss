@@ -31,6 +31,15 @@ body, h1, h2, h3, h4, button, p, th, td {
   color: var(--color-text-base) !important;
 }
 
+#divisor { 
+  color: #808588 !important;
+  display: flex;
+  margin: 1rem 0rem 0.5rem 0rem;
+  hr{
+      width: 30%;
+  }
+}
+
 .opcoes-listagens{
   margin-right: 0.5rem;
   font-weight: bold;
@@ -71,12 +80,12 @@ body, h1, h2, h3, h4, button, p, th, td {
 }
 
 .btns-facebook {
-  background-color: #3B5998;
+  background-color: #3B5998 !important;
   color: #FFFFFF !important;
 }
 
 .btns-google {
-  background-color: #DB4437;
+  background-color: #DB4437 !important;
   color: #FFFFFF !important;
 }
 

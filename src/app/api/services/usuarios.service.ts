@@ -10,6 +10,7 @@ import { map as __map, filter as __filter } from 'rxjs/operators';
 import { NovoUsuario } from '../models/novo-usuario';
 import { AtualizaUsuario } from '../models/atualiza-usuario';
 import { TrocaSenha } from '../models/troca-senha';
+import { InformacaoVerificacaoVinculoAccountSocial } from '../models/informacao-verificacao-vinculo-account-social';
 import { InformacaoVinculacaoAccountSocial } from '../models/informacao-vinculacao-account-social';
 import { InformacaoDesvinculacaoAccountSocial } from '../models/informacao-desvinculacao-account-social';
 @Injectable({
@@ -23,6 +24,7 @@ class UsuariosService extends __BaseService {
   static readonly putUsuarioAtivarIdPath = '/usuario/ativar/{id}';
   static readonly putUsuarioDesativarIdPath = '/usuario/desativar/{id}';
   static readonly putUsuarioIdTrocaSenhaPath = '/usuario/{id}/troca-senha';
+  static readonly postUsuarioVerificaVinculoAccountSocialPath = '/usuario/verifica-vinculo-account-social';
   static readonly putUsuarioIdVincularAccountSocialPath = '/usuario/{id}/vincular-account-social';
   static readonly putUsuarioIdDesvincularAccountSocialPath = '/usuario/{id}/desvincular-account-social';
 
@@ -338,6 +340,46 @@ class UsuariosService extends __BaseService {
   putUsuarioIdTrocaSenha(id: number,
     body: TrocaSenha): __Observable<null> {
     return this.putUsuarioIdTrocaSenhaResponse(id, body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Verifica Vinculo Conta Social
+   *
+   * Rota para verificação de vinculaçao de algum usuário a conta social informada.
+   * @param body Informações de vinculo
+   */
+  postUsuarioVerificaVinculoAccountSocialResponse(body: InformacaoVerificacaoVinculoAccountSocial): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/usuario/verifica-vinculo-account-social`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Verifica Vinculo Conta Social
+   *
+   * Rota para verificação de vinculaçao de algum usuário a conta social informada.
+   * @param body Informações de vinculo
+   */
+  postUsuarioVerificaVinculoAccountSocial(body: InformacaoVerificacaoVinculoAccountSocial): __Observable<null> {
+    return this.postUsuarioVerificaVinculoAccountSocialResponse(body).pipe(
       __map(_r => _r.body as null)
     );
   }

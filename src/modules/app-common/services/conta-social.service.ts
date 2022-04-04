@@ -83,16 +83,21 @@ export class ContaSocialService {
         });
     }
 
-    private buscaDadosUsuarioFacebook(): Promise<ContaSocial> {
+    public buscaDadosUsuarioFacebook(): Promise<ContaSocial> {
         return new Promise<ContaSocial>((resolve, reject) => {
             FB.api('/me', 'GET', { 'fields': 'id,name,email' }, (response: any) => {
                 if (response) {
+                    debugger
                     Object.assign(this.contaSocial, response);
                     resolve(this.contaSocial);
                 } else {
+                    debugger
                     reject();
                 }
-            });
+            }).catch((err: any) => {
+                debugger
+                this._toastService.error(err.message, 'Erro');
+            });;
         });
     }
 

@@ -12,3 +12,15 @@ button {
 .card {
     margin-bottom: 5rem;
 }
+
+.buttons-contas-sociais{
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+
+    button {
+        width: 45%;
+        margin:10px;
+        max-width: 250px;
+    }
+}

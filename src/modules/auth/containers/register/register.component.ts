@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NovoCliente } from '@app/api/models';
-import { ClientesService } from '@app/api/services';
+import { InformacaoVerificacaoVinculoAccountSocial, NovoCliente } from '@app/api/models';
+import { ClientesService, UsuariosService } from '@app/api/services';
+import { ContaSocial } from '@app/models/account-social.models';
 import { Utilitarios } from '@app/utils/utils.service';
 import { SelectCidadeComponent } from '@common/components';
 import { UsuarioLogadoService } from '@common/services';
+import { ContaSocialService } from '@common/services/conta-social.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -20,8 +22,8 @@ export class RegisterComponent implements OnInit {
     public estadoId: string | any;
     public mensagemAnoMaximoAnoCriacao: string;
     public requiredControls = [
-        'nome', 
-        'nomeRepublica', 
+        'nome',
+        'nomeRepublica',
         'anoCriacaoRepublica',
         'anoEntradaMorador',
         'logradouro',
@@ -33,12 +35,16 @@ export class RegisterComponent implements OnInit {
         'cidadeId'
     ];
 
+    public showButtonsSocialAccount: boolean = true;
+
     constructor(
         private readonly _clienteService: ClientesService,
+        private readonly _usuarioService: UsuariosService,
         private readonly _formBuilder: FormBuilder,
         private readonly _toastService: ToastrService,
         private readonly _router: Router,
-        private readonly _usuarioLogadoService: UsuarioLogadoService
+        private readonly _usuarioLogadoService: UsuarioLogadoService,
+        private readonly _contaSocialService: ContaSocialService
     ) {
         this.mensagemAnoMaximoAnoCriacao = `Valor máximo: ${(new Date()).getFullYear()}`;
         this.formGroup = this._formBuilder.group({
@@ -55,7 +61,8 @@ export class RegisterComponent implements OnInit {
             confirmaSenha: [null, [Validators.required, Validators.minLength(8), this.confirmaSenha.bind(this)]],
             estadoId: [null, [Validators.required]],
             cidadeId: [null, [Validators.required]],
-            planoId: [14, []]
+            planoId: [14, []],
+            idSocialAccount: [null, []]
         });
     }
 
@@ -114,6 +121,30 @@ export class RegisterComponent implements OnInit {
             this._toastService.error("Por favor preencha corretamente as informações", 'Formulário inválido!', {
                 timeOut: 3000,
             });
+        }
+    }
+
+    public cadastrarComContaSocial(socialType: string) {
+        if (socialType === 'facebook') {
+            this._contaSocialService.buscaDadosUsuarioFacebook().then(
+                (infoContaSocial: ContaSocial) => {
+                    if (infoContaSocial) {
+                        const parametros: InformacaoVerificacaoVinculoAccountSocial = {
+                            id: infoContaSocial.id,
+                            email: infoContaSocial.email,
+                            socialType: infoContaSocial.tipoConta
+                        };
+                        this._usuarioService.postUsuarioVerificaVinculoAccountSocial(parametros).subscribe((res: any) => {
+                            debugger
+                        }, (err: any) => {
+                            this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                                err.error && err.error.error ? err.error.error : "Cadastro inválido", {
+                                timeOut: 3000,
+                            });
+                        });
+                    }
+                }
+            );
         }
     }
 
