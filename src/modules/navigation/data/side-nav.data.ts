@@ -10,7 +10,8 @@ export const sideNavSections: SideNavSection[] = [
             'planos',
             'republica',
             'moradores',
-            'usuarios'
+            'usuarios',
+            'contas'
         ]
     }
 ];
@@ -130,7 +131,7 @@ export const sideNavItems: SideNavItems = {
         tipoPerfil: [EnumTipoPerfil.MoradorAdministrador]
     },
     contas: {
-        icon: 'table',
+        icon: 'file-invoice-dollar',
         text: 'Contas',
         link: '/contas',
         tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]

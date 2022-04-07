@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SBRouteData } from '@modules/navigation/models';
 
 const routes: Routes = [
     {
@@ -67,6 +66,13 @@ const routes: Routes = [
         loadChildren: () =>
             import('modules/usuarios/usuarios-routing.module').then(
                 m => m.UsuariosRoutingModule
+            )
+    },
+    {
+        path: 'contas',
+        loadChildren: () =>
+            import('modules/contas/contas-routing.module').then(
+                m => m.ContasRoutingModule
             )
     },
     {
