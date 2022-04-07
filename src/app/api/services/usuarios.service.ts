@@ -10,6 +10,9 @@ import { map as __map, filter as __filter } from 'rxjs/operators';
 import { NovoUsuario } from '../models/novo-usuario';
 import { AtualizaUsuario } from '../models/atualiza-usuario';
 import { TrocaSenha } from '../models/troca-senha';
+import { RecuperarSenha } from '../models/recuperar-senha';
+import { ValidarCodigoRecuperacaoSenha } from '../models/validar-codigo-recuperacao-senha';
+import { TrocaSenhaRecuperacao } from '../models/troca-senha-recuperacao';
 import { InformacaoVerificacaoVinculoAccountSocial } from '../models/informacao-verificacao-vinculo-account-social';
 import { InformacaoVinculacaoAccountSocial } from '../models/informacao-vinculacao-account-social';
 import { InformacaoDesvinculacaoAccountSocial } from '../models/informacao-desvinculacao-account-social';
@@ -24,6 +27,9 @@ class UsuariosService extends __BaseService {
   static readonly putUsuarioAtivarIdPath = '/usuario/ativar/{id}';
   static readonly putUsuarioDesativarIdPath = '/usuario/desativar/{id}';
   static readonly putUsuarioIdTrocaSenhaPath = '/usuario/{id}/troca-senha';
+  static readonly postUsuarioRecuperarSenhaPath = '/usuario/recuperar-senha';
+  static readonly postUsuarioValidaCodigoRecuperacaoSenhaPath = '/usuario/valida-codigo-recuperacao-senha';
+  static readonly postUsuarioTrocaSenhaRecuperacaoPath = '/usuario/troca-senha-recuperacao';
   static readonly postUsuarioVerificaVinculoAccountSocialPath = '/usuario/verifica-vinculo-account-social';
   static readonly putUsuarioIdVincularAccountSocialPath = '/usuario/{id}/vincular-account-social';
   static readonly putUsuarioIdDesvincularAccountSocialPath = '/usuario/{id}/desvincular-account-social';
@@ -340,6 +346,126 @@ class UsuariosService extends __BaseService {
   putUsuarioIdTrocaSenha(id: number,
     body: TrocaSenha): __Observable<null> {
     return this.putUsuarioIdTrocaSenhaResponse(id, body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Recuperar Senha
+   *
+   * Rota para geração do código de recuperação de senha.
+   * @param body Informações de recuperação
+   */
+  postUsuarioRecuperarSenhaResponse(body: RecuperarSenha): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/usuario/recuperar-senha`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Recuperar Senha
+   *
+   * Rota para geração do código de recuperação de senha.
+   * @param body Informações de recuperação
+   */
+  postUsuarioRecuperarSenha(body: RecuperarSenha): __Observable<null> {
+    return this.postUsuarioRecuperarSenhaResponse(body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Valida Código Recuperação de Senha
+   *
+   * Rota para validação do código de recuperação de senha.
+   * @param body Informações de validação
+   */
+  postUsuarioValidaCodigoRecuperacaoSenhaResponse(body: ValidarCodigoRecuperacaoSenha): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/usuario/valida-codigo-recuperacao-senha`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Valida Código Recuperação de Senha
+   *
+   * Rota para validação do código de recuperação de senha.
+   * @param body Informações de validação
+   */
+  postUsuarioValidaCodigoRecuperacaoSenha(body: ValidarCodigoRecuperacaoSenha): __Observable<null> {
+    return this.postUsuarioValidaCodigoRecuperacaoSenhaResponse(body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Troca de Senha da Recuperação
+   *
+   * Rota para trocar a senha no processo de recuperação da mesma.
+   * @param body Novas informações de senha
+   */
+  postUsuarioTrocaSenhaRecuperacaoResponse(body: TrocaSenhaRecuperacao): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/usuario/troca-senha-recuperacao`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Troca de Senha da Recuperação
+   *
+   * Rota para trocar a senha no processo de recuperação da mesma.
+   * @param body Novas informações de senha
+   */
+  postUsuarioTrocaSenhaRecuperacao(body: TrocaSenhaRecuperacao): __Observable<null> {
+    return this.postUsuarioTrocaSenhaRecuperacaoResponse(body).pipe(
       __map(_r => _r.body as null)
     );
   }

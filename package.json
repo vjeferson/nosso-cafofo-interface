@@ -1,6 +1,6 @@
 {
   "name": "sb-admin-angular",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "scripts": {
     "config": "node ./src/setenv.js",
     "build": "npm run config -- --environment=prod && npm run ng -- build --prod --build-optimizer=true --statsJson=true && npm run build:version",
