@@ -15,10 +15,13 @@ export class SideNavComponent implements OnInit, OnDestroy {
     @Input() sideNavItems!: SideNavItems;
     @Input() sideNavSections!: SideNavSection[];
 
-    subscription: Subscription = new Subscription();
-    routeDataSubscription!: Subscription;
+    public subscription: Subscription = new Subscription();
+    public routeDataSubscription!: Subscription;
+    public year: number;
 
-    constructor(public navigationService: NavigationService, public userService: AutenticacaoService) {}
+    constructor(public navigationService: NavigationService, public userService: AutenticacaoService) {
+        this.year = new Date().getFullYear();
+    }
 
     ngOnInit() {}
 

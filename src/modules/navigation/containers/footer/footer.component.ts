@@ -7,6 +7,11 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     styleUrls: ['footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-    constructor() {}
-    ngOnInit() {}
+    public year: number;
+
+    constructor() {
+        this.year = new Date().getFullYear();
+    }
+    
+    ngOnInit() { }
 }
