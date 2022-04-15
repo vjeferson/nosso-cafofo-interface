@@ -1,5 +1,5 @@
 import { environment } from 'environments/environment';
-import { EnumTipoPerfil, EnumTipoPlano } from './enums';
+import { EnumSituacaoConta, EnumTipoPerfil, EnumTipoPlano } from './enums';
 
 export const _PAGE_SIZE = 6;
 export const debug = (...args: any) => {
@@ -28,4 +28,10 @@ export const mapTiposPerfis: { [key: number]: string } = {
     [EnumTipoPerfil.AdministradorNossoCafofo]: 'Administrador',
     [EnumTipoPerfil.MoradorAdministrador]: 'Morador Adm.',
     [EnumTipoPerfil.Morador]: 'Morador'
+};
+
+export const mapSituacaoConta: { [key: number]: string } = {
+    [EnumSituacaoConta.EmAberto]: 'Em Aberto',
+    [EnumSituacaoConta.PagamentoParcial]: 'Pagamento Parcial',
+    [EnumSituacaoConta.Pago]: 'Pago'
 };

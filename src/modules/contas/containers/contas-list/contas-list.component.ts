@@ -1,14 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { ContasService, MoradoresService } from '@app/api/services';
 import { IContaResult } from '@app/models/conta-result-interface';
-import { IMoradorResult } from '@app/models/morador-result-interface';
 import { IFiltroContas } from '@app/models/search-contas';
-import { IFiltroMoradores } from '@app/models/search-moradores';
-import { _PAGE_SIZE } from '@app/utils/consts';
-import { FiltrosMoradoresNgbdModal } from '@modules/moradores/components';
+import { mapSituacaoConta, _PAGE_SIZE } from '@app/utils/consts';
+import { FiltrosContasNgbdModal } from '@modules/contas/components';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
-import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { ContasTableService } from './contas-table.service';
 
@@ -20,8 +16,9 @@ import { ContasTableService } from './contas-table.service';
 })
 export class ContasComponent implements OnInit {
     @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
-    // @ViewChild('modalFiltros', { static: true }) modalFiltros: Filtros | any;
+    @ViewChild('modalFiltros', { static: true }) modalFiltros: FiltrosContasNgbdModal | any;
 
+    public mapSituacaoConta = mapSituacaoConta;
     private routeEdicao: string = '/contas/edicao';
     public routeCadastro: string = '/contas/cadastro';
     public pageSize = _PAGE_SIZE;
@@ -33,10 +30,8 @@ export class ContasComponent implements OnInit {
 
     constructor(
         public serviceTable: ContasTableService,
-        private readonly _moradoresService: ContasService,
         private _changeDetectorRef: ChangeDetectorRef,
-        private _router: Router,
-        private _toastService: ToastrService
+        private _router: Router
     ) { }
 
     ngOnInit() {
@@ -54,9 +49,9 @@ export class ContasComponent implements OnInit {
         this._changeDetectorRef.detectChanges();
     }
 
-    // abrirModalFiltrar() {
-    //     this.modalFiltros.open();
-    // }
+    abrirModalFiltrar() {
+        this.modalFiltros.open();
+    }
 
     filtrar() {
         this.serviceTable._set(this.filtros);

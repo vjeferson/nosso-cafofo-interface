@@ -1,5 +1,6 @@
+import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule, Provider } from '@angular/core';
+import { APP_INITIALIZER, DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaderModule } from '@common/loader/loader.module';
@@ -11,6 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 declare module "@angular/core" {
     interface ModuleWithProviders<T = any> {
@@ -62,7 +66,9 @@ export const INIT_LOADER_INTERCEPTOR_APPLICATION: Provider = {
     providers: [
         INIT_API_CONFIGURATION,
         INIT_API_INTERCEPTOR,
-        INIT_LOADER_INTERCEPTOR_APPLICATION
+        INIT_LOADER_INTERCEPTOR_APPLICATION,
+        {provide: LOCALE_ID, useValue: 'pt-BR'},
+        {provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL'}
     ],
     bootstrap: [AppComponent]
 })

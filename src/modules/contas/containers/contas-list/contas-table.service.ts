@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { TableService } from '@common/services/table.service';
-import { ContasService } from '@app/api/services';
 import { DecimalPipe } from '@angular/common';
-import { SearchResult } from '@app/models/search-result';
-import { IFiltroMoradores } from '@app/models/search-moradores';
-import { ToastrService } from 'ngx-toastr';
-import { _PAGE_SIZE } from '@app/utils/consts';
+import { Injectable } from '@angular/core';
+import { ContasService } from '@app/api/services';
 import { IFiltroContas } from '@app/models/search-contas';
+import { IFiltroMoradores } from '@app/models/search-moradores';
+import { SearchResult } from '@app/models/search-result';
+import { _PAGE_SIZE } from '@app/utils/consts';
+import { TableService } from '@common/services/table.service';
+import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ContasTableService extends TableService<ContasService, IFiltroContas> {

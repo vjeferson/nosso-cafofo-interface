@@ -10,6 +10,7 @@ import { SelectCidadeComponent } from './select-cidade/select-cidade.component';
 import { SelectEstadoComponent } from './select-estado/select-estado.component';
 import { SelectMoradorComponent } from './select-morador/select-morador.component';
 import { SelectPerfilComponent } from './select-perfil/select-perfil.component';
+import { SelectSituacaoContaComponent } from './select-situacao-conta/select-situacao-conta.component';
 import { SelectSituacaoRegistroComponent } from './select-situacao-registro-default/select-situacao-registro-default.component';
 import { SelectTiposPlanosComponent } from './select-tipo-plano/select-tipo-plano.component';
 
@@ -27,7 +28,8 @@ export const components = [
     SelectSituacaoRegistroComponent,
     SelectPerfilComponent,
     SelectMoradorComponent,
-    CustomLabelComponent
+    CustomLabelComponent,
+    SelectSituacaoContaComponent
 ];
 
 export * from './card/card.component';
@@ -44,3 +46,4 @@ export * from './modal-confirm/modal-confirm.component';
 export * from './select-situacao-registro-default/select-situacao-registro-default.component';
 export * from './select-perfil/select-perfil.component';
 export * from './select-morador/select-morador.component';
+export * from './select-situacao-conta/select-situacao-conta.component';
