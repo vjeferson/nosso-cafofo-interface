@@ -108,3 +108,19 @@ body, h1, h2, h3, h4, button, p, th, td {
     border-color: #7E00CC !important;
   }
 }
+
+.bs-datepicker-body table td span.selected,
+.bs-datepicker-head,
+.bs-datepicker-head, .bs-datepicker button:active,
+.bs-datepicker-body table td.selected span,
+.bs-datepicker-body table td span[class*="select-"]:after,
+.bs-datepicker-body table td[class*="select-"] span:after,
+.bs-datepicker-body table td.active-week span:hover 
+{
+  background-color: var(--color-icons-blue) !important;
+}
+
+.bs-datepicker-body table td.week span 
+{
+  color: var(--color-button-background-more-purple) !important;
+}

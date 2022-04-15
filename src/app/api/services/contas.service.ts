@@ -7,6 +7,8 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { NovaConta } from '../models/nova-conta';
+import { AtualizaConta } from '../models/atualiza-conta';
 @Injectable({
   providedIn: 'root',
 })
@@ -28,11 +30,13 @@ class ContasService extends __BaseService {
    * Cadastro de Conta
    *
    * Rota para criação de contas no sistema.
+   * @param body Informações do nova conta
    */
-  postContaResponse(): __Observable<__StrictHttpResponse<null>> {
+  postContaResponse(body: NovaConta): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    __body = body;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/conta`,
@@ -54,9 +58,10 @@ class ContasService extends __BaseService {
    * Cadastro de Conta
    *
    * Rota para criação de contas no sistema.
+   * @param body Informações do nova conta
    */
-  postConta(): __Observable<null> {
-    return this.postContaResponse().pipe(
+  postConta(body: NovaConta): __Observable<null> {
+    return this.postContaResponse(body).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -165,12 +170,15 @@ class ContasService extends __BaseService {
    *
    * Rota para alteração de conta.
    * @param id Identificador do registro
+   * @param body Novas informações da Conta
    */
-  putContaIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+  putContaIdResponse(id: number,
+    body: AtualizaConta): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
+    __body = body;
     let req = new HttpRequest<any>(
       'PUT',
       this.rootUrl + `/conta/${encodeURIComponent(String(id))}`,
@@ -193,9 +201,11 @@ class ContasService extends __BaseService {
    *
    * Rota para alteração de conta.
    * @param id Identificador do registro
+   * @param body Novas informações da Conta
    */
-  putContaId(id: number): __Observable<null> {
-    return this.putContaIdResponse(id).pipe(
+  putContaId(id: number,
+    body: AtualizaConta): __Observable<null> {
+    return this.putContaIdResponse(id, body).pipe(
       __map(_r => _r.body as null)
     );
   }

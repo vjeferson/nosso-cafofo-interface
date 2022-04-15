@@ -9,6 +9,7 @@ import { AppCommonModule } from '@common/app-common.module';
 import { NavigationModule } from '@modules/navigation/navigation.module';
 import { ChartsModule } from '@modules/charts/charts.module';
 import { TablesModule } from '@modules/tables/tables.module';
+import { ContasTableService } from './containers/contas-list/contas-table.service';
 
 /* Components */
 import * as pageComponents from './components';
@@ -30,7 +31,7 @@ import * as guard from './guards';
         ChartsModule,
         TablesModule
     ],
-    providers: [...guard.guards],
+    providers: [ContasTableService, ...guard.guards],
     declarations: [...pageContainers.containers, ...pageComponents.components],
     exports: [...pageContainers.containers, ...pageComponents.components],
 })

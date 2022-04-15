@@ -10,6 +10,7 @@ import { FiltrosMoradoresNgbdModal } from '@modules/moradores/components';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { ContasTableService } from './contas-table.service';
 
 @Component({
     selector: 'sb-contas',
@@ -18,7 +19,7 @@ import { Observable } from 'rxjs';
     styleUrls: ['./contas-list.component.scss'],
 })
 export class ContasComponent implements OnInit {
-    // @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
+    @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
     // @ViewChild('modalFiltros', { static: true }) modalFiltros: Filtros | any;
 
     private routeEdicao: string = '/contas/edicao';
@@ -31,7 +32,7 @@ export class ContasComponent implements OnInit {
     public filtros!: IFiltroContas;
 
     constructor(
-        //public serviceTable: MoradoresTableService,
+        public serviceTable: ContasTableService,
         private readonly _moradoresService: ContasService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
@@ -39,70 +40,30 @@ export class ContasComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        // this.serviceTable.pageSize = this.pageSize;
-        // this.registros$ = this.serviceTable.registros$;
-        // this.total$ = this.serviceTable.count$;
-        // this.filtros = this.serviceTable.state;
+        this.serviceTable.pageSize = this.pageSize;
+        this.registros$ = this.serviceTable.registros$;
+        this.total$ = this.serviceTable.count$;
+        this.filtros = this.serviceTable.state;
     }
 
-    // onSort({ column, direction }: SortEvent) {
-    //     this.sortedColumn = column;
-    //     this.sortedDirection = direction;
-    //     this.serviceTable.sortColumn = column;
-    //     this.serviceTable.sortDirection = direction;
-    //     this._changeDetectorRef.detectChanges();
-    // }
+    onSort({ column, direction }: SortEvent) {
+        this.sortedColumn = column;
+        this.sortedDirection = direction;
+        this.serviceTable.sortColumn = column;
+        this.serviceTable.sortDirection = direction;
+        this._changeDetectorRef.detectChanges();
+    }
 
     // abrirModalFiltrar() {
     //     this.modalFiltros.open();
     // }
 
-    // filtrar() {
-    //     this.serviceTable._set(this.filtros);
-    // }
+    filtrar() {
+        this.serviceTable._set(this.filtros);
+    }
 
-    // editar(idRegistro: number) {
-    //     this._router.navigate([this.routeEdicao, { id: idRegistro }]);
-    // }
-
-    // ativar(morador: any) {
-    //     this._moradoresService.putMoradorAtivarId(morador.id).subscribe((res: any) => {
-    //         if (res) {
-    //             this._toastService.success('Registro ativo com sucesso!', "Ativação", {
-    //                 timeOut: 3000
-    //             });
-    //         } else {
-    //             this._toastService.error('Ativação do Morador não foi feita!', "Ativação", {
-    //                 timeOut: 3000
-    //             });
-    //         }
-    //         this.filtrar();
-    //     }, (err: any) => {
-    //         this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-    //             err.error && err.error.error ? err.error.error : "Ativação inválida", {
-    //             timeOut: 3000
-    //         });
-    //     });
-    // }
-
-    // desativar(morador: any) {
-    //     this._moradoresService.putMoradorDesativarId(morador.id).subscribe((res: any) => {
-    //         if (res) {
-    //             this._toastService.success('Registro desativado com sucesso!', "Desativação", {
-    //                 timeOut: 3000
-    //             });
-    //         } else {
-    //             this._toastService.error('Desativação do Morador não foi feita!', "Desativação", {
-    //                 timeOut: 3000
-    //             });
-    //         }
-    //         this.filtrar();
-    //     }, (err: any) => {
-    //         this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-    //             err.error && err.error.error ? err.error.error : "Desativação inválida", {
-    //             timeOut: 3000
-    //         });
-    //     });
-    // }
+    editar(idRegistro: number) {
+        this._router.navigate([this.routeEdicao, { id: idRegistro }]);
+    }
 
 }

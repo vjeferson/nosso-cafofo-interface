@@ -15,3 +15,5 @@ export { InformacaoDesvinculacaoAccountSocial } from './models/informacao-desvin
 export { AtualizaRepublica } from './models/atualiza-republica';
 export { NovoMorador } from './models/novo-morador';
 export { AtualizaMorador } from './models/atualiza-morador';
+export { NovaConta } from './models/nova-conta';
+export { AtualizaConta } from './models/atualiza-conta';

@@ -28,42 +28,42 @@ export const ROUTES: Routes = [
         canActivate: [ContasGuard],
         component: contasContainers.ContasComponent
     },
-    // {
-    //     path: 'cadastro',
-    //     data: {
-    //         title: 'Cadastro de Morador',
-    //         breadcrumbs: [
-    //             {
-    //                 text: 'Moradores',
-    //                 link: '/moradores',
-    //             },
-    //             {
-    //                 text: 'Cadastro',
-    //                 active: true
-    //             }
-    //         ]
-    //     } as SBRouteData,
-    //     canActivate: [ContasGuard],
-    //     component: contasContainers.MoradoresFormComponent
-    // },
-    // {
-    //     path: 'edicao',
-    //     data: {
-    //         title: 'Edição de Morador',
-    //         breadcrumbs: [
-    //             {
-    //                 text: 'Moradores',
-    //                 link: '/moradores',
-    //             },
-    //             {
-    //                 text: 'Edição',
-    //                 active: true
-    //             }
-    //         ]
-    //     } as SBRouteData,
-    //     canActivate: [ContasGuard],
-    //     component: contasContainers.MoradoresFormComponent
-    // }
+    {
+        path: 'cadastro',
+        data: {
+            title: 'Cadastro de Contas',
+            breadcrumbs: [
+                {
+                    text: 'Contas',
+                    link: '/contas',
+                },
+                {
+                    text: 'Cadastro',
+                    active: true
+                }
+            ]
+        } as SBRouteData,
+        canActivate: [ContasGuard],
+        component: contasContainers.ContasFormComponent
+    },
+    {
+        path: 'edicao',
+        data: {
+            title: 'Edição de Contas',
+            breadcrumbs: [
+                {
+                    text: 'Contas',
+                    link: '/contas',
+                },
+                {
+                    text: 'Edição',
+                    active: true
+                }
+            ]
+        } as SBRouteData,
+        canActivate: [ContasGuard],
+        component: contasContainers.ContasFormComponent
+    }
 ];
 
 @NgModule({
