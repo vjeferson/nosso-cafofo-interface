@@ -29,11 +29,11 @@ export class FiltrosMoradoresNgbdModal implements AfterViewInit {
     }
 
     open() {
-        this.modalService.open(this.content, { centered: true });
         if (this.filtros.ativo == null) {
             (this.filtros as any).ativo = 'todos';
         }
         this.formGroup.patchValue(this.filtros);
+        this.modalService.open(this.content, { centered: true });
     }
 
     search() {

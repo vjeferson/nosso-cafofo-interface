@@ -28,11 +28,11 @@ export class FiltrosContasNgbdModal implements AfterViewInit {
     }
 
     open() {
-        this.modalService.open(this.content, { centered: true });
         if (this.filtros.situacao == null) {
             (this.filtros as any).situacao = 'todos';
         }
         this.formGroup.patchValue(this.filtros);
+        this.modalService.open(this.content, { centered: true });
     }
 
     search() {

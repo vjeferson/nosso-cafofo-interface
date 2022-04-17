@@ -30,8 +30,8 @@ export class FiltrosAssinantesNgbdModal implements AfterViewInit {
     }
 
     open() {
-        this.modalService.open(this.content, { centered: true });
         this.formGroup.patchValue(this.filtros);
+        this.modalService.open(this.content, { centered: true });
     }
 
     search() {
