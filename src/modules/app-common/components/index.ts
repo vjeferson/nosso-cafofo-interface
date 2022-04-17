@@ -1,4 +1,3 @@
-import { BaseTableComponent } from './base-table/base-table.component';
 import { ButtonCadastroComponent } from './button-cadastro/button-cadastro.component';
 import { ButtonFiltrosComponent } from './button-filtros/button-filtros.component';
 import { CardViewDetailsComponent } from './card-view-details/card-view-details.component';
@@ -21,7 +20,6 @@ export const components = [
     SelectEstadoComponent,
     SelectCidadeComponent,
     SelectTiposPlanosComponent,
-    BaseTableComponent,
     ButtonCadastroComponent,
     ButtonFiltrosComponent,
     ConfirmacaoNgbdModal,
@@ -39,7 +37,6 @@ export * from './erro-input/erro-input.component';
 export * from './select-estado/select-estado.component';
 export * from './select-cidade/select-cidade.component';
 export * from './select-tipo-plano/select-tipo-plano.component';
-export * from './base-table/base-table.component';
 export * from './button-cadastro/button-cadastro.component';
 export * from './button-filtros/button-filtros.component';
 export * from './modal-confirm/modal-confirm.component';
