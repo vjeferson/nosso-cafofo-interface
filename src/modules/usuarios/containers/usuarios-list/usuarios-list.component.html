@@ -13,53 +13,55 @@
                         <sb-button-filtros (openDialogFiltrar)="abrirModalFiltrar()"></sb-button-filtros>
                     </div>
                 </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col" sbSortable="ativo" (sort)="onSort($event)"><span>Situação</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "ativo"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col" sbSortable="nome" (sort)="onSort($event)"><span>Nome</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "nome"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col" sbSortable="email" (sort)="onSort($event)"><span>Email</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "email"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col">Opções</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let registro of registros$ | async">
-                            <th scope="row">{{ registro.id }}</th>
-                            <td>
-                                <ngb-highlight [result]="registro?.ativo ? 'Ativo' : 'Desativo'"
-                                    [term]="serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <ngb-highlight [result]="registro.nome" [term]="serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <ngb-highlight [result]="registro.email" [term]="serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm opcoes-listagens"
-                                    (click)="editar(registro.id)">Editar</button>
-                                <button type="button" *ngIf="registro.ativo"
-                                    class="btn btn-danger btn-sm opcoes-listagens"
-                                    (click)="desativar(registro)">Desativar</button>
-                                <button type="button" *ngIf="!registro.ativo" (click)="ativar(registro)"
-                                    class="btn btn-info btn-sm opcoes-listagens">Ativar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive-md">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col" sbSortable="ativo" (sort)="onSort($event)"><span>Situação</span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "ativo"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+                                <th scope="col" sbSortable="nome" (sort)="onSort($event)"><span>Nome</span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "nome"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+                                <th scope="col" sbSortable="email" (sort)="onSort($event)"><span>Email</span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "email"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let registro of registros$ | async">
+                                <th scope="row">{{ registro.id }}</th>
+                                <td>
+                                    <ngb-highlight [result]="registro?.ativo ? 'Ativo' : 'Desativo'"
+                                        [term]="serviceTable.searchTerm">
+                                    </ngb-highlight>
+                                </td>
+                                <td>
+                                    <ngb-highlight [result]="registro.nome" [term]="serviceTable.searchTerm">
+                                    </ngb-highlight>
+                                </td>
+                                <td>
+                                    <ngb-highlight [result]="registro.email" [term]="serviceTable.searchTerm">
+                                    </ngb-highlight>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-warning btn-sm opcoes-listagens"
+                                        (click)="editar(registro.id)">Editar</button>
+                                    <button type="button" *ngIf="registro.ativo"
+                                        class="btn btn-danger btn-sm opcoes-listagens"
+                                        (click)="desativar(registro)">Desativar</button>
+                                    <button type="button" *ngIf="!registro.ativo" (click)="ativar(registro)"
+                                        class="btn btn-info btn-sm opcoes-listagens">Ativar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="alert alert-primary" role="alert" *ngIf="((total$ | async) || 0) === 0">
                     Nenhum registro encontrado!
                 </div>

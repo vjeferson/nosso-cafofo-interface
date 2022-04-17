@@ -11,58 +11,60 @@
                         <sb-button-filtros (openDialogFiltrar)="abrirModalFiltrar()"></sb-button-filtros>
                     </div>
                 </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col" sbSortable="nome" (sort)="onSort($event)"><span>Nome República</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "nome"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col" sbSortable="anoCriacao" (sort)="onSort($event)"><span>Ano</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "anoCriacao"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col" sbSortable="anoCriacao" (sort)="onSort($event)"><span>Dia de Pag. das
-                                    Contas</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "anoCriacao"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col" sbSortable="tipoPlano" (sort)="onSort($event)"><span>Tipo de Plano</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "tipoPlano"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col">Opções</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let registro of registros$ | async">
-                            <th scope="row">{{ registro.id }}</th>
-                            <td>
-                                <ngb-highlight [result]="registro.nome" [term]="_serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <ngb-highlight [result]="registro.anoCriacao" [term]="_serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <ngb-highlight [result]="registro.dataPagamentoContas"
-                                    [term]="_serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <ngb-highlight [result]="mapTiposPlanos[registro?.tipoPlano]"
-                                    [term]="_serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm opcoes-listagens"
-                                    (click)="visualizar(registro.id)">Visualizar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive-md">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col" sbSortable="nome" (sort)="onSort($event)"><span>Nome República</span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "nome"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+                                <th scope="col" sbSortable="anoCriacao" (sort)="onSort($event)"><span>Ano</span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "anoCriacao"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+                                <th scope="col" sbSortable="anoCriacao" (sort)="onSort($event)"><span>Dia de Pag. das
+                                        Contas</span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "anoCriacao"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+                                <th scope="col" sbSortable="tipoPlano" (sort)="onSort($event)"><span>Tipo de Plano</span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "tipoPlano"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let registro of registros$ | async">
+                                <th scope="row">{{ registro.id }}</th>
+                                <td>
+                                    <ngb-highlight [result]="registro.nome" [term]="_serviceTable.searchTerm">
+                                    </ngb-highlight>
+                                </td>
+                                <td>
+                                    <ngb-highlight [result]="registro.anoCriacao" [term]="_serviceTable.searchTerm">
+                                    </ngb-highlight>
+                                </td>
+                                <td>
+                                    <ngb-highlight [result]="registro.dataPagamentoContas"
+                                        [term]="_serviceTable.searchTerm">
+                                    </ngb-highlight>
+                                </td>
+                                <td>
+                                    <ngb-highlight [result]="mapTiposPlanos[registro?.tipoPlano]"
+                                        [term]="_serviceTable.searchTerm">
+                                    </ngb-highlight>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm opcoes-listagens"
+                                        (click)="visualizar(registro.id)">Visualizar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="alert alert-primary" role="alert" *ngIf="((total$ | async) || 0) === 0">
                     Nenhum registro encontrado!
                 </div>
