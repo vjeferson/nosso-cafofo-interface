@@ -15,6 +15,7 @@ import { EnumSituacaoConta } from '@app/utils/enums';
 })
 export class SelectSituacaoContaComponent implements OnInit, ControlValueAccessor {
     @Input() _readonly: boolean;
+    @Input() required: boolean = false;
     _value: any;
     _onChange: any;
     _onTouched: any;

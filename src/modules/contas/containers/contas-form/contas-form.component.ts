@@ -37,7 +37,7 @@ export class ContasFormComponent implements OnInit {
             descricao: [null, [Validators.required, Validators.maxLength(70)]],
             situacao: [null, []],
             dataConta: [null, [Validators.required]],
-            mesAnoDivisaoConta: [null, [Validators.required, Validators.min(1900), Validators.max((new Date()).getFullYear())]],
+            mesAnoDivisaoConta: [null, [Validators.required]],
             valor: [0, [Validators.required, Validators.min(0.01), Validators.maxLength(15)]],
             divisaoPorIgualEntreMoradores: [true, []],
             moradorId: [null, []]
@@ -46,6 +46,10 @@ export class ContasFormComponent implements OnInit {
         this._activeRoute.data.subscribe(data => {
             this.title = data.title;
         });
+
+        if (this._router.url.includes('visualizar')) {
+            this.formGroup.disable();
+        }
     }
 
     ngOnInit() {
@@ -68,7 +72,7 @@ export class ContasFormComponent implements OnInit {
             if (res) {
                 this.isNew = false;
                 this.dadosRegistroFiltrado = res;
-                this.formGroup.patchValue(this.dadosRegistroFiltrado);
+                this.formGroup.patchValue(this.preparaRegistroParaVisualizacao(this.dadosRegistroFiltrado));
                 this._changeDetectorRef.detectChanges();
             } else {
                 this._router.navigate([this.route]);
@@ -84,12 +88,28 @@ export class ContasFormComponent implements OnInit {
         });
     }
 
+    private preparaRegistroParaVisualizacao(registro: any) {
+        this.changeDivisaoEntreMoradores({
+            currentTarget: { checked: registro.divisaoPorIgualEntreMoradores }
+        });
+        
+        return {
+            descricao: registro.descricao,
+            situacao: registro.situacao,
+            dataConta: new Date(registro.dataConta),
+            mesAnoDivisaoConta: registro.mesAnoDivisaoConta,
+            valor: registro.valor,
+            divisaoPorIgualEntreMoradores: registro.divisaoPorIgualEntreMoradores,
+            moradorId: registro.moradorId
+        }
+    }
+
     public changeDivisaoEntreMoradores(event: any) {
-        debugger
         if (event?.currentTarget?.checked) {
             this.showSelectMorador = false;
             this.formGroup.get('moradorId').setValue(null);
             this.formGroup.get('moradorId').clearValidators();
+            this.formGroup.get('moradorId').updateValueAndValidity();
             return;
         }
         this.formGroup.get('moradorId').setValidators(Validators.required);
@@ -97,8 +117,6 @@ export class ContasFormComponent implements OnInit {
     }
 
     public salvar() {
-        debugger
-        console.log(this.trataDadosParaCadastro());
         if (this.formGroup.valid) {
             if (this.isNew) {
                 const body: NovaConta = this.trataDadosParaCadastro();
@@ -151,8 +169,8 @@ export class ContasFormComponent implements OnInit {
     private trataDadosParaSalvar(): AtualizaConta {
         return {
             descricao: this.formGroup.value.descricao,
-            dataConta: this.formGroup.value.dataConta,
-            mesAnoDivisaoConta:
+            dataConta: moment(this.formGroup.value.dataConta).format('YYYY-MM-DD'),
+            mesAnoDivisaoConta: typeof this.formGroup.value.mesAnoDivisaoConta === 'string' ? this.formGroup.value.mesAnoDivisaoConta :
                 `${String(this.formGroup.value.mesAnoDivisaoConta.getMonth() + 1).padStart(2, '0')}${this.formGroup.value.mesAnoDivisaoConta.getFullYear()}`,
             valor: this.formGroup.value.valor,
             divisaoPorIgualEntreMoradores: this.formGroup.value.divisaoPorIgualEntreMoradores,

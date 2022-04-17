@@ -2,7 +2,7 @@
     <sb-dashboard-head [title]="title" [hideBreadcrumbs]="false"></sb-dashboard-head>
 
     <form [formGroup]="formGroup">
-        <div class="form-row">
+        <div class="form-row" *ngIf="isNew">
             <div class="col-md-12">
                 <div class="form-group">
                     <show-custom-label [textLabel]="'Descrição'" [required]="true"></show-custom-label>
@@ -11,6 +11,24 @@
 
                     <show-erro-input [inputName]="'descricao'" [formGroup]="formGroup" [validationName]="'required'">
                     </show-erro-input>
+                </div>
+            </div>
+        </div>
+        <div class="form-row" *ngIf="!isNew">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <show-custom-label [textLabel]="'Descrição'" [required]="true"></show-custom-label>
+                    <input class="form-control" id="descricao" type="text" placeholder="Informe a descrição"
+                        formControlName="descricao" maxlength="70" />
+
+                    <show-erro-input [inputName]="'descricao'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <form-select-situacao-conta formControlName="situacao" [_readonly]="true">
+                    </form-select-situacao-conta>
                 </div>
             </div>
         </div>
@@ -23,19 +41,28 @@
 
                     <show-erro-input [inputName]="'valor'" [formGroup]="formGroup" [validationName]="'required'">
                     </show-erro-input>
+                    <show-erro-input [inputName]="'valor'" [formGroup]="formGroup" [validationName]="'min'">
+                    </show-erro-input>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <show-custom-label [textLabel]="'Data da Conta'" [required]="true"></show-custom-label>
                     <input class="form-control" id="dataConta" type="text" formControlName="dataConta" bsDatepicker />
+
+                    <show-erro-input [inputName]="'dataConta'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <show-custom-label [textLabel]="'Data de Cobrança'" [required]="true"></show-custom-label>
-                    <input class="form-control" id="dataConta" type="text" formControlName="mesAnoDivisaoConta"
+                    <show-custom-label [textLabel]="'Mês e Ano para Cobrança'" [required]="true"></show-custom-label>
+                    <input class="form-control" id="mesAnoDivisaoConta" type="text" formControlName="mesAnoDivisaoConta"
                         bsDatepicker [bsConfig]="{minMode:'month', dateInputFormat: 'MM/YYYY'}" />
+
+                    <show-erro-input [inputName]="'mesAnoDivisaoConta'" [formGroup]="formGroup"
+                        [validationName]="'required'">
+                    </show-erro-input>
                 </div>
             </div>
         </div>
@@ -55,8 +82,9 @@
         <div class="form-row" *ngIf="showSelectMorador">
             <div class="col-md-4">
                 <div class="form-group">
-                    <form-select-morador formControlName="moradorId" [_readonly]="!isNew" [required]="true">
+                    <form-select-morador formControlName="moradorId" [required]="true">
                     </form-select-morador>
+
                     <show-erro-input [inputName]="'moradorId'" [formGroup]="formGroup" [validationName]="'required'">
                     </show-erro-input>
                 </div>

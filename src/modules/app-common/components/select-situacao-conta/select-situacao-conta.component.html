@@ -1,4 +1,4 @@
-<label class="small mb-1" for="opcoes">Situação</label>
+<show-custom-label [textLabel]="'Situação'" [required]="required"></show-custom-label>
 <ng-select [items]="opcoes" bindLabel="descricao" bindValue="valor" [ngModelOptions]="{standalone: true}"
     [readonly]="_readonly" [(ngModel)]="_value" placeholder="Selecione uma opção" (change)="_onChange($event)"
     (focus)="_onTouched($event)">

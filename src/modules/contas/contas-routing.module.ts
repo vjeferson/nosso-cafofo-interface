@@ -63,6 +63,24 @@ export const ROUTES: Routes = [
         } as SBRouteData,
         canActivate: [ContasGuard],
         component: contasContainers.ContasFormComponent
+    },
+    {
+        path: 'visualizar',
+        data: {
+            title: 'Visualização de Contas',
+            breadcrumbs: [
+                {
+                    text: 'Contas',
+                    link: '/contas',
+                },
+                {
+                    text: 'Visualização',
+                    active: true
+                }
+            ]
+        } as SBRouteData,
+        canActivate: [ContasGuard],
+        component: contasContainers.ContasFormComponent
     }
 ];
 

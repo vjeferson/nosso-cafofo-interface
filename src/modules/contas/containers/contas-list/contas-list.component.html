@@ -13,69 +13,73 @@
                     </div>
                 </div>
             </form>
-             <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col" sbSortable="situcao" (sort)="onSort($event)"><span>Situação</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "situcao"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col" sbSortable="descricao" (sort)="onSort($event)"><span>Descrição</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "descricao"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col" sbSortable="valor" (sort)="onSort($event)"><span>Valor</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "valor"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col" sbSortable="dataConta" (sort)="onSort($event)"><span>Data Conta</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "dataConta"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col">Opções</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let registro of registros$ | async">
-                            <th scope="row">{{ registro.id }}</th>
-                            <td>
-                                <ngb-highlight [result]="mapSituacaoConta[registro?.situacao]"
-                                    [term]="serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <ngb-highlight [result]="registro.descricao" [term]="serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <ngb-highlight [result]="registro.valor | currency" [term]="serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <ngb-highlight [result]="registro.dataConta | date: 'shortDate'" [term]="serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm opcoes-listagens"
-                                    (click)="editar(registro.id)">Editar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="alert alert-primary" role="alert" *ngIf="((total$ | async) || 0) === 0">
-                    Nenhum registro encontrado!
-                </div>
-                <div class="d-flex justify-content-between p-2" *ngIf="((total$ | async)|| 0) > 0">
-                    <ngb-pagination [collectionSize]="(total$ | async)" [(page)]="serviceTable.page"
-                        [pageSize]="serviceTable.pageSize"></ngb-pagination>
-                    <select class="custom-select" style="width: auto" name="pageSize"
-                        [(ngModel)]="serviceTable.pageSize">
-                        <option [ngValue]="2">2 itens por página</option>
-                        <option [ngValue]="4">4 itens por página</option>
-                        <option [ngValue]="6">6 itens por página</option>
-                    </select>
-                </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" sbSortable="situcao" (sort)="onSort($event)"><span>Situação</span>
+                            <sb-sort-icon *ngIf='sortedColumn === "situcao"' [direction]="sortedDirection">
+                            </sb-sort-icon>
+                        </th>
+                        <th scope="col" sbSortable="descricao" (sort)="onSort($event)"><span>Descrição</span>
+                            <sb-sort-icon *ngIf='sortedColumn === "descricao"' [direction]="sortedDirection">
+                            </sb-sort-icon>
+                        </th>
+                        <th scope="col" sbSortable="valor" (sort)="onSort($event)"><span>Valor</span>
+                            <sb-sort-icon *ngIf='sortedColumn === "valor"' [direction]="sortedDirection">
+                            </sb-sort-icon>
+                        </th>
+                        <th scope="col" sbSortable="dataConta" (sort)="onSort($event)"><span>Data Conta</span>
+                            <sb-sort-icon *ngIf='sortedColumn === "dataConta"' [direction]="sortedDirection">
+                            </sb-sort-icon>
+                        </th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let registro of registros$ | async">
+                        <th scope="row">{{ registro.id }}</th>
+                        <td>
+                            <ngb-highlight [result]="mapSituacaoConta[registro?.situacao]"
+                                [term]="serviceTable.searchTerm">
+                            </ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="registro.descricao" [term]="serviceTable.searchTerm">
+                            </ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="registro.valor | currency" [term]="serviceTable.searchTerm">
+                            </ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="registro.dataConta | date: 'shortDate'"
+                                [term]="serviceTable.searchTerm">
+                            </ngb-highlight>
+                        </td>
+                        <td>
+                            <button *ngIf="registro.situacao == 0 " type="button"
+                                class="btn btn-warning btn-sm opcoes-listagens"
+                                (click)="editar(registro.id)">Editar</button>
+                            <button *ngIf="registro.situacao != 0 " type="button"
+                                class="btn btn-primary btn-sm opcoes-listagens"
+                                (click)="visualizar(registro.id)">Visualizar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="alert alert-primary" role="alert" *ngIf="((total$ | async) || 0) === 0">
+                Nenhum registro encontrado!
+            </div>
+            <div class="d-flex justify-content-between p-2" *ngIf="((total$ | async)|| 0) > 0">
+                <ngb-pagination [collectionSize]="(total$ | async)" [(page)]="serviceTable.page"
+                    [pageSize]="serviceTable.pageSize"></ngb-pagination>
+                <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="serviceTable.pageSize">
+                    <option [ngValue]="2">2 itens por página</option>
+                    <option [ngValue]="4">4 itens por página</option>
+                    <option [ngValue]="6">6 itens por página</option>
+                </select>
+            </div>
         </div>
     </sb-card>
 </sb-layout-dashboard>

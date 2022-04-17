@@ -20,6 +20,7 @@ export class ContasComponent implements OnInit {
 
     public mapSituacaoConta = mapSituacaoConta;
     private routeEdicao: string = '/contas/edicao';
+    private routeVisualizacao: string = '/contas/visualizar';
     public routeCadastro: string = '/contas/cadastro';
     public pageSize = _PAGE_SIZE;
     public registros$!: Observable<IContaResult[]>;
@@ -59,6 +60,10 @@ export class ContasComponent implements OnInit {
 
     editar(idRegistro: number) {
         this._router.navigate([this.routeEdicao, { id: idRegistro }]);
+    }
+
+    visualizar(idRegistro: number) {
+        this._router.navigate([this.routeVisualizacao, { id: idRegistro }]);
     }
 
 }
