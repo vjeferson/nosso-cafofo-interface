@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { NovaReuniao } from '../models/nova-reuniao';
 @Injectable({
   providedIn: 'root',
 })
@@ -28,11 +29,13 @@ class ReunioesService extends __BaseService {
    * Cadastro de Reunião
    *
    * Rota para criação de reuniões no sistema.
+   * @param body Informações do nova reunião
    */
-  postReuniaoResponse(): __Observable<__StrictHttpResponse<null>> {
+  postReuniaoResponse(body: NovaReuniao): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    __body = body;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/reuniao`,
@@ -54,9 +57,10 @@ class ReunioesService extends __BaseService {
    * Cadastro de Reunião
    *
    * Rota para criação de reuniões no sistema.
+   * @param body Informações do nova reunião
    */
-  postReuniao(): __Observable<null> {
-    return this.postReuniaoResponse().pipe(
+  postReuniao(body: NovaReuniao): __Observable<null> {
+    return this.postReuniaoResponse(body).pipe(
       __map(_r => _r.body as null)
     );
   }

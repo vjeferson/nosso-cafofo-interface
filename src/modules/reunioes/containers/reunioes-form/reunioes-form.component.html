@@ -1,25 +1,13 @@
 <sb-layout-dashboard>
     <sb-dashboard-head [title]="title" [hideBreadcrumbs]="false"></sb-dashboard-head>
 
-    <!-- <form [formGroup]="formGroup">
-        <div class="form-row" *ngIf="isNew">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <show-custom-label [textLabel]="'Descrição'" [required]="true"></show-custom-label>
-                    <input class="form-control" id="descricao" type="text" placeholder="Informe a descrição"
-                        formControlName="descricao" maxlength="70" />
-
-                    <show-erro-input [inputName]="'descricao'" [formGroup]="formGroup" [validationName]="'required'">
-                    </show-erro-input>
-                </div>
-            </div>
-        </div>
-        <div class="form-row" *ngIf="!isNew">
+    <form [formGroup]="formGroup">
+        <div class="form-row">
             <div class="col-md-8">
                 <div class="form-group">
                     <show-custom-label [textLabel]="'Descrição'" [required]="true"></show-custom-label>
                     <input class="form-control" id="descricao" type="text" placeholder="Informe a descrição"
-                        formControlName="descricao" maxlength="70" />
+                        formControlName="descricao" maxlength="50" />
 
                     <show-erro-input [inputName]="'descricao'" [formGroup]="formGroup" [validationName]="'required'">
                     </show-erro-input>
@@ -27,73 +15,27 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <form-select-situacao-conta formControlName="situacao" [_readonly]="true">
-                    </form-select-situacao-conta>
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <show-custom-label [textLabel]="'Valor'" [required]="true"></show-custom-label>
-                    <input currencyMask class="form-control" id="valor" type="text" placeholder="Informe o valor"
-                        formControlName="valor" maxlength="15" min="0.01" />
+                    <show-custom-label [textLabel]="'Data '" [required]="true"></show-custom-label>
+                    <input class="form-control" id="data" type="text" formControlName="data" bsDatepicker
+                        [bsConfig]="{withTimepicker: true, rangeInputFormat: 'DD/MM/YYYY H:mm', dateInputFormat: 'DD/MM/YYYY H:mm'}" />
 
-                    <show-erro-input [inputName]="'valor'" [formGroup]="formGroup" [validationName]="'required'">
-                    </show-erro-input>
-                    <show-erro-input [inputName]="'valor'" [formGroup]="formGroup" [validationName]="'min'">
-                    </show-erro-input>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <show-custom-label [textLabel]="'Data da Conta'" [required]="true"></show-custom-label>
-                    <input class="form-control" id="dataConta" type="text" formControlName="dataConta" bsDatepicker />
-
-                    <show-erro-input [inputName]="'dataConta'" [formGroup]="formGroup" [validationName]="'required'">
-                    </show-erro-input>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <show-custom-label [textLabel]="'Mês e Ano para Cobrança'" [required]="true"></show-custom-label>
-                    <input class="form-control" id="mesAnoDivisaoConta" type="text" formControlName="mesAnoDivisaoConta"
-                        bsDatepicker [bsConfig]="{minMode:'month', dateInputFormat: 'MM/YYYY'}" />
-
-                    <show-erro-input [inputName]="'mesAnoDivisaoConta'" [formGroup]="formGroup"
-                        [validationName]="'required'">
+                    <show-erro-input [inputName]="'data'" [formGroup]="formGroup" [validationName]="'required'">
                     </show-erro-input>
                 </div>
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" id="divisaoPorIgualEntreMoradores" type="checkbox"
-                            formControlName="divisaoPorIgualEntreMoradores"
-                            (click)="changeDivisaoEntreMoradores($event)" />
-                        <label class="custom-control-label" for="divisaoPorIgualEntreMoradores">Divisão por igual entre
-                            os Moradores?</label>
-                    </div>
+                    <show-custom-label [textLabel]="'Anotações'" [required]="false"></show-custom-label>
+                    <textarea class="form-control" formControlName="anotacoes" id="anotacoes" rows="5"></textarea>
                 </div>
             </div>
         </div>
-        <div class="form-row" *ngIf="showSelectMorador">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <form-select-morador formControlName="moradorId" [required]="true">
-                    </form-select-morador>
+    </form>
 
-                    <show-erro-input [inputName]="'moradorId'" [formGroup]="formGroup" [validationName]="'required'">
-                    </show-erro-input>
-                </div>
-            </div>
-        </div>
-    </form> -->
-
-    <!-- <div class="btns-formulario-cadastro">
+    <div class="btns-formulario-cadastro">
         <button class="btn btns-formulario-cadastro-voltar" (click)="voltar()">Voltar</button>
         <button class="btn btns-formulario-cadastro-salvar" (click)="salvar()">Salvar</button>
-    </div> -->
+    </div>
 </sb-layout-dashboard>
