@@ -11,7 +11,8 @@ export const sideNavSections: SideNavSection[] = [
             'republica',
             'moradores',
             'usuarios',
-            'contas'
+            'contas',
+            'reunioes'
         ]
     }
 ];
@@ -143,7 +144,7 @@ export const sideNavItems: SideNavItems = {
         tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
     },
     reunioes: {
-        icon: 'table',
+        icon: 'handshake',
         text: 'Reuniões',
         link: '/reunioes',
         tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]

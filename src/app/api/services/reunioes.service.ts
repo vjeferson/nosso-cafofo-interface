@@ -65,16 +65,24 @@ class ReunioesService extends __BaseService {
    * Consulta Reuniões
    *
    * Rota para consulta de reuniões.
-   * @param descricao Descrição da reunião
-   * @param data Data e hora da reunião
+   * @param params The `ReunioesService.GetReuniaoParams` containing the following parameters:
+   *
+   * - `offset`: Offset da consulta (para paginação: padrão 0)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
+   *
+   * - `descricao`: Descrição da reunião
+   *
+   * - `data`: Data e hora da reunião
    */
-  getReuniaoResponse(descricao?: string,
-    data?: string): __Observable<__StrictHttpResponse<null>> {
+  getReuniaoResponse(params: ReunioesService.GetReuniaoParams): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (descricao != null) __params = __params.set('descricao', descricao.toString());
-    if (data != null) __params = __params.set('data', data.toString());
+    if (params.offset != null) __params = __params.set('offset', params.offset.toString());
+    if (params.limit != null) __params = __params.set('limit', params.limit.toString());
+    if (params.descricao != null) __params = __params.set('descricao', params.descricao.toString());
+    if (params.data != null) __params = __params.set('data', params.data.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/reuniao`,
@@ -96,12 +104,18 @@ class ReunioesService extends __BaseService {
    * Consulta Reuniões
    *
    * Rota para consulta de reuniões.
-   * @param descricao Descrição da reunião
-   * @param data Data e hora da reunião
+   * @param params The `ReunioesService.GetReuniaoParams` containing the following parameters:
+   *
+   * - `offset`: Offset da consulta (para paginação: padrão 0)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
+   *
+   * - `descricao`: Descrição da reunião
+   *
+   * - `data`: Data e hora da reunião
    */
-  getReuniao(descricao?: string,
-    data?: string): __Observable<null> {
-    return this.getReuniaoResponse(descricao, data).pipe(
+  getReuniao(params: ReunioesService.GetReuniaoParams): __Observable<null> {
+    return this.getReuniaoResponse(params).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -228,6 +242,32 @@ class ReunioesService extends __BaseService {
 }
 
 module ReunioesService {
+
+  /**
+   * Parameters for getReuniao
+   */
+  export interface GetReuniaoParams {
+
+    /**
+     * Offset da consulta (para paginação: padrão 0)
+     */
+    offset?: number;
+
+    /**
+     * Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
+     */
+    limit?: number;
+
+    /**
+     * Descrição da reunião
+     */
+    descricao?: string;
+
+    /**
+     * Data e hora da reunião
+     */
+    data?: string;
+  }
 }
 
 export { ReunioesService }

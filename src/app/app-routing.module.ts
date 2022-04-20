@@ -76,6 +76,13 @@ const routes: Routes = [
             )
     },
     {
+        path: 'reunioes',
+        loadChildren: () =>
+            import('modules/reunioes/reunioes-routing.module').then(
+                m => m.ReunioesRoutingModule
+            )
+    },
+    {
         path: 'auth',
         loadChildren: () =>
             import('modules/auth/auth-routing.module').then(m => m.AuthRoutingModule),
