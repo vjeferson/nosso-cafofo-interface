@@ -25,7 +25,7 @@ export class ContasTableService extends TableService<ContasService, IFiltroConta
             situacao: undefined,
             limit: 0,
             offset: 0
-        } as IFiltroMoradores);
+        } as IFiltroContas);
     }
 
     _search(): Observable<SearchResult> {
