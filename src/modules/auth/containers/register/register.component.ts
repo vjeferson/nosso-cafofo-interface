@@ -135,7 +135,6 @@ export class RegisterComponent implements OnInit {
                             socialType: infoContaSocial.tipoConta
                         };
                         this._usuarioService.postUsuarioVerificaVinculoAccountSocial(parametros).subscribe((res: any) => {
-                            debugger
                         }, (err: any) => {
                             this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
                                 err.error && err.error.error ? err.error.error : "Cadastro inválido", {

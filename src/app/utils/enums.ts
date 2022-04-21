@@ -49,3 +49,8 @@ export enum EnumSituacaoConta {
     PagamentoParcial,
     Pago
 }
+
+export enum EnumAcoesModalConfirmacao {
+    Exclusao,
+    DesvinculacaoContaSocial
+}

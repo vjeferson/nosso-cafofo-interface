@@ -90,7 +90,6 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
     public validarCodigo() {
-        debugger
         if (this.formGroupCodigo.valid && this.showRecoveryCodeValidation) {
             const parametros: ValidarCodigoRecuperacaoSenha = this.formGroupCodigo.value;
             this._usuarioService.postUsuarioValidaCodigoRecuperacaoSenha(parametros).subscribe((res: any) => {

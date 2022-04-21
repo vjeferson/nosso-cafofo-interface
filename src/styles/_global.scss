@@ -6,6 +6,7 @@
   --color-text-grey: #616161;
   --color-button-background-purple: #5D2680;
   --color-button-background-more-purple: #7E00CC;
+  --color-button-background-green: #00EEA4;
   --color-button-text-white: #ffffff;
   --color-icons-blue: #43DBD7;
   --color-background-btn-blue: #202145;
@@ -26,38 +27,53 @@ body {
 }
 
 
-body, h1, h2, h3, h4, button, p, th, td {
+body,
+h1,
+h2,
+h3,
+h4,
+button,
+p,
+th,
+td {
   font-family: Archivo;
   color: var(--color-text-base) !important;
 }
 
-#divisor { 
+#divisor {
   color: #808588 !important;
   display: flex;
   margin: 1rem 0rem 0.5rem 0rem;
-  hr{
-      width: 30%;
+
+  hr {
+    width: 30%;
   }
 }
 
-.opcoes-listagens{
+.opcoes-listagens {
   margin-right: 0.5rem;
   font-weight: bold;
   font-size: 10px;
 }
 
-.btn-fechar-filtros{
+.btn-fechar-filtros {
   width: 100px;
   background-color: var(--color-background-btn-grey);
 }
 
-.btn-pesquisa-filtros{
+.btn-pesquisa-filtros {
   width: 100px;
   background-color: var(--color-background-btn-blue);
   color: var(--color-text-btn-blue) !important;
 }
 
-.btns-formulario-cadastro{
+.btn-confirma-acao {
+  width: 100px;
+  background-color: var(--color-button-background-green);
+  color: var(--color-text-base) !important;
+}
+
+.btns-formulario-cadastro {
   margin-top: 12px;
   display: flex;
   flex: row;
@@ -74,7 +90,7 @@ body, h1, h2, h3, h4, button, p, th, td {
   color: var(--color-text-btn-blue) !important;
 }
 
-.btns-formulario-cadastro-salvar{
+.btns-formulario-cadastro-salvar {
   background-color: var(--color-button-background-more-purple);
   color: #FFFFFF !important;
 }
@@ -89,13 +105,13 @@ body, h1, h2, h3, h4, button, p, th, td {
   color: #FFFFFF !important;
 }
 
-.nav-tabs { 
+.nav-tabs {
   margin-bottom: 2rem;
 
   .nav-item {
     border-bottom: 1px solid #CCC;
   }
-  
+
   .nav-link {
     color: var(--color-text-base);
   }
@@ -111,16 +127,15 @@ body, h1, h2, h3, h4, button, p, th, td {
 
 .bs-datepicker-body table td span.selected,
 .bs-datepicker-head,
-.bs-datepicker-head, .bs-datepicker button:active,
+.bs-datepicker-head,
+.bs-datepicker button:active,
 .bs-datepicker-body table td.selected span,
 .bs-datepicker-body table td span[class*="select-"]:after,
 .bs-datepicker-body table td[class*="select-"] span:after,
-.bs-datepicker-body table td.active-week span:hover 
-{
+.bs-datepicker-body table td.active-week span:hover {
   background-color: var(--color-icons-blue) !important;
 }
 
-.bs-datepicker-body table td.week span 
-{
+.bs-datepicker-body table td.week span {
   color: var(--color-button-background-more-purple) !important;
 }

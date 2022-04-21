@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { NovaReuniao } from '../models/nova-reuniao';
+import { AtualizaReuniao } from '../models/atualiza-reuniao';
 @Injectable({
   providedIn: 'root',
 })
@@ -169,12 +170,15 @@ class ReunioesService extends __BaseService {
    *
    * Rota para alteração de reunião.
    * @param id Identificador do registro
+   * @param body Novas informações da registro
    */
-  putReuniaoIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+  putReuniaoIdResponse(id: number,
+    body: AtualizaReuniao): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
+    __body = body;
     let req = new HttpRequest<any>(
       'PUT',
       this.rootUrl + `/reuniao/${encodeURIComponent(String(id))}`,
@@ -197,9 +201,11 @@ class ReunioesService extends __BaseService {
    *
    * Rota para alteração de reunião.
    * @param id Identificador do registro
+   * @param body Novas informações da registro
    */
-  putReuniaoId(id: number): __Observable<null> {
-    return this.putReuniaoIdResponse(id).pipe(
+  putReuniaoId(id: number,
+    body: AtualizaReuniao): __Observable<null> {
+    return this.putReuniaoIdResponse(id, body).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -270,7 +276,7 @@ module ReunioesService {
     /**
      * Data e hora da reunião
      */
-    data?: string;
+    data?: Array<string>;
   }
 }
 

@@ -5,33 +5,25 @@
             <form>
                 <div class="form-group form-inline">
                     <input class="form-control ml-2 mr-2 pesquisa-listagem" type="text" name="searchTerm"
-                        placeholder="Pesquisa" [(ngModel)]="serviceTable.searchTerm" />
-                    <span class="ml-8" *ngIf="serviceTable.loading$ | async">Loading...</span>
+                        placeholder="Pesquisa" [(ngModel)]="_serviceTable.searchTerm" />
+                    <span class="ml-8" *ngIf="_serviceTable.loading$ | async">Loading...</span>
                     <div class="botoes-acoes">
                         <sb-button-cadastro [route]="routeCadastro"></sb-button-cadastro>
                         <sb-button-filtros (openDialogFiltrar)="abrirModalFiltrar()"></sb-button-filtros>
                     </div>
                 </div>
             </form>
-            <!-- <div class="table-responsive-md">
+            <div class="table-responsive-md">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col" sbSortable="situcao" (sort)="onSort($event)"><span>Situação</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "situcao"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
                             <th scope="col" sbSortable="descricao" (sort)="onSort($event)"><span>Descrição</span>
                                 <sb-sort-icon *ngIf='sortedColumn === "descricao"' [direction]="sortedDirection">
                                 </sb-sort-icon>
                             </th>
-                            <th scope="col" sbSortable="valor" (sort)="onSort($event)"><span>Valor</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "valor"' [direction]="sortedDirection">
-                                </sb-sort-icon>
-                            </th>
-                            <th scope="col" sbSortable="dataConta" (sort)="onSort($event)"><span>Data Conta</span>
-                                <sb-sort-icon *ngIf='sortedColumn === "dataConta"' [direction]="sortedDirection">
+                            <th scope="col" sbSortable="data" (sort)="onSort($event)"><span>Data</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "data"' [direction]="sortedDirection">
                                 </sb-sort-icon>
                             </th>
                             <th scope="col">Opções</th>
@@ -41,30 +33,20 @@
                         <tr *ngFor="let registro of registros$ | async">
                             <th scope="row">{{ registro.id }}</th>
                             <td>
-                                <ngb-highlight [result]="mapSituacaoConta[registro?.situacao]"
-                                    [term]="serviceTable.searchTerm">
+                                <ngb-highlight [result]="registro.descricao" [term]="_serviceTable.searchTerm">
                                 </ngb-highlight>
                             </td>
                             <td>
-                                <ngb-highlight [result]="registro.descricao" [term]="serviceTable.searchTerm">
+                                <ngb-highlight [result]="registro.data | date: 'short'"
+                                    [term]="_serviceTable.searchTerm">
                                 </ngb-highlight>
                             </td>
                             <td>
-                                <ngb-highlight [result]="registro.valor | currency" [term]="serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <ngb-highlight [result]="registro.dataConta | date: 'shortDate'"
-                                    [term]="serviceTable.searchTerm">
-                                </ngb-highlight>
-                            </td>
-                            <td>
-                                <button *ngIf="registro.situacao == 0 " type="button"
-                                    class="btn btn-warning btn-sm opcoes-listagens"
+                                <button type="button" class="btn btn-warning btn-sm opcoes-listagens"
                                     (click)="editar(registro.id)">Editar</button>
-                                <button *ngIf="registro.situacao != 0 " type="button"
-                                    class="btn btn-primary btn-sm opcoes-listagens"
-                                    (click)="visualizar(registro.id)">Visualizar</button>
+
+                                <button type="button" class="btn btn-danger btn-sm opcoes-listagens"
+                                    (click)="abrirModalRemocao(registro.id)">Remover</button>
                             </td>
                         </tr>
                     </tbody>
@@ -74,16 +56,22 @@
                 Nenhum registro encontrado!
             </div>
             <div class="d-flex justify-content-between p-2" *ngIf="((total$ | async)|| 0) > 0">
-                <ngb-pagination [collectionSize]="(total$ | async)" [(page)]="serviceTable.page"
-                    [pageSize]="serviceTable.pageSize"></ngb-pagination>
-                <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="serviceTable.pageSize">
+                <ngb-pagination [collectionSize]="(total$ | async)" [(page)]="_serviceTable.page"
+                    [pageSize]="_serviceTable.pageSize"></ngb-pagination>
+                <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="_serviceTable.pageSize">
                     <option [ngValue]="2">2 itens por página</option>
                     <option [ngValue]="4">4 itens por página</option>
                     <option [ngValue]="6">6 itens por página</option>
                 </select>
-            </div> -->
+            </div>
         </div>
     </sb-card>
 </sb-layout-dashboard>
-<!-- <ngbd-modal-filtros-reunioes #modalFiltros [filtros]="filtros" (searchOutput)="filtrar()">
-</ngbd-modal-filtros-reunioes> -->
+
+<ngbd-modal-filtros-reunioes #modalFiltros [filtros]="filtros" (searchOutput)="filtrar()">
+</ngbd-modal-filtros-reunioes>
+
+<ngbd-modal-confirmacao #modalConfirmacao [acao]="mapDescricaoAcoesModalConfirmacao.exclusao"
+    [titulo]="'Confirmar Remoção'" [conteudo]="'Deseja realmente realizar a exclusão do registro?'"
+    (confirma)="remover($event)">
+</ngbd-modal-confirmacao>

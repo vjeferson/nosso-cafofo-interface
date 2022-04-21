@@ -29,7 +29,6 @@ export class ContasTableService extends TableService<ContasService, IFiltroConta
     }
 
     _search(): Observable<SearchResult> {
-        debugger
         let { sortColumn, sortDirection, pageSize, searchTerm, situacao } = this.state;
         return new Observable((observer) => {
             this.service.getConta({ limit: pageSize, offset: this.calculaOffset(), descricao: searchTerm && searchTerm !== '' ? searchTerm : undefined, situacao }).subscribe((res: any) => {

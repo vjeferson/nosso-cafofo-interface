@@ -1,0 +1,24 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Filtros</h4>
+        <button type="button" class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formGroup">
+            <div class="form-row">
+                <div class="col-md-12">
+                    <label class="small mb-1" for="anoEntrada">Data</label>
+                    <input type="text" placeholder="Informe o range de Data" class="form-control" formControlName="data"
+                        [bsConfig]="{withTimepicker: true, rangeInputFormat: 'DD/MM/YYYY H:mm', dateInputFormat: 'DD/MM/YYYY H:mm'}"
+                        bsDaterangepicker>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-fechar-filtros" (click)="close()">Fechar</button>
+        <button type="button" class="btn btn-pesquisa-filtros" (click)="search()">Pesquisar</button>
+    </div>
+</ng-template>

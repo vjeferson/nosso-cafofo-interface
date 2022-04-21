@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AtualizaMorador, NovaConta, NovaReuniao } from '@app/api/models';
+import { AtualizaMorador, AtualizaReuniao, NovaConta, NovaReuniao } from '@app/api/models';
 import { AtualizaConta } from '@app/api/models/atualiza-conta';
 import { ContasService, MoradoresService, ReunioesService } from '@app/api/services';
 import { IReuniaoResult } from '@app/models/reuniao-result-interface';
@@ -42,10 +42,6 @@ export class ReunioesFormComponent implements OnInit {
         this._activeRoute.data.subscribe(data => {
             this.title = data.title;
         });
-
-        if (this._router.url.includes('visualizar')) {
-            this.formGroup.disable();
-        }
     }
 
     ngOnInit() {
@@ -115,24 +111,24 @@ export class ReunioesFormComponent implements OnInit {
                     });
                 });
             } else {
-                // const body: AtualizaConta = this.trataDadosParaSalvar();
-                // this._service.putContaId(+this.dadosRegistroFiltrado.id, body).subscribe((res: any) => {
-                //     if (res) {
-                //         this._toastService.success('Alterações salvas!', "Atualização", {
-                //             timeOut: 3000,
-                //         });
-                //     } else {
-                //         this._toastService.error('Dados da Conta não foram atualizados!', "Atualização", {
-                //             timeOut: 3000,
-                //         });
-                //     }
-                //     this._router.navigate([this.route]);
-                // }, (err: any) => {
-                //     this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-                //         err.error && err.error.error ? err.error.error : "Atualização inválida", {
-                //         timeOut: 3000,
-                //     });
-                // });
+                const body: AtualizaReuniao = this.trataDadosParaSalvar();
+                this._service.putReuniaoId(+this.dadosRegistroFiltrado.id, body).subscribe((res: any) => {
+                    if (res) {
+                        this._toastService.success('Alterações salvas!', "Atualização", {
+                            timeOut: 3000,
+                        });
+                    } else {
+                        this._toastService.error('Dados da Conta não foram atualizados!', "Atualização", {
+                            timeOut: 3000,
+                        });
+                    }
+                    this._router.navigate([this.route]);
+                }, (err: any) => {
+                    this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                        err.error && err.error.error ? err.error.error : "Atualização inválida", {
+                        timeOut: 3000,
+                    });
+                });
             }
         } else {
             Utilitarios.validateAllFormFields(this.formGroup);
@@ -142,17 +138,13 @@ export class ReunioesFormComponent implements OnInit {
         }
     }
 
-    // private trataDadosParaSalvar(): AtualizaConta {
-    //     return {
-    //         descricao: this.formGroup.value.descricao,
-    //         dataConta: moment(this.formGroup.value.dataConta).format('YYYY-MM-DD'),
-    //         mesAnoDivisaoConta: typeof this.formGroup.value.mesAnoDivisaoConta === 'string' ? this.formGroup.value.mesAnoDivisaoConta :
-    //             `${String(this.formGroup.value.mesAnoDivisaoConta.getMonth() + 1).padStart(2, '0')}${this.formGroup.value.mesAnoDivisaoConta.getFullYear()}`,
-    //         valor: this.formGroup.value.valor,
-    //         divisaoPorIgualEntreMoradores: this.formGroup.value.divisaoPorIgualEntreMoradores,
-    //         moradorId: this.formGroup.value.moradorId ? this.formGroup.value.moradorId.id : null
-    //     }
-    // }
+    private trataDadosParaSalvar(): AtualizaReuniao {
+        return {
+            descricao: this.formGroup.value.descricao,
+            data: this.formGroup.value.data,
+            anotacoes: this.formGroup.value.anotacoes
+        }
+    }
 
     private trataDadosParaCadastro(): NovaReuniao {
         return {

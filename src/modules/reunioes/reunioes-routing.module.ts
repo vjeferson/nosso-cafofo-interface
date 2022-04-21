@@ -63,24 +63,6 @@ export const ROUTES: Routes = [
         } as SBRouteData,
         canActivate: [ReunioesGuard],
         component: containers.ReunioesFormComponent
-    },
-    {
-        path: 'visualizar',
-        data: {
-            title: 'Visualização de Reuniões',
-            breadcrumbs: [
-                {
-                    text: 'Reuniões',
-                    link: '/reunioes',
-                },
-                {
-                    text: 'Visualização',
-                    active: true
-                }
-            ]
-        } as SBRouteData,
-        canActivate: [ReunioesGuard],
-        component: containers.ReunioesFormComponent
     }
 ];
 

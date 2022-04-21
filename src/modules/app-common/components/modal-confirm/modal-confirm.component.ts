@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input, ViewEncapsulation, OnInit, ViewChild, AfterViewInit } from "@angular/core";
+import { EnumAcoesModalConfirmacao } from "@app/utils/enums";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
@@ -11,8 +12,10 @@ export class ConfirmacaoNgbdModal {
     @Output() confirma = new EventEmitter<any>();
     @Input() titulo!: string;
     @Input() conteudo!: string;
-    
+    @Input() acao!: EnumAcoesModalConfirmacao;
+
     public socialType!: string;
+    public idRegistro!: number;
 
     constructor(
         private _modalService: NgbModal
@@ -24,7 +27,16 @@ export class ConfirmacaoNgbdModal {
 
     confirmar() {
         this.close();
-        this.confirma.next(this.socialType ? this.socialType : null);
+        this.confirma.next(this.preparaEventoRetorno());
+    }
+
+    private preparaEventoRetorno(): any{
+        switch(this.acao){
+            case EnumAcoesModalConfirmacao.Exclusao:
+                return this.idRegistro;
+            default:
+                return this.socialType;
+        }
     }
 
     close() {

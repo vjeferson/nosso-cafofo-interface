@@ -30,8 +30,8 @@ export class ReunioesTableService extends TableService<ReunioesService, IFiltroR
     }
 
     _search(): Observable<SearchResult> {
-        debugger
         let { sortColumn, sortDirection, pageSize, searchTerm, data } = this.state;
+        debugger
         return new Observable((observer) => {
             this.service.getReuniao({ limit: pageSize, offset: this.calculaOffset(), descricao: searchTerm && searchTerm !== '' ? searchTerm : undefined, data }).subscribe((res: any) => {
                 observer.next(res);
