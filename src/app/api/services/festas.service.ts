@@ -65,16 +65,24 @@ class FestasService extends __BaseService {
    * Consulta Festas
    *
    * Rota para consulta de festas.
-   * @param situacao Código situação
-   * @param descricao Descrição da reunião
+   * @param params The `FestasService.GetFestaParams` containing the following parameters:
+   *
+   * - `situacao`: Código situação
+   *
+   * - `offset`: Offset da consulta (para paginação: padrão 0)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
+   *
+   * - `descricao`: Descrição da reunião
    */
-  getFestaResponse(situacao?: number,
-    descricao?: string): __Observable<__StrictHttpResponse<null>> {
+  getFestaResponse(params: FestasService.GetFestaParams): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (situacao != null) __params = __params.set('situacao', situacao.toString());
-    if (descricao != null) __params = __params.set('descricao', descricao.toString());
+    if (params.situacao != null) __params = __params.set('situacao', params.situacao.toString());
+    if (params.offset != null) __params = __params.set('offset', params.offset.toString());
+    if (params.limit != null) __params = __params.set('limit', params.limit.toString());
+    if (params.descricao != null) __params = __params.set('descricao', params.descricao.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/festa`,
@@ -96,12 +104,18 @@ class FestasService extends __BaseService {
    * Consulta Festas
    *
    * Rota para consulta de festas.
-   * @param situacao Código situação
-   * @param descricao Descrição da reunião
+   * @param params The `FestasService.GetFestaParams` containing the following parameters:
+   *
+   * - `situacao`: Código situação
+   *
+   * - `offset`: Offset da consulta (para paginação: padrão 0)
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
+   *
+   * - `descricao`: Descrição da reunião
    */
-  getFesta(situacao?: number,
-    descricao?: string): __Observable<null> {
-    return this.getFestaResponse(situacao, descricao).pipe(
+  getFesta(params: FestasService.GetFestaParams): __Observable<null> {
+    return this.getFestaResponse(params).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -228,6 +242,32 @@ class FestasService extends __BaseService {
 }
 
 module FestasService {
+
+  /**
+   * Parameters for getFesta
+   */
+  export interface GetFestaParams {
+
+    /**
+     * Código situação
+     */
+    situacao?: number;
+
+    /**
+     * Offset da consulta (para paginação: padrão 0)
+     */
+    offset?: number;
+
+    /**
+     * Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
+     */
+    limit?: number;
+
+    /**
+     * Descrição da reunião
+     */
+    descricao?: string;
+  }
 }
 
 export { FestasService }

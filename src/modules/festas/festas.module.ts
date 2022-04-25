@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FestasTableService } from './containers/festas-list/festas-table.service';
 
 /* Modules */
 import { AppCommonModule } from '@common/app-common.module';
@@ -30,7 +31,7 @@ import * as guard from './guards';
         ChartsModule,
         TablesModule
     ],
-    providers: [...guard.guards],
+    providers: [FestasTableService,...guard.guards],
     declarations: [...pageContainers.containers, ...pageComponents.components],
     exports: [...pageContainers.containers, ...pageComponents.components],
 })

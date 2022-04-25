@@ -71,9 +71,13 @@ class ParticipantesFestaService extends __BaseService {
    *
    * - `situacao`: Situação de pagamento
    *
+   * - `offset`: Offset da consulta (para paginação: padrão 0)
+   *
    * - `nome`: Nome do participante
    *
    * - `lote`: Identificador do Lote
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
    */
   getParticipantesFestaFestaIdResponse(params: ParticipantesFestaService.GetParticipantesFestaFestaIdParams): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
@@ -81,8 +85,10 @@ class ParticipantesFestaService extends __BaseService {
     let __body: any = null;
 
     if (params.situacao != null) __params = __params.set('situacao', params.situacao.toString());
+    if (params.offset != null) __params = __params.set('offset', params.offset.toString());
     if (params.nome != null) __params = __params.set('nome', params.nome.toString());
     if (params.lote != null) __params = __params.set('lote', params.lote.toString());
+    if (params.limit != null) __params = __params.set('limit', params.limit.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/participantes-festa/${encodeURIComponent(String(params.festaId))}`,
@@ -110,9 +116,13 @@ class ParticipantesFestaService extends __BaseService {
    *
    * - `situacao`: Situação de pagamento
    *
+   * - `offset`: Offset da consulta (para paginação: padrão 0)
+   *
    * - `nome`: Nome do participante
    *
    * - `lote`: Identificador do Lote
+   *
+   * - `limit`: Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
    */
   getParticipantesFestaFestaId(params: ParticipantesFestaService.GetParticipantesFestaFestaIdParams): __Observable<null> {
     return this.getParticipantesFestaFestaIdResponse(params).pipe(
@@ -274,6 +284,11 @@ module ParticipantesFestaService {
     situacao?: number;
 
     /**
+     * Offset da consulta (para paginação: padrão 0)
+     */
+    offset?: number;
+
+    /**
      * Nome do participante
      */
     nome?: string;
@@ -282,6 +297,11 @@ module ParticipantesFestaService {
      * Identificador do Lote
      */
     lote?: number;
+
+    /**
+     * Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
+     */
+    limit?: number;
   }
 }
 
