@@ -1,0 +1,41 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head [title]="title" [hideBreadcrumbs]="false"></sb-dashboard-head>
+<!-- 
+    <form [formGroup]="formGroup">
+        <div class="form-row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <show-custom-label [textLabel]="'Descrição'" [required]="true"></show-custom-label>
+                    <input class="form-control" id="descricao" type="text" placeholder="Informe a descrição"
+                        formControlName="descricao" maxlength="50" />
+
+                    <show-erro-input [inputName]="'descricao'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <show-custom-label [textLabel]="'Data '" [required]="true"></show-custom-label>
+                    <input class="form-control" id="data" type="text" formControlName="data" bsDatepicker
+                        [bsConfig]="{withTimepicker: true, rangeInputFormat: 'DD/MM/YYYY H:mm', dateInputFormat: 'DD/MM/YYYY H:mm'}" />
+
+                    <show-erro-input [inputName]="'data'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <show-custom-label [textLabel]="'Anotações'" [required]="false"></show-custom-label>
+                    <textarea class="form-control" formControlName="anotacoes" id="anotacoes" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+    </form> -->
+
+    <div class="btns-formulario-cadastro">
+        <button class="btn btns-formulario-cadastro-voltar" (click)="voltar()">Voltar</button>
+        <button class="btn btns-formulario-cadastro-salvar" (click)="salvar()">Salvar</button>
+    </div>
+</sb-layout-dashboard>

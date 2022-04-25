@@ -83,6 +83,13 @@ const routes: Routes = [
             )
     },
     {
+        path: 'festas',
+        loadChildren: () =>
+            import('modules/festas/festas-routing.module').then(
+                m => m.FestasRoutingModule
+            )
+    },
+    {
         path: 'auth',
         loadChildren: () =>
             import('modules/auth/auth-routing.module').then(m => m.AuthRoutingModule),

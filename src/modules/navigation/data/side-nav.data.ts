@@ -12,6 +12,7 @@ export const sideNavSections: SideNavSection[] = [
             'moradores',
             'usuarios',
             'contas',
+            'festas',
             'reunioes'
         ]
     }
@@ -138,7 +139,7 @@ export const sideNavItems: SideNavItems = {
         tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
     },
     festas: {
-        icon: 'table',
+        icon: 'wine-glass',
         text: 'Festas',
         link: '/festas',
         tipoPerfil: [EnumTipoPerfil.MoradorAdministrador, EnumTipoPerfil.Morador]
