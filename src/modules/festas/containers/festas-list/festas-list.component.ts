@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FestasService } from '@app/api/services';
 import { IReuniaoResult } from '@app/models/reuniao-result-interface';
 import { IFiltroReunioes } from '@app/models/search-reunioes';
-import { mapDescricaoAcoesModalConfirmacao, mapSituacaoConta, _PAGE_SIZE } from '@app/utils/consts';
+import { mapDescricaoAcoesModalConfirmacao, mapSituacaoConta, mapSituacaoFesta, _PAGE_SIZE } from '@app/utils/consts';
 import { ConfirmacaoNgbdModal } from '@common/components';
 import { FiltrosReunioesNgbdModal } from '@modules/reunioes/components';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
@@ -22,8 +22,8 @@ export class FestasComponent implements OnInit {
     @ViewChild('modalFiltros', { static: true }) modalFiltros: FiltrosReunioesNgbdModal | any;
     @ViewChild('modalConfirmacao', { static: true }) modalConfirmacao: ConfirmacaoNgbdModal | any;
 
+    public mapSituacaoFesta = mapSituacaoFesta;
     public mapDescricaoAcoesModalConfirmacao = mapDescricaoAcoesModalConfirmacao;
-    public mapSituacaoConta = mapSituacaoConta;
     private routeEdicao: string = '/festas/edicao';
     private routeVisualizar: string = '/festas/visualizar';
     public routeCadastro: string = '/festas/cadastro';

@@ -1,5 +1,5 @@
 import { environment } from 'environments/environment';
-import { EnumAcoesModalConfirmacao, EnumSituacaoConta, EnumTipoPerfil, EnumTipoPlano } from './enums';
+import { EnumAcoesModalConfirmacao, EnumSituacaoConta, EnumSituacaoFesta, EnumTipoPerfil, EnumTipoPlano } from './enums';
 
 export const _PAGE_SIZE = 6;
 export const debug = (...args: any) => {
@@ -39,4 +39,10 @@ export const mapSituacaoConta: { [key: number]: string } = {
 export const mapDescricaoAcoesModalConfirmacao: { [key: string]: number } = {
     'exclusao': EnumAcoesModalConfirmacao.Exclusao,
     'desvinculacaoContaSocial': EnumAcoesModalConfirmacao.DesvinculacaoContaSocial
+};
+
+export const mapSituacaoFesta: { [key: number]: string } = {
+    [EnumSituacaoFesta.EmAberto]: 'Em Aberto',
+    [EnumSituacaoFesta.Finalizada]: 'Finalizada',
+    [EnumSituacaoFesta.Cancelada]: 'Cancelada'
 };

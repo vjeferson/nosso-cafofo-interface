@@ -13,13 +13,21 @@
                     </div>
                 </div>
             </form>
-            <!-- <div class="table-responsive-md">
+            <div class="table-responsive-md">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col" sbSortable="situacao" (sort)="onSort($event)"><span>Situação</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "situacao"' [direction]="sortedDirection">
+                                </sb-sort-icon>
+                            </th>
                             <th scope="col" sbSortable="descricao" (sort)="onSort($event)"><span>Descrição</span>
                                 <sb-sort-icon *ngIf='sortedColumn === "descricao"' [direction]="sortedDirection">
+                                </sb-sort-icon>
+                            </th>
+                            <th scope="col" sbSortable="valor" (sort)="onSort($event)"><span>Valor</span>
+                                <sb-sort-icon *ngIf='sortedColumn === "valorTotal"' [direction]="sortedDirection">
                                 </sb-sort-icon>
                             </th>
                             <th scope="col" sbSortable="data" (sort)="onSort($event)"><span>Data</span>
@@ -33,7 +41,16 @@
                         <tr *ngFor="let registro of registros$ | async">
                             <th scope="row">{{ registro.id }}</th>
                             <td>
+                                <ngb-highlight [result]="mapSituacaoFesta[registro?.situacao]"
+                                    [term]="_serviceTable.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
                                 <ngb-highlight [result]="registro.descricao" [term]="_serviceTable.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="registro.valorTotal | currency" [term]="_serviceTable.searchTerm">
                                 </ngb-highlight>
                             </td>
                             <td>
@@ -45,8 +62,8 @@
                                 <button type="button" class="btn btn-warning btn-sm opcoes-listagens"
                                     (click)="editar(registro.id)">Editar</button>
 
-                                <button type="button" class="btn btn-danger btn-sm opcoes-listagens"
-                                    (click)="abrirModalRemocao(registro.id)">Remover</button>
+                                <!-- <button type="button" class="btn btn-danger btn-sm opcoes-listagens"
+                                    (click)="abrirModalRemocao(registro.id)">Remover</button> -->
                             </td>
                         </tr>
                     </tbody>
@@ -63,7 +80,7 @@
                     <option [ngValue]="4">4 itens por página</option>
                     <option [ngValue]="6">6 itens por página</option>
                 </select>
-            </div> -->
+            </div>
         </div>
     </sb-card>
 </sb-layout-dashboard>

@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { NovaFesta } from '../models/nova-festa';
 @Injectable({
   providedIn: 'root',
 })
@@ -28,11 +29,13 @@ class FestasService extends __BaseService {
    * Cadastro de Festa
    *
    * Rota para criação de festas no sistema.
+   * @param body Informações da nova festa
    */
-  postFestaResponse(): __Observable<__StrictHttpResponse<null>> {
+  postFestaResponse(body: NovaFesta): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    __body = body;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/festa`,
@@ -54,9 +57,10 @@ class FestasService extends __BaseService {
    * Cadastro de Festa
    *
    * Rota para criação de festas no sistema.
+   * @param body Informações da nova festa
    */
-  postFesta(): __Observable<null> {
-    return this.postFestaResponse().pipe(
+  postFesta(body: NovaFesta): __Observable<null> {
+    return this.postFestaResponse(body).pipe(
       __map(_r => _r.body as null)
     );
   }
