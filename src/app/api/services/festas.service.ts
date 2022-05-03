@@ -78,6 +78,8 @@ class FestasService extends __BaseService {
    * - `limit`: Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
    *
    * - `descricao`: Descrição da reunião
+   *
+   * - `data`: Data e hora da festa
    */
   getFestaResponse(params: FestasService.GetFestaParams): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
@@ -87,6 +89,7 @@ class FestasService extends __BaseService {
     if (params.offset != null) __params = __params.set('offset', params.offset.toString());
     if (params.limit != null) __params = __params.set('limit', params.limit.toString());
     if (params.descricao != null) __params = __params.set('descricao', params.descricao.toString());
+    if (params.data != null) __params = __params.set('data', params.data.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/festa`,
@@ -117,6 +120,8 @@ class FestasService extends __BaseService {
    * - `limit`: Limit da consulta (para paginação: máximo de 50 registros padrão por consulta)
    *
    * - `descricao`: Descrição da reunião
+   *
+   * - `data`: Data e hora da festa
    */
   getFesta(params: FestasService.GetFestaParams): __Observable<null> {
     return this.getFestaResponse(params).pipe(
@@ -271,6 +276,11 @@ module FestasService {
      * Descrição da reunião
      */
     descricao?: string;
+
+    /**
+     * Data e hora da festa
+     */
+    data?: Array<string>;
   }
 }
 

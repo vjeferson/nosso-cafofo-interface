@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { FestasService } from '@app/api/services';
 import { IReuniaoResult } from '@app/models/reuniao-result-interface';
 import { IFiltroReunioes } from '@app/models/search-reunioes';
-import { mapDescricaoAcoesModalConfirmacao, mapSituacaoConta, mapSituacaoFesta, _PAGE_SIZE } from '@app/utils/consts';
+import { mapDescricaoAcoesModalConfirmacao, mapSituacaoFesta, _PAGE_SIZE } from '@app/utils/consts';
 import { ConfirmacaoNgbdModal } from '@common/components';
-import { FiltrosReunioesNgbdModal } from '@modules/reunioes/components';
+import { FiltrosFestasNgbdModal } from '@modules/festas/components/filtros-festas-modal/filtros-festas-modal.component';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ import { FestasTableService } from './festas-table.service';
 })
 export class FestasComponent implements OnInit {
     @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
-    @ViewChild('modalFiltros', { static: true }) modalFiltros: FiltrosReunioesNgbdModal | any;
+    @ViewChild('modalFiltros', { static: true }) modalFiltros: FiltrosFestasNgbdModal | any;
     @ViewChild('modalConfirmacao', { static: true }) modalConfirmacao: ConfirmacaoNgbdModal | any;
 
     public mapSituacaoFesta = mapSituacaoFesta;

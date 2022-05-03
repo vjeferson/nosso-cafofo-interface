@@ -22,17 +22,18 @@ export class FestasTableService extends TableService<FestasService, IFiltroFesta
             sortColumn: '',
             sortDirection: '',
             situacao: undefined,
+            data: undefined,
             limit: 0,
             offset: 0
         } as IFiltroFestas);
     }
 
     _search(): Observable<SearchResult> {
-        let { sortColumn, sortDirection, pageSize, searchTerm, situacao } = this.state;
+        let { sortColumn, sortDirection, pageSize, searchTerm, situacao, data } = this.state;
         return new Observable((observer) => {
             this.service.getFesta({
                 limit: pageSize, offset: this.calculaOffset(),
-                descricao: searchTerm && searchTerm !== '' ? searchTerm : undefined, situacao
+                descricao: searchTerm && searchTerm !== '' ? searchTerm : undefined, situacao, data
             }).subscribe((res: any) => {
                 observer.next(res);
                 observer.complete();
