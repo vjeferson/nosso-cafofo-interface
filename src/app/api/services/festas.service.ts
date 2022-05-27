@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { NovaFesta } from '../models/nova-festa';
+import { AtualizaFesta } from '../models/atualiza-festa';
 @Injectable({
   providedIn: 'root',
 })
@@ -174,12 +175,15 @@ class FestasService extends __BaseService {
    *
    * Rota para alteração de festa.
    * @param id Identificador do registro
+   * @param body Novas informações da Festa
    */
-  putFestaIdResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+  putFestaIdResponse(id: number,
+    body: AtualizaFesta): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
+    __body = body;
     let req = new HttpRequest<any>(
       'PUT',
       this.rootUrl + `/festa/${encodeURIComponent(String(id))}`,
@@ -202,9 +206,11 @@ class FestasService extends __BaseService {
    *
    * Rota para alteração de festa.
    * @param id Identificador do registro
+   * @param body Novas informações da Festa
    */
-  putFestaId(id: number): __Observable<null> {
-    return this.putFestaIdResponse(id).pipe(
+  putFestaId(id: number,
+    body: AtualizaFesta): __Observable<null> {
+    return this.putFestaIdResponse(id, body).pipe(
       __map(_r => _r.body as null)
     );
   }

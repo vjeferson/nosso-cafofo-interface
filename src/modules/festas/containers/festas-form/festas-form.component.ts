@@ -1,14 +1,13 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AtualizaMorador, AtualizaReuniao, NovaConta, NovaReuniao } from '@app/api/models';
-import { AtualizaConta } from '@app/api/models/atualiza-conta';
+import { AtualizaFesta} from '@app/api/models';
 import { NovaFesta } from '@app/api/models/nova-festa';
-import { ContasService, FestasService, MoradoresService, ReunioesService } from '@app/api/services';
+import { FestasService} from '@app/api/services';
+import { IOpcoesSituacao } from '@app/interfaces/opcoes-situacao.interface';
 import { IFestaResult } from '@app/models/festa-result-interface';
-import { IReuniaoResult } from '@app/models/reuniao-result-interface';
+import { EnumSituacaoFesta } from '@app/utils/enums';
 import { Utilitarios } from '@app/utils/utils.service';
-import moment from 'moment';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { ToastrService } from 'ngx-toastr';
 
@@ -24,6 +23,21 @@ export class FestasFormComponent implements OnInit {
     public isNew: boolean = true;
     public formGroup !: FormGroup | any;
     public title!: string;
+    
+    public opcoesSituacao: IOpcoesSituacao[] = [
+        {
+            descricao: 'Em Aberto',
+            valor: EnumSituacaoFesta.EmAberto
+        },
+        {
+            descricao: 'Finalizada',
+            valor: EnumSituacaoFesta.Finalizada
+        },
+        {
+            descricao: 'Cancelada',
+            valor: EnumSituacaoFesta.Cancelada
+        }
+    ];
 
     constructor(
         private readonly _formBuilder: FormBuilder,
@@ -71,13 +85,13 @@ export class FestasFormComponent implements OnInit {
                 this._changeDetectorRef.detectChanges();
             } else {
                 this._router.navigate([this.route]);
-                this._toastService.error('Registro para a identificação informada não foi encontrado!', "Busca de registro", {
+                this._toastService.error('Registro para a identificação informada não foi encontrado!', 'Busca de registro', {
                     timeOut: 3000,
                 });
             }
         }, (err: any) => {
             this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-                err.error && err.error.error ? err.error.error : "Cadastro inválido", {
+                err.error && err.error.error ? err.error.error : 'Cadastro inválido', {
                 timeOut: 3000,
             });
         });
@@ -99,56 +113,55 @@ export class FestasFormComponent implements OnInit {
 
                 this._service.postFesta(body).subscribe((res: any) => {
                     if (res) {
-                        this._toastService.success('Registro inserido!', "Cadastro", {
+                        this._toastService.success('Registro inserido!', 'Cadastro', {
                             timeOut: 3000,
                         });
                     } else {
-                        this._toastService.error('Cadastro não foi feito!', "Cadastro", {
+                        this._toastService.error('Cadastro não foi feito!', 'Cadastro', {
                             timeOut: 3000,
                         });
                     }
                     this._router.navigate([this.route]);
                 }, (err: any) => {
                     this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-                        err.error && err.error.error ? err.error.error : "Cadastro inválido", {
+                        err.error && err.error.error ? err.error.error : 'Cadastro inválido', {
                         timeOut: 3000,
                     });
                 });
             } else {
-                // const body: AtualizaReuniao = this.trataDadosParaSalvar();
-                // this._service.putReuniaoId(+this.dadosRegistroFiltrado.id, body).subscribe((res: any) => {
-                //     if (res) {
-                //         this._toastService.success('Alterações salvas!', "Atualização", {
-                //             timeOut: 3000,
-                //         });
-                //     } else {
-                //         this._toastService.error('Dados da Conta não foram atualizados!', "Atualização", {
-                //             timeOut: 3000,
-                //         });
-                //     }
-                //     this._router.navigate([this.route]);
-                // }, (err: any) => {
-                //     this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-                //         err.error && err.error.error ? err.error.error : "Atualização inválida", {
-                //         timeOut: 3000,
-                //     });
-                // });
+                const body: AtualizaFesta = this.trataDadosParaSalvar();
+                this._service.putFestaId(+this.dadosRegistroFiltrado.id, body).subscribe((res: any) => {
+                    if (res) {
+                        this._toastService.success('Alterações salvas!', 'Atualização', {
+                            timeOut: 3000,
+                        });
+                    } else {
+                        this._toastService.error('Dados da Festa não foram atualizados!', 'Atualização', {
+                            timeOut: 3000,
+                        });
+                    }
+                    this._router.navigate([this.route]);
+                }, (err: any) => {
+                    this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                        err.error && err.error.error ? err.error.error : 'Atualização inválida', {
+                        timeOut: 3000,
+                    });
+                });
             }
         } else {
             Utilitarios.validateAllFormFields(this.formGroup);
-            this._toastService.error("Por favor preencha corretamente as informações", 'Formulário inválido!', {
+            this._toastService.error('Por favor preencha corretamente as informações', 'Formulário inválido!', {
                 timeOut: 3000
             });
         }
     }
 
-    // private trataDadosParaSalvar(): AtualizaReuniao {
-    //     return {
-    //         descricao: this.formGroup.value.descricao,
-    //         data: this.formGroup.value.data,
-    //         anotacoes: this.formGroup.value.anotacoes
-    //     }
-    // }
+    private trataDadosParaSalvar(): AtualizaFesta {
+        return {
+            descricao: this.formGroup.value.descricao,
+            data: this.formGroup.value.data
+        }
+    }
 
     private trataDadosParaCadastro(): NovaFesta {
         return {

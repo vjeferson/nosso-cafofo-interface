@@ -18,5 +18,6 @@ export { AtualizaMorador } from './models/atualiza-morador';
 export { NovaReuniao } from './models/nova-reuniao';
 export { AtualizaReuniao } from './models/atualiza-reuniao';
 export { NovaFesta } from './models/nova-festa';
+export { AtualizaFesta } from './models/atualiza-festa';
 export { NovaConta } from './models/nova-conta';
 export { AtualizaConta } from './models/atualiza-conta';

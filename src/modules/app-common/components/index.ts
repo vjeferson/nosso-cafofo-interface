@@ -10,6 +10,7 @@ import { SelectEstadoComponent } from './select-estado/select-estado.component';
 import { SelectMoradorComponent } from './select-morador/select-morador.component';
 import { SelectPerfilComponent } from './select-perfil/select-perfil.component';
 import { SelectSituacaoContaComponent } from './select-situacao-conta/select-situacao-conta.component';
+import { SelectSituacaoCustomComponent } from './select-situacao-custom/select-situacao-custom.component';
 import { SelectSituacaoFestaComponent } from './select-situacao-festa/select-situacao-festa.component';
 import { SelectSituacaoRegistroComponent } from './select-situacao-registro-default/select-situacao-registro-default.component';
 import { SelectTiposPlanosComponent } from './select-tipo-plano/select-tipo-plano.component';
@@ -29,7 +30,8 @@ export const components = [
     SelectMoradorComponent,
     CustomLabelComponent,
     SelectSituacaoContaComponent,
-    SelectSituacaoFestaComponent
+    SelectSituacaoFestaComponent,
+    SelectSituacaoCustomComponent
 ];
 
 export * from './card/card.component';
@@ -47,3 +49,4 @@ export * from './select-perfil/select-perfil.component';
 export * from './select-morador/select-morador.component';
 export * from './select-situacao-conta/select-situacao-conta.component';
 export * from './select-situacao-festa/select-situacao-festa.component';
+export * from './select-situacao-custom/select-situacao-custom.component';
