@@ -11,9 +11,8 @@
                         <sb-card class="col-md-4">
                             <div class="card-header">Imagem de Profile</div>
                             <div class="card-body selecao-imagem">
-                                <div class="small text-white">
-                                    <fa-icon [icon]='["fas", "user-circle"]'></fa-icon>
-                                </div>
+                                <img [src]="profileUrlImage" alt="Avatar" class="avatar">
+                               
                                 <button class="btn btns-formulario-cadastro-salvar" disabled
                                     (click)="trocarImagem()">Trocar
                                     imagem</button>

@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
     public formGroupTrocaSenha !: FormGroup | any;
     public facebookVinculado: boolean;
     public googleVinculado: boolean;
+    public profileUrlImage:string;
 
     constructor(
         private readonly _formBuilder: FormBuilder,
@@ -36,6 +37,8 @@ export class ProfileComponent implements OnInit {
         this.usuarioAutenticado = this._usuarioLogadoService.getDadosSession().usuario;
         this.facebookVinculado = this.usuarioAutenticado.facebookVinculado ? true : false;
         this.googleVinculado = this.usuarioAutenticado.googleVinculado ? true : false;
+
+        this.profileUrlImage =  (this.usuarioAutenticado as any)?.profileUrlImage || 'https://nosso-cafofo-public.s3.sa-east-1.amazonaws.com/images/profile/profile-default.png';
     }
 
     ngOnInit() {
