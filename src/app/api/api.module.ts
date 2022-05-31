@@ -18,6 +18,7 @@ import { ReunioesService } from './services/reunioes.service';
 import { FestasService } from './services/festas.service';
 import { ParticipantesFestaService } from './services/participantes-festa.service';
 import { ContasService } from './services/contas.service';
+import { EntradasESaDasService } from './services/entradas-esa-das.service';
 import { EstatisticasService } from './services/estatisticas.service';
 
 /**
@@ -48,6 +49,7 @@ import { EstatisticasService } from './services/estatisticas.service';
     FestasService,
     ParticipantesFestaService,
     ContasService,
+    EntradasESaDasService,
     EstatisticasService
   ],
 })

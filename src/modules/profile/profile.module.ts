@@ -29,5 +29,6 @@ import * as profileGuard from './guards';
     providers: [...profileGuard.guards],
     declarations: [...profileContainers.containers, ...profileComponents.components],
     exports: [...profileContainers.containers, ...profileComponents.components],
+    entryComponents: [...profileComponents.components]
 })
 export class ProfileModule { }

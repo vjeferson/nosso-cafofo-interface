@@ -8,6 +8,8 @@ import { Utilitarios } from '@app/utils/utils.service';
 import { ConfirmacaoNgbdModal } from '@common/components';
 import { UsuarioLogadoService } from '@common/services';
 import { ContaSocialService } from '@common/services/conta-social.service';
+import { TrocaImagemNgbdModal } from '@modules/profile/components';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,6 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProfileComponent implements OnInit {
     @ViewChild('modalConfirmacao', { static: true }) modalConfirmacao: ConfirmacaoNgbdModal | any;
+    //@ViewChild('modalTrocaImagem', { static: true }) modalTrocaImagem: TrocaImagemNgbdModal | any;
 
     private usuarioAutenticado!: IUsuarioAutenticado;
     public formGroup !: FormGroup;
@@ -32,7 +35,8 @@ export class ProfileComponent implements OnInit {
         private readonly _contaSocialService: ContaSocialService,
         private readonly _usuarioLogadoService: UsuarioLogadoService,
         private _changeDetectorRef: ChangeDetectorRef,
-        private _toastService: ToastrService
+        private _toastService: ToastrService,
+        private _modalService: NgbModal
     ) {
         this.usuarioAutenticado = this._usuarioLogadoService.getDadosSession().usuario;
         this.facebookVinculado = this.usuarioAutenticado.facebookVinculado ? true : false;
@@ -139,7 +143,9 @@ export class ProfileComponent implements OnInit {
     }
 
     public trocarImagem() {
-
+        const modalRef = this._modalService.open(TrocaImagemNgbdModal,  { centered: true });
+        modalRef.componentInstance.profileUrlImage = this.profileUrlImage;
+       
     }
 
     public salvarDetalhesDoUsuario() {

@@ -12,13 +12,13 @@
                             <div class="card-header">Imagem de Profile</div>
                             <div class="card-body selecao-imagem">
                                 <img [src]="profileUrlImage" alt="Avatar" class="avatar">
-                               
-                                <button class="btn btns-formulario-cadastro-salvar" disabled
-                                    (click)="trocarImagem()">Trocar
-                                    imagem</button>
-                                <p class="mensagem-erro-input">
+
+                                <button class="btn btns-formulario-cadastro-salvar" (click)="trocarImagem()">
+                                    Trocar imagem
+                                </button>
+                                <!-- <p class="mensagem-info-input">
                                     Opção de troca de imagem desabilitada temporariamente!
-                                </p>
+                                </p> -->
                             </div>
                         </sb-card>
 

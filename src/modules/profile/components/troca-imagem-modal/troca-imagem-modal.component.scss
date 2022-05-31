@@ -1,0 +1,16 @@
+.modal-body {
+    display: flex;
+    justify-content: center;
+
+    .avatar {         
+        vertical-align: middle;         
+        width: 150px;         
+        height: 150px;         
+        margin-bottom: 1rem;         
+        border-radius: 50%;     
+    }
+
+    .form-row {
+        justify-content: center;
+    }
+}

@@ -33,6 +33,7 @@ class UsuariosService extends __BaseService {
   static readonly postUsuarioVerificaVinculoAccountSocialPath = '/usuario/verifica-vinculo-account-social';
   static readonly putUsuarioIdVincularAccountSocialPath = '/usuario/{id}/vincular-account-social';
   static readonly putUsuarioIdDesvincularAccountSocialPath = '/usuario/{id}/desvincular-account-social';
+  static readonly postUsuarioTrocaImagemProfilePath = '/usuario/troca-imagem-profile';
 
   constructor(
     config: __Configuration,
@@ -596,6 +597,46 @@ class UsuariosService extends __BaseService {
   putUsuarioIdDesvincularAccountSocial(id: number,
     body: InformacaoDesvinculacaoAccountSocial): __Observable<null> {
     return this.putUsuarioIdDesvincularAccountSocialResponse(id, body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Troca de Imagem de Profile
+   *
+   * Rota para trocar a imagem de Profile (Perfil).
+   * @param body Imagem
+   */
+  postUsuarioTrocaImagemProfileResponse(body: any): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/usuario/troca-imagem-profile`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Troca de Imagem de Profile
+   *
+   * Rota para trocar a imagem de Profile (Perfil).
+   * @param body Imagem
+   */
+  postUsuarioTrocaImagemProfile(body: any): __Observable<null> {
+    return this.postUsuarioTrocaImagemProfileResponse(body).pipe(
       __map(_r => _r.body as null)
     );
   }
