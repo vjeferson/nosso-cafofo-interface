@@ -25,9 +25,9 @@ export class ProfileComponent implements OnInit {
     private usuarioAutenticado!: IUsuarioAutenticado;
     public formGroup !: FormGroup;
     public formGroupTrocaSenha !: FormGroup | any;
-    public facebookVinculado: boolean;
-    public googleVinculado: boolean;
-    public profileUrlImage:string;
+    public facebookVinculado!: boolean;
+    public googleVinculado!: boolean;
+    public profileUrlImage!: string;
 
     constructor(
         private readonly _formBuilder: FormBuilder,
@@ -38,12 +38,9 @@ export class ProfileComponent implements OnInit {
         private _toastService: ToastrService,
         private _modalService: NgbModal
     ) {
-        this.usuarioAutenticado = this._usuarioLogadoService.getDadosSession().usuario;
-        this.facebookVinculado = this.usuarioAutenticado.facebookVinculado ? true : false;
-        this.googleVinculado = this.usuarioAutenticado.googleVinculado ? true : false;
-
-        this.profileUrlImage =  (this.usuarioAutenticado as any)?.profileUrlImage || 'https://nosso-cafofo-public.s3.sa-east-1.amazonaws.com/images/profile/profile-default.png';
+        this.prepareInfoUsuario();
     }
+
 
     ngOnInit() {
 
@@ -58,6 +55,13 @@ export class ProfileComponent implements OnInit {
             novaSenha: [null, [Validators.required, Validators.minLength(8)]],
             confirmarSenha: [null, [Validators.required, Validators.minLength(8), this.confirmaSenha.bind(this)]],
         });
+    }
+
+    private prepareInfoUsuario() {
+        this.usuarioAutenticado = this._usuarioLogadoService.getDadosSession().usuario;
+        this.facebookVinculado = this.usuarioAutenticado.facebookVinculado ? true : false;
+        this.googleVinculado = this.usuarioAutenticado.googleVinculado ? true : false;
+        this.profileUrlImage = (this.usuarioAutenticado as any)?.profileUrlImage || 'https://nosso-cafofo-public.s3.sa-east-1.amazonaws.com/images/profile/profile-default.png';
     }
 
     private confirmaSenha(formControl: FormControl) {
@@ -143,9 +147,16 @@ export class ProfileComponent implements OnInit {
     }
 
     public trocarImagem() {
-        const modalRef = this._modalService.open(TrocaImagemNgbdModal,  { centered: true });
+        const modalRef = this._modalService.open(TrocaImagemNgbdModal, { centered: true });
         modalRef.componentInstance.profileUrlImage = this.profileUrlImage;
-       
+
+        modalRef.result.then((response) => {
+            this.prepareInfoUsuario();
+            this._changeDetectorRef.detectChanges();
+        }, (reason) => {
+            this.prepareInfoUsuario();
+            this._changeDetectorRef.detectChanges();
+        });
     }
 
     public salvarDetalhesDoUsuario() {

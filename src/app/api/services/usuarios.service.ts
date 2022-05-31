@@ -605,13 +605,15 @@ class UsuariosService extends __BaseService {
    * Troca de Imagem de Profile
    *
    * Rota para trocar a imagem de Profile (Perfil).
-   * @param body Imagem
+   * @param body Arquivo de imagem
    */
-  postUsuarioTrocaImagemProfileResponse(body: any): __Observable<__StrictHttpResponse<null>> {
+  postUsuarioTrocaImagemProfileResponse(body: {avatar?: Blob}): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = body;
+    let __formData = new FormData();
+    __body = __formData;
+    if (body != null) { __formData.append('body', body as string | Blob);}
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/usuario/troca-imagem-profile`,
@@ -633,9 +635,9 @@ class UsuariosService extends __BaseService {
    * Troca de Imagem de Profile
    *
    * Rota para trocar a imagem de Profile (Perfil).
-   * @param body Imagem
+   * @param body Arquivo de imagem
    */
-  postUsuarioTrocaImagemProfile(body: any): __Observable<null> {
+  postUsuarioTrocaImagemProfile(body: {avatar?: Blob}): __Observable<null> {
     return this.postUsuarioTrocaImagemProfileResponse(body).pipe(
       __map(_r => _r.body as null)
     );
