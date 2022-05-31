@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UploadFileService{
     private readonly BASE_URL = environment.apiUrl;
+
+    public changeImage: Subject<any> = new Subject();
 
     constructor(private _http: HttpClient){}
 

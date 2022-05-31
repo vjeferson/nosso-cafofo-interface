@@ -42,6 +42,7 @@ export class TrocaImagemNgbdModal implements AfterViewInit {
                 if (res) {
                     this.dadosSession.usuario.profileUrlImage = res;
                     this._usuarioLogadoService.setDadosSession(this.dadosSession);
+                    this._uploadFileService.changeImage.next();
                     this.close();
                 } else {
                     this._toastService.error('Senha não foi atualizada!', 'Troca de Senha', {

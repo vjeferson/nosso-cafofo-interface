@@ -11,7 +11,7 @@
                         <sb-card class="col-md-4">
                             <div class="card-header">Imagem de Profile</div>
                             <div class="card-body selecao-imagem">
-                                <img [src]="profileUrlImage" alt="Avatar" class="avatar">
+                                <img *ngIf="profileUrlImage" [src]="profileUrlImage" alt="Avatar" class="avatar">
 
                                 <button class="btn btns-formulario-cadastro-salvar" (click)="trocarImagem()">
                                     Trocar imagem

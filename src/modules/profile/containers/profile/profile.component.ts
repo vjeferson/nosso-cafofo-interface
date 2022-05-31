@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
     public formGroupTrocaSenha !: FormGroup | any;
     public facebookVinculado!: boolean;
     public googleVinculado!: boolean;
-    public profileUrlImage!: string;
+    public profileUrlImage!: any;
 
     constructor(
         private readonly _formBuilder: FormBuilder,
@@ -151,9 +151,11 @@ export class ProfileComponent implements OnInit {
         modalRef.componentInstance.profileUrlImage = this.profileUrlImage;
 
         modalRef.result.then((response) => {
+            this.profileUrlImage = null;
             this.prepareInfoUsuario();
             this._changeDetectorRef.detectChanges();
         }, (reason) => {
+            this.profileUrlImage = null;
             this.prepareInfoUsuario();
             this._changeDetectorRef.detectChanges();
         });
