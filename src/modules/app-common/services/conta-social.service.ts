@@ -92,9 +92,7 @@ export class ContaSocialService {
                 } else {
                     reject();
                 }
-            }).catch((err: any) => {
-                this._toastService.error(err.message, 'Erro');
-            });;
+            })
         });
     }
 
