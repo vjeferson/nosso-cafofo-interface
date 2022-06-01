@@ -20,5 +20,6 @@ export { AtualizaReuniao } from './models/atualiza-reuniao';
 export { NovaFesta } from './models/nova-festa';
 export { AtualizaFesta } from './models/atualiza-festa';
 export { NovoParticipanteFesta } from './models/novo-participante-festa';
+export { AtualizaParticipanteFesta } from './models/atualiza-participante-festa';
 export { NovaConta } from './models/nova-conta';
 export { AtualizaConta } from './models/atualiza-conta';

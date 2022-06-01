@@ -81,8 +81,19 @@ export class ParticipantesFestasComponent implements OnInit {
         });
     }
 
-    editar(idRegistro: number) {
-
+    public editarParticipante(idRegistro: number) {
+        const modalRef = this._modalService.open(FormParticipantesFestaNgbdModal, { centered: true });
+        modalRef.componentInstance.festaId = this.festaId;
+        modalRef.componentInstance.participanteId = idRegistro;
+        modalRef.result.then((response) => {
+            if (response) {
+                this.filtrar();
+            }
+        }, (reason) => {
+            if (reason) {
+                this.filtrar();
+            }
+        });
     }
 
     abrirModalRemocao(idRegistro: number) {

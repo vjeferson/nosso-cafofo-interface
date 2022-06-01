@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NovoParticipanteFesta } from '@app/api/models';
+import { AtualizaParticipanteFesta } from '@app/api/models/atualiza-participante-festa';
 import { ParticipantesFestaService } from '@app/api/services';
+import { IParticipanteFestaResult } from '@app/models/participante-festa-result-interface';
 import { EnumLoteFesta, EnumSituacaoPagamentoParticipanteFesta } from '@app/utils/enums';
 import { UploadFileService } from '@app/utils/upload-file.service';
 import { Utilitarios } from '@app/utils/utils.service';
@@ -18,7 +20,9 @@ import { ToastrService } from 'ngx-toastr';
 export class FormParticipantesFestaNgbdModal implements AfterViewInit {
     public formGroup!: FormGroup;
     public festaId!:number;
+    public participanteId!:number;
     public isNew: boolean = true;
+    public dadosRegistroFiltrado: any;
 
     constructor(
         private _modalService: NgbModal,
@@ -37,7 +41,46 @@ export class FormParticipantesFestaNgbdModal implements AfterViewInit {
 
     ngAfterViewInit() {
         this.formGroup.patchValue({festaId: this.festaId});
-        console.log(this.formGroup.value)
+        if(this.participanteId)   {
+            this.loadRegistro(this.participanteId);
+        } else {
+            this.preparaNovoRegistro();
+        }
+    }
+
+    private preparaNovoRegistro() {
+        this.dadosRegistroFiltrado = {};
+        this.isNew = true;
+    }
+
+    private loadRegistro(idRegistro: number) {
+        this._service.getParticipantesFestaIdFestaFestaId(idRegistro, this.festaId).subscribe((res: any) => {
+            if (res) {
+                this.isNew = false;
+                this.dadosRegistroFiltrado = res;
+                this.formGroup.patchValue(this.preparaRegistroParaVisualizacao(this.dadosRegistroFiltrado));
+            } else {
+                this._toastService.error('Registro para a identificação informada não foi encontrado!', 'Busca de registro', {
+                    timeOut: 3000,
+                });
+                this.close();
+            }
+        }, (err: any) => {
+            this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                err.error && err.error.error ? err.error.error : 'Cadastro inválido', {
+                timeOut: 3000,
+            });
+        });
+    }
+
+    private preparaRegistroParaVisualizacao(registro: IParticipanteFestaResult) {
+        return {
+            nome: registro.nome,
+            valor: registro.valor,
+            situacao: registro.situacao,
+            festaId: registro.festaId,
+            lote: registro.lote
+        }
     }
 
     public salvar() {
@@ -63,24 +106,24 @@ export class FormParticipantesFestaNgbdModal implements AfterViewInit {
                     });
                 });
             } else {
-                // const body: AtualizaFesta = this.trataDadosParaSalvar();
-                // this._service.putFestaId(+this.dadosRegistroFiltrado.id, body).subscribe((res: any) => {
-                //     if (res) {
-                //         this._toastService.success('Alterações salvas!', 'Atualização', {
-                //             timeOut: 3000,
-                //         });
-                //     } else {
-                //         this._toastService.error('Dados da Festa não foram atualizados!', 'Atualização', {
-                //             timeOut: 3000,
-                //         });
-                //     }
-                //     this._router.navigate([this.route]);
-                // }, (err: any) => {
-                //     this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
-                //         err.error && err.error.error ? err.error.error : 'Atualização inválida', {
-                //         timeOut: 3000,
-                //     });
-                // });
+                const body: AtualizaParticipanteFesta = this.trataDadosParaSalvar();
+                this._service.putParticipantesFestaIdFestaFestaId(+this.dadosRegistroFiltrado.id, this.festaId, body).subscribe((res: any) => {
+                    if (res) {
+                        this._toastService.success('Alterações salvas!', 'Atualização', {
+                            timeOut: 3000,
+                        });
+                    } else {
+                        this._toastService.error('Dados do Participante não foram atualizados!', 'Atualização', {
+                            timeOut: 3000,
+                        });
+                    }
+                    this._modalService.dismissAll('edicao');
+                }, (err: any) => {
+                    this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                        err.error && err.error.error ? err.error.error : 'Atualização inválida', {
+                        timeOut: 3000,
+                    });
+                });
             }
         } else {
             Utilitarios.validateAllFormFields(this.formGroup);
@@ -90,12 +133,16 @@ export class FormParticipantesFestaNgbdModal implements AfterViewInit {
         }
     }
 
-    // private trataDadosParaSalvar(): AtualizaFesta {
-    //     return {
-    //         descricao: this.formGroup.value.descricao,
-    //         data: this.formGroup.value.data
-    //     }
-    // }
+    private trataDadosParaSalvar(): AtualizaParticipanteFesta {
+        return {
+            nome: this.formGroup.value.nome,
+            valor: this.formGroup.value.valor,
+            lote: this.formGroup.value.lote && this.formGroup.value.lote.descricao ? 
+                this.formGroup.value.lote.valor : this.formGroup.value.lote,
+            situacao: this.formGroup.value.situacao && this.formGroup.value.situacao.descricao ?
+                this.formGroup.value.situacao.valor : this.formGroup.value.situacao
+        }
+    }
 
     private trataDadosParaCadastro(): NovoParticipanteFesta {
         return {

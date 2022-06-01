@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { NovoParticipanteFesta } from '../models/novo-participante-festa';
+import { AtualizaParticipanteFesta } from '../models/atualiza-participante-festa';
 @Injectable({
   providedIn: 'root',
 })
@@ -185,14 +186,17 @@ class ParticipantesFestaService extends __BaseService {
    * Rota para alteração de participante da festa.
    * @param id Identificador do registro
    * @param festaId Identificador do registro da festa
+   * @param body Novas informações do participante
    */
   putParticipantesFestaIdFestaFestaIdResponse(id: number,
-    festaId: number): __Observable<__StrictHttpResponse<null>> {
+    festaId: number,
+    body: AtualizaParticipanteFesta): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
 
+    __body = body;
     let req = new HttpRequest<any>(
       'PUT',
       this.rootUrl + `/participantes-festa/${encodeURIComponent(String(id))}/festa/${encodeURIComponent(String(festaId))}`,
@@ -216,10 +220,12 @@ class ParticipantesFestaService extends __BaseService {
    * Rota para alteração de participante da festa.
    * @param id Identificador do registro
    * @param festaId Identificador do registro da festa
+   * @param body Novas informações do participante
    */
   putParticipantesFestaIdFestaFestaId(id: number,
-    festaId: number): __Observable<null> {
-    return this.putParticipantesFestaIdFestaFestaIdResponse(id, festaId).pipe(
+    festaId: number,
+    body: AtualizaParticipanteFesta): __Observable<null> {
+    return this.putParticipantesFestaIdFestaFestaIdResponse(id, festaId, body).pipe(
       __map(_r => _r.body as null)
     );
   }
