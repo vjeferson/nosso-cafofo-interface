@@ -14,6 +14,7 @@ class EstatisticasService extends __BaseService {
   static readonly getEstatisticasCountAssinantesPath = '/estatisticas/count-assinantes';
   static readonly getEstatisticasCountPagamentosPath = '/estatisticas/count-pagamentos';
   static readonly getEstatisticasUltimaReuniaoPath = '/estatisticas/ultima-reuniao';
+  static readonly getEstatisticasPercentualAssinantesPorPlanoPath = '/estatisticas/percentual-assinantes-por-plano';
 
   constructor(
     config: __Configuration,
@@ -129,6 +130,43 @@ class EstatisticasService extends __BaseService {
    */
   getEstatisticasUltimaReuniao(): __Observable<null> {
     return this.getEstatisticasUltimaReuniaoResponse().pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * Percentual de assinantes ativos por plano
+   *
+   * Rota para consulta o percentual de assinantes ativos por plano. Apenas Administradores Nosso Cafofo.
+   */
+  getEstatisticasPercentualAssinantesPorPlanoResponse(): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/estatisticas/percentual-assinantes-por-plano`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Percentual de assinantes ativos por plano
+   *
+   * Rota para consulta o percentual de assinantes ativos por plano. Apenas Administradores Nosso Cafofo.
+   */
+  getEstatisticasPercentualAssinantesPorPlano(): __Observable<null> {
+    return this.getEstatisticasPercentualAssinantesPorPlanoResponse().pipe(
       __map(_r => _r.body as null)
     );
   }

@@ -5,7 +5,7 @@ import { DashboardTablesComponent } from './dashboard-tables/dashboard-tables.co
 export const components = [
     DashboardCardsComponent,
     DashboardChartsComponent,
-    DashboardTablesComponent,
+    DashboardTablesComponent
 ];
 
 export * from './dashboard-cards/dashboard-cards.component';

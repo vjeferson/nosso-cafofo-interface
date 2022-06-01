@@ -28,7 +28,8 @@ import {
     faUnlink,
     faAsterisk,
     faFileInvoiceDollar,
-    faWineGlass
+    faWineGlass,
+    faPiggyBank
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeSolidIcons = {
@@ -59,5 +60,6 @@ export const fontAwesomeSolidIcons = {
     faUnlink,
     faAsterisk,
     faFileInvoiceDollar,
-    faWineGlass
+    faWineGlass,
+    faPiggyBank
 };
