@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { InformacaoVerificacaoVinculoAccountSocial, NovoCliente } from '@app/api/models';
-import { ClientesService, UsuariosService } from '@app/api/services';
+import { AutenticarContaSocial, InformacaoVerificacaoVinculoAccountSocial, NovoCliente } from '@app/api/models';
+import { AutenticacaoService, ClientesService, UsuariosService } from '@app/api/services';
 import { ContaSocial } from '@app/models/account-social.models';
 import { Utilitarios } from '@app/utils/utils.service';
 import { SelectCidadeComponent } from '@common/components';
 import { UsuarioLogadoService } from '@common/services';
 import { ContaSocialService } from '@common/services/conta-social.service';
 import { ToastrService } from 'ngx-toastr';
+import { _ } from 'numeral';
 
 @Component({
     selector: 'sb-register',
@@ -44,7 +45,8 @@ export class RegisterComponent implements OnInit {
         private readonly _toastService: ToastrService,
         private readonly _router: Router,
         private readonly _usuarioLogadoService: UsuarioLogadoService,
-        private readonly _contaSocialService: ContaSocialService
+        private readonly _contaSocialService: ContaSocialService,
+        private readonly _autenticacaoService: AutenticacaoService
     ) {
         this.mensagemAnoMaximoAnoCriacao = `Valor máximo: ${(new Date()).getFullYear()}`;
         this.formGroup = this._formBuilder.group({
@@ -62,7 +64,8 @@ export class RegisterComponent implements OnInit {
             estadoId: [null, [Validators.required]],
             cidadeId: [null, [Validators.required]],
             planoId: [14, []],
-            idSocialAccount: [null, []]
+            idSocialAccount: [null, []],
+            socialType: [null, []],
         });
     }
 
@@ -98,7 +101,9 @@ export class RegisterComponent implements OnInit {
             nomeRepublica: this.formGroup.value.nomeRepublica,
             numero: this.formGroup.value.numero,
             senha: this.formGroup.value.senha,
-            planoId: this.formGroup.value.planoId ? this.formGroup.value.planoId.id : null
+            planoId: this.formGroup.value.planoId ? this.formGroup.value.planoId.id : null,
+            idSocialAccount: this.formGroup.value.idSocialAccount,
+            socialType: this._contaSocialService.contaSocialValue.tipoConta
         }
     }
 
@@ -135,9 +140,48 @@ export class RegisterComponent implements OnInit {
                             socialType: infoContaSocial.tipoConta
                         };
                         this._usuarioService.postUsuarioVerificaVinculoAccountSocial(parametros).subscribe((res: any) => {
+                            debugger
+                            if(res.jaVinculado){
+                                this.logarComContaSocial(socialType);
+                                this._toastService.success('Conta já vinculada a um usuário, com isso você já foi autenticado!', "Login", {
+                                    timeOut: 3000,
+                                });
+                                return;
+                            }
+
+                            this.formGroup.patchValue({
+                                idSocialAccount: this._contaSocialService.contaSocialValue.id,
+                                nome: this._contaSocialService.contaSocialValue.name,
+                                email: this._contaSocialService.contaSocialValue.email,
+                                socialType
+                            });
                         }, (err: any) => {
                             this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
                                 err.error && err.error.error ? err.error.error : "Cadastro inválido", {
+                                timeOut: 3000,
+                            });
+                        });
+                    }
+                }
+            );
+        }
+    }
+
+    private logarComContaSocial(socialType: string) {
+        if (socialType === 'facebook') {
+            this._contaSocialService.autenticarComContaDoFacebook().then(
+                (infoContaSocial: ContaSocial) => {
+                    if (infoContaSocial) {
+                        const parametros: AutenticarContaSocial = {
+                            idContaSocial: infoContaSocial.id,
+                            socialType: infoContaSocial.tipoConta
+                        };
+                        this._autenticacaoService.postAuthenticateContaSocial(parametros).subscribe((res: any) => {
+                            this._usuarioLogadoService.setDadosSession(res);
+                            this._router.navigate(['/']);
+                        }, (err: any) => {
+                            this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                                err.error && err.error.error ? err.error.error : "Autenticação inválida", {
                                 timeOut: 3000,
                             });
                         });

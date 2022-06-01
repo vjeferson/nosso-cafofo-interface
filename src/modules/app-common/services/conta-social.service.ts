@@ -88,6 +88,7 @@ export class ContaSocialService {
             FB.api('/me', 'GET', { 'fields': 'id,name,email' }, (response: any) => {
                 if (response) {
                     Object.assign(this.contaSocial, response);
+                    this.contaSocial.tipoConta = 'facebook';
                     resolve(this.contaSocial);
                 } else {
                     reject();
