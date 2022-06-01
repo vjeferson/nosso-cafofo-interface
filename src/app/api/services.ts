@@ -15,3 +15,4 @@ export { ParticipantesFestaService } from './services/participantes-festa.servic
 export { ContasService } from './services/contas.service';
 export { EntradasESaDasService } from './services/entradas-esa-das.service';
 export { EstatisticasService } from './services/estatisticas.service';
+export { RelatoriosService } from './services/relatorios.service';

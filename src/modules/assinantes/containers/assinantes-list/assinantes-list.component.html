@@ -9,6 +9,7 @@
                     <span class="ml-8" *ngIf="_serviceTable.loading$ | async">Loading...</span>
                     <div class="botoes-acoes">
                         <sb-button-filtros (openDialogFiltrar)="abrirModalFiltrar()"></sb-button-filtros>
+                        <button class="btn btn-primary button-gerar-relatorio"  type="button" (click)="gerarRelatorio()">Gerar Relatório</button>
                     </div>
                 </div>
                 <div class="table-responsive-md">

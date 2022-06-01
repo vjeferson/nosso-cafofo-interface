@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
+import { RelatoriosService } from '@app/api/services';
 import { IResultAssinante } from '@app/models/assinante-result-interface';
 import { IFiltroPlanos } from '@app/models/search-planos';
 import { mapTiposPlanos, _PAGE_SIZE } from '@app/utils/consts';
@@ -32,7 +33,8 @@ export class AssinantesComponent implements OnInit {
         public _serviceTable: AssinantesTableService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
-        private _toastService: ToastrService
+        private _toastService: ToastrService,
+        private _relatoriosSerive: RelatoriosService
     ) { }
 
     ngOnInit() {
@@ -60,6 +62,25 @@ export class AssinantesComponent implements OnInit {
 
     visualizar(idRegistro: number) {
         this._router.navigate([this.route + '/visualizar', { id: idRegistro }]);
+    }
+
+    gerarRelatorio(){
+        this._relatoriosSerive.getRelatoriosAssinantes().subscribe((result: any) => {
+            debugger
+            if (result) {
+                this._toastService.success('Relatório gerado com sucesso!', "Geração", {
+                    timeOut: 3000
+                });
+
+                window.open(result.url);
+            }
+        }, (err: any) => {
+            debugger
+            this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
+                err.error && err.error.error ? err.error.error : "Geração inválida", {
+                timeOut: 3000,
+            });
+        });
     }
 
 }
