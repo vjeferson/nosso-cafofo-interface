@@ -52,7 +52,7 @@ export class FestasFormComponent implements OnInit {
         this.formGroup = this._formBuilder.group({
             descricao: [null, [Validators.required, Validators.maxLength(50)]],
             data: [new Date(), [Validators.required]],
-            situacao: [null, []],
+            situacao: [EnumSituacaoFesta.EmAberto, []],
             valorTotal: [null, []]
         });
 
@@ -113,15 +113,15 @@ export class FestasFormComponent implements OnInit {
 
                 this._service.postFesta(body).subscribe((res: any) => {
                     if (res) {
-                        this._toastService.success('Registro inserido!', 'Cadastro', {
+                        this._toastService.success('Registro inicial de festa inserido!', 'Cadastro Inicial', {
                             timeOut: 3000,
                         });
+                        this.loadRegistro(res.id);
                     } else {
-                        this._toastService.error('Cadastro não foi feito!', 'Cadastro', {
+                        this._toastService.error('Cadastro inicial de festa não foi feito!', 'Cadastro Inicial', {
                             timeOut: 3000,
                         });
                     }
-                    this._router.navigate([this.route]);
                 }, (err: any) => {
                     this._toastService.error(err.error && err.error.message ? err.error.message : 'Dados inválidos!',
                         err.error && err.error.error ? err.error.error : 'Cadastro inválido', {

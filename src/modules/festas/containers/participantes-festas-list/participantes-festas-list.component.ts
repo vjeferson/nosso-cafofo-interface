@@ -4,7 +4,7 @@ import { IParticipanteFestaResult } from '@app/models/participante-festa-result-
 import { IFiltroParticipantesFestas } from '@app/models/search-participantes-festas';
 import { mapDescricaoAcoesModalConfirmacao, mapLoteFesta, mapSituacaoPagamentoParticipanteFesta, _PAGE_SIZE } from '@app/utils/consts';
 import { ConfirmacaoNgbdModal } from '@common/components';
-import { FormParticipantesFestaNgbdModal } from '@modules/festas/components';
+import { FiltrosParticipantesNgbdModal, FormParticipantesFestaNgbdModal } from '@modules/festas/components';
 import { FiltrosFestasNgbdModal } from '@modules/festas/components/filtros-festas-modal/filtros-festas-modal.component';
 import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -20,7 +20,7 @@ import { ParticipantesFestasTableService } from './participantes-festas-table.se
 })
 export class ParticipantesFestasComponent implements OnInit {
     @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
-    @ViewChild('modalFiltros', { static: true }) modalFiltros: FiltrosFestasNgbdModal | any;
+    @ViewChild('modalFiltros', { static: true }) modalFiltros: FiltrosParticipantesNgbdModal | any;
     @ViewChild('modalConfirmacao', { static: true }) modalConfirmacao: ConfirmacaoNgbdModal | any;
     @Input() festaId!: number;
 

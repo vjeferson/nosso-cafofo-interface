@@ -58,7 +58,7 @@
                             </td>
                             <td>
                                 <ngb-highlight [result]="mapLoteFesta[registro?.lote]"
-                                 [term]="_serviceTable.searchTerm">
+                                    [term]="_serviceTable.searchTerm">
                                 </ngb-highlight>
                             </td>
                             <td>
@@ -86,7 +86,6 @@
             </div>
         </div>
     </sb-card>
-
-    <ngbd-modal-filtros-festas #modalFiltros [filtros]="filtros" (searchOutput)="filtrar()">
-    </ngbd-modal-filtros-festas>
 </div>
+<ngbd-modal-filtros-participantes #modalFiltros [filtros]="filtros" (searchOutput)="filtrar()">
+</ngbd-modal-filtros-participantes>

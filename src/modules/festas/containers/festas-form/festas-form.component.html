@@ -25,7 +25,7 @@
                     </show-erro-input>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" *ngIf="!isNew">
                 <div class="form-group">
                     <form-select-situacao-custom formControlName="situacao" [opcoes]="opcoesSituacao" [_readonly]="true">
                     </form-select-situacao-custom>

@@ -47,7 +47,7 @@ export class FormParticipantesFestaNgbdModal implements AfterViewInit {
 
                 this._service.postParticipantesFesta(body).subscribe((res: any) => {
                     if (res) {
-                        this._toastService.success('Registro inserido!', 'Cadastro', {
+                        this._toastService.success('Participante inserido!', 'Cadastro', {
                             timeOut: 3000,
                         });
                     } else {
