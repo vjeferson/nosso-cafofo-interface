@@ -1,0 +1,41 @@
+@import 'styles/variables.scss';
+
+p {
+    margin: 20px 0px 10px 0px;
+}
+
+.form-inline {
+    display: flex;
+    justify-content: center;
+}
+
+.pesquisa-listagem {
+    width: 70%;
+}
+
+.botoes-acoes {
+    display: flex;
+    justify-content: center;
+}
+
+.card-body {
+    background-color: #e9ecef;
+}
+
+.pesquisa-listagem {
+    width: 60%;
+}
+
+#cadastro {
+    fa-icon {
+        padding: 0rem 0.5rem;
+    }
+
+    width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+    background-color: var(--color-button-background-more-purple);
+    color: #FFFFFF !important;
+}

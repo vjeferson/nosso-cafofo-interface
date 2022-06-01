@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { NovoParticipanteFesta } from '../models/novo-participante-festa';
 @Injectable({
   providedIn: 'root',
 })
@@ -28,11 +29,13 @@ class ParticipantesFestaService extends __BaseService {
    * Cadastro de Participantes na Festa
    *
    * Rota para criação de participantes nas festas no sistema.
+   * @param body Informações do participante
    */
-  postParticipantesFestaResponse(): __Observable<__StrictHttpResponse<null>> {
+  postParticipantesFestaResponse(body: NovoParticipanteFesta): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    __body = body;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/participantes-festa`,
@@ -54,9 +57,10 @@ class ParticipantesFestaService extends __BaseService {
    * Cadastro de Participantes na Festa
    *
    * Rota para criação de participantes nas festas no sistema.
+   * @param body Informações do participante
    */
-  postParticipantesFesta(): __Observable<null> {
-    return this.postParticipantesFestaResponse().pipe(
+  postParticipantesFesta(body: NovoParticipanteFesta): __Observable<null> {
+    return this.postParticipantesFestaResponse(body).pipe(
       __map(_r => _r.body as null)
     );
   }

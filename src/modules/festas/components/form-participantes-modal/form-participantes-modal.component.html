@@ -1,0 +1,63 @@
+<div class="modal-header">
+    <h4 class="modal-title">Cadastro de Participante</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formGroup">
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <show-custom-label [textLabel]="'Nome'" [required]="true"></show-custom-label>
+                    <input class="form-control" id="nome" type="text" placeholder="Informe o nome"
+                        formControlName="nome" maxlength="50" />
+
+                    <show-erro-input [inputName]="'nome'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <form-select-situacao-participante-festa formControlName="situacao" [_readonly]="true">
+                    </form-select-situacao-participante-festa>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <form-select-lote-festa formControlName="lote">
+                    </form-select-lote-festa>
+                    <show-erro-input [inputName]="'lote'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <show-custom-label [textLabel]="'Valor'" [required]="true"></show-custom-label>
+                    <input currencyMask class="form-control" id="valor" type="text" placeholder="Informe o valor"
+                        formControlName="valor" maxlength="15"/>
+
+                    <show-erro-input [inputName]="'valor'" [formGroup]="formGroup" [validationName]="'required'">
+                    </show-erro-input>
+                </div>
+            </div>
+
+            
+
+
+        </div>
+
+
+        
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-fechar-filtros" (click)="close()">Fechar</button>
+    <button type="button" class="btn btns-formulario-cadastro-salvar"
+        (click)="salvar()">Salvar</button>
+</div>

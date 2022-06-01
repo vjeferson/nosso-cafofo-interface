@@ -19,6 +19,7 @@ import * as pageContainers from './containers';
 
 /* Guards */
 import * as guard from './guards';
+import { ParticipantesFestasTableService } from './containers/participantes-festas-list/participantes-festas-table.service';
 
 @NgModule({
     imports: [
@@ -31,8 +32,13 @@ import * as guard from './guards';
         ChartsModule,
         TablesModule
     ],
-    providers: [FestasTableService,...guard.guards],
+    providers: [
+        FestasTableService,
+        ParticipantesFestasTableService,
+        ...guard.guards
+    ],
     declarations: [...pageContainers.containers, ...pageComponents.components],
     exports: [...pageContainers.containers, ...pageComponents.components],
+    entryComponents: [...pageComponents.components]
 })
 export class FestasModule { }

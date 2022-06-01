@@ -1,5 +1,5 @@
 import { environment } from 'environments/environment';
-import { EnumAcoesModalConfirmacao, EnumSituacaoConta, EnumSituacaoFesta, EnumTipoPerfil, EnumTipoPlano } from './enums';
+import { EnumAcoesModalConfirmacao, EnumLoteFesta, EnumSituacaoConta, EnumSituacaoFesta, EnumSituacaoPagamentoParticipanteFesta, EnumTipoPerfil, EnumTipoPlano } from './enums';
 
 export const _PAGE_SIZE = 6;
 export const debug = (...args: any) => {
@@ -45,4 +45,20 @@ export const mapSituacaoFesta: { [key: number]: string } = {
     [EnumSituacaoFesta.EmAberto]: 'Em Aberto',
     [EnumSituacaoFesta.Finalizada]: 'Finalizada',
     [EnumSituacaoFesta.Cancelada]: 'Cancelada'
+};
+
+export const mapSituacaoPagamentoParticipanteFesta: { [key: number]: string } = {
+    [EnumSituacaoPagamentoParticipanteFesta.EmAberto]: 'Em Aberto',
+    [EnumSituacaoPagamentoParticipanteFesta.Pago]: 'Pago',
+    [EnumSituacaoPagamentoParticipanteFesta.Devolvido]: 'Devolvido'
+};
+
+export const mapLoteFesta: { [key: number]: string } = {
+    [EnumLoteFesta.Promocional]: 'Promocional',
+    [EnumLoteFesta.Primeiro]: 'Primeiro',
+    [EnumLoteFesta.Segundo]: 'Segundo',
+    [EnumLoteFesta.Terceiro]: 'Terceiro',
+    [EnumLoteFesta.Quarto]: 'Quarto',
+    [EnumLoteFesta.Quinto]: 'Quinto',
+    [EnumLoteFesta.Extra]: 'Extra'
 };

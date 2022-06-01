@@ -3,7 +3,7 @@
 
     <form [formGroup]="formGroup">
         <div class="form-row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="form-group">
                     <show-custom-label [textLabel]="'Descrição'" [required]="true"></show-custom-label>
                     <input class="form-control" id="descricao" type="text" placeholder="Informe a descrição"
@@ -13,7 +13,9 @@
                     </show-erro-input>
                 </div>
             </div>
-            <div class="col-md-4">
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
                 <div class="form-group">
                     <show-custom-label [textLabel]="'Data '" [required]="true"></show-custom-label>
                     <input class="form-control" id="data" type="text" formControlName="data" bsDatepicker
@@ -23,8 +25,6 @@
                     </show-erro-input>
                 </div>
             </div>
-        </div>
-        <div class="form-row">
             <div class="col-md-6">
                 <div class="form-group">
                     <form-select-situacao-custom formControlName="situacao" [opcoes]="opcoesSituacao" [_readonly]="true">
@@ -34,8 +34,11 @@
         </div>
     </form>
 
+    <sb-festas-participantes *ngIf="!isNew" [festaId]="dadosRegistroFiltrado.id"></sb-festas-participantes>
+
     <div class="btns-formulario-cadastro">
         <button class="btn btns-formulario-cadastro-voltar" (click)="voltar()">Voltar</button>
-        <button class="btn btns-formulario-cadastro-salvar" (click)="salvar()">Salvar</button>
+        <button *ngIf="isNew" class="btn btns-formulario-cadastro-salvar" (click)="salvar()">Continuar</button>
+        <button *ngIf="!isNew"class="btn btns-formulario-cadastro-salvar" (click)="salvar()">Salvar</button>
     </div>
 </sb-layout-dashboard>

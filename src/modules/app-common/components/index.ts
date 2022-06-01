@@ -7,11 +7,13 @@ import { ErroInputComponent } from './erro-input/erro-input.component';
 import { ConfirmacaoNgbdModal } from './modal-confirm/modal-confirm.component';
 import { SelectCidadeComponent } from './select-cidade/select-cidade.component';
 import { SelectEstadoComponent } from './select-estado/select-estado.component';
+import { SelectLoteFestaComponent } from './select-lote-festa/select-lote-festa.component';
 import { SelectMoradorComponent } from './select-morador/select-morador.component';
 import { SelectPerfilComponent } from './select-perfil/select-perfil.component';
 import { SelectSituacaoContaComponent } from './select-situacao-conta/select-situacao-conta.component';
 import { SelectSituacaoCustomComponent } from './select-situacao-custom/select-situacao-custom.component';
 import { SelectSituacaoFestaComponent } from './select-situacao-festa/select-situacao-festa.component';
+import { SelectSituacaoParticipanteFestaComponent } from './select-situacao-participante-festa/select-situacao-participante-festa.component';
 import { SelectSituacaoRegistroComponent } from './select-situacao-registro-default/select-situacao-registro-default.component';
 import { SelectTiposPlanosComponent } from './select-tipo-plano/select-tipo-plano.component';
 
@@ -31,7 +33,9 @@ export const components = [
     CustomLabelComponent,
     SelectSituacaoContaComponent,
     SelectSituacaoFestaComponent,
-    SelectSituacaoCustomComponent
+    SelectSituacaoCustomComponent,
+    SelectSituacaoParticipanteFestaComponent,
+    SelectLoteFestaComponent
 ];
 
 export * from './card/card.component';
@@ -50,3 +54,5 @@ export * from './select-morador/select-morador.component';
 export * from './select-situacao-conta/select-situacao-conta.component';
 export * from './select-situacao-festa/select-situacao-festa.component';
 export * from './select-situacao-custom/select-situacao-custom.component';
+export * from './select-situacao-participante-festa/select-situacao-participante-festa.component';
+export * from './select-lote-festa/select-lote-festa.component';

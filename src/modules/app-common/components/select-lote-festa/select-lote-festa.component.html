@@ -1,0 +1,5 @@
+<show-custom-label [textLabel]="'Lote'" [required]="required"></show-custom-label>
+<ng-select [items]="opcoes" bindLabel="descricao" bindValue="valor" [ngModelOptions]="{standalone: true}"
+    [readonly]="_readonly" [(ngModel)]="_value" placeholder="Selecione uma opção" (change)="_onChange($event)"
+    (focus)="_onTouched($event)">
+</ng-select>
