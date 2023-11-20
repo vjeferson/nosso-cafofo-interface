@@ -32,7 +32,9 @@ Manterá um registro detalhado das transações financeiras, permitindo aos mora
 
 ### Notificações e Lembretes
 Enviará notificações automáticas sobre datas de vencimento, eventos importantes e outras informações relevantes para garantir uma comunicação eficiente.
-Geração de Relatórios:
+
+### Geração de Relatórios
+Oferecerá a capacidade de gerar relatórios personalizados sobre as despesas, permitindo uma análise aprofundada das finanças da república.
 
 ## Inicialização
 
