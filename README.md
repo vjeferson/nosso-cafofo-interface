@@ -49,3 +49,6 @@ Você pode ajustar 2048 para qualquer número que precisar.
 
 Para obter mais informações sobre por que você pode precisar `--max_old_space_size`
 veja [este artigo](https://medium.com/@ashleydavis75/node-js-memory-limitations-30d3fe2664c0).
+
+## Status do projeto
+O projeto encontra-se concluído, estando na sua versão 2.0.0.
