@@ -6,7 +6,7 @@ O "Nosso Cafofo" visa facilitar e aprimorar o gerenciamento de contas do dia-a-d
 O projeto foi desenvolvido utilizando o framework Angular, na versão 11. O Angular proporciona uma estrutura robusta para o desenvolvimento de aplicações web, facilitando a criação de componentes reutilizáveis e a gestão eficiente do estado da aplicação. Para garantir uma experiência responsiva e consistente em diferentes dispositivos, o Bootstrap foi integrado ao projeto. O Bootstrap oferece uma variedade de componentes e estilos predefinidos que facilitam a criação de interfaces modernas e adaptáveis. O tema SB Admin Angular foi adotado para agilizar o desenvolvimento da interface do usuário. Esse tema fornece componentes estilizados e layouts pré-construídos que se alinham com as melhores práticas de design, economizando tempo no desenvolvimento front-end.
 
 ### SB Admin Angular
-O SB Admin Angular é um projeto inicial Angular com tema Bootstrap gratuito e de código aberto que já vem com uma implementação básica de navegação e layouts.
+O [SB Admin Angular](https://github.com/StartBootstrap/sb-admin-angular) é um projeto inicial Angular com tema Bootstrap gratuito e de código aberto que já vem com uma implementação básica de navegação e layouts.
 
 ### Layout - Figma
 O projeto de Layout do Sistema, com especificação de fontes, cores de texto e componentes, entre outras informacões, foi criado na Plataforma do Figma, e pode ser
