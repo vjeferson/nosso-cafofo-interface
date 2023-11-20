@@ -1,7 +1,6 @@
 {
   "name": "sb-admin-angular",
   "version": "2.0.0",
- "description": "Cliente/Aplicação Front-end Web do Nosso Cafofo",
   "scripts": {
     "config": "node ./src/setenv.js",
     "build": "npm run config -- --environment=prod && npm run ng -- build --prod --build-optimizer=true --statsJson=true && npm run build:version",
