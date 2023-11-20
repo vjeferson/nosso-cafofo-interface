@@ -1,100 +1,49 @@
-# SB Admin Angular
+# Nosso Cafofo - Front-end
 
-SB Admin Angular is a free and open-sourced Bootstrap themed Angular 9 starter project.
+O "Nosso Cafofo" visa facilitar e aprimorar o gerenciamento de contas do dia-a-dia em Repúblicas Estudantis, proporcionando uma solução eficiente e intuitiva para os residentes. O sistema foi criado como [Projeto de Conclusão de Curso](https://drive.google.com/file/d/1EflAN8GAvkyCKtBGUPiQ39cHiZsSN00B/view?usp=sharing) da Pós-graduação Lato Sensu em Desenvolvimento Web Full Stack da [Puc Minas](https://www.linkedin.com/school/pucminas/), onde foi detalhado todo o processo de criação/ideação, definição da estrutura, desenvolvimento de ferramentas e/ou sistemas que guiam o funcionamento de um negocio/empresa para atuar no meio digital.
 
-It shares the same project structure and subset of tooling from our professional offering,
-[SB Admin Pro Angular](https://themes.startbootstrap.com/sb-admin-pro-angular/),
-so much of the [SB Admin Pro Angular Documentation](https://docs.startbootstrap.com/sb-admin-pro-angular/quickstart) is applicable.
+## Tecnologias Utilizadas 
+O projeto foi desenvolvido utilizando o framework Angular, na versão 11. O Angular proporciona uma estrutura robusta para o desenvolvimento de aplicações web, facilitando a criação de componentes reutilizáveis e a gestão eficiente do estado da aplicação. Para garantir uma experiência responsiva e consistente em diferentes dispositivos, o Bootstrap foi integrado ao projeto. O Bootstrap oferece uma variedade de componentes e estilos predefinidos que facilitam a criação de interfaces modernas e adaptáveis. O tema SB Admin Angular foi adotado para agilizar o desenvolvimento da interface do usuário. Esse tema fornece componentes estilizados e layouts pré-construídos que se alinham com as melhores práticas de design, economizando tempo no desenvolvimento front-end.
 
-In particular the documentation for [Structure](https://docs.startbootstrap.com/sb-admin-pro-angular/structure-root-level),
-and the documentation for [SBPro Schematics](https://docs.startbootstrap.com/sb-admin-pro-angular/development-general#sb-pro-schematics)
+### SB Admin Angular
+O SB Admin Angular é um projeto inicial Angular com tema Bootstrap gratuito e de código aberto, e ja vem com uma implementação básica de navegação e layouts.
+Ele compartilha a mesma estrutura de projeto e subconjunto de ferramentas da nossa oferta profissional
+[SB Admin Pro](https://startbootstrap.com/theme/sb-admin-pro).
 
-SB Admin Angular comes with a base implementation of navigation and layouts.
+### API
+O código-fonte do projeto da API REST utilizada está presente em outro repositório na plataforma do GitHub, disponínel em [Nosso Cafofo - API](https://github.com/VJEFERSON/nosso-cafofo-api).
 
-For professionally designed components (including an advanced SideNav), 100% code coverage,
-starter cypress tests and more, please consider our professional offering:
-[SB Admin Pro Angular](https://themes.startbootstrap.com/sb-admin-pro-angular/)
-
-## Quick Start
+## Inicialização
 
 ```bash
-git clone git@github.com:startbootstrap/sb-admin-angular.git
-cd sb-admin-angular
+git clone https://github.com/vjeferson/nosso-cafofo-interface.git
+cd nosso-cafofo-interface
 npm install
 npm start
 ```
 
-`npm start` should open a browser window to <http://localhost:4200>
+`npm start` deve abrir uma janela do navegador para <http://localhost:4200>
 
-By default angular runs on port 4200. To change this port you can run:
-
-```bash
-# This starts the development server on port 4205,
-# but you can use any port you'd like
-export PORT=4205 && npm start
-```
-
-## Tests
-
-### Unit Tests
+Por padrão, o Angular é executado na porta 4200. Para alterar esta porta, você pode executar:
 
 ```bash
-npm run test
+# Isso inicia o servidor de desenvolvimento na porta 3000,
+# mas você pode usar qualquer porta que desejar
+export PORT=3000 && npm start
 ```
 
-### e2e
-
-```bash
-npm run e2e
-```
-
-## Production
-
-SB Admin Angular come with a production ready Dockerfile and build scripts.
-
-You can get Docker [here](https://www.docker.com/get-started)
-
-```bash
-npm run docker:build
-npm run docker:run
-```
-
-## Generate Code
-
-```bash
-npm run generate:module -- --path src/modules --name Test
-npm run generate:component -- --path src/modules/test/containers --name Test
-npm run generate:component -- --path src/modules/test/components --name Test
-npm run generate:directive -- --path src/modules/test/directives --name Test
-npm run generate:service -- --path src/modules/test/services --name Test
-```
-
-_Note: Creating a Component and a Container use the same command,
-the difference is just the paths and how they are used._
-
-### MVCC
-
-Containers and Components are both Angular Components, but used in different ways.
-
-Containers should arrange Components.
-
-Obviously this can become subjective, but MVCC is the paradigm that we subscribe to.
-
-## Troubleshooting
+## Solução de problemas
 
 ### npm start
 
-If you receive memory issues adjust
-`max_old_space_size` in the `ng` command of the `package.json`:
+Se você receber problemas de memória, ajuste
+`max_old_space_size` no comando `ng` presente no arquivo `package.json`:
 
 ```json
 "ng": "cross-env NODE_OPTIONS=--max_old_space_size=2048 ./node_modules/.bin/ng",
 ```
 
-You can adjust 2048 to any number you need.
+Você pode ajustar 2048 para qualquer número que precisar.
 
-For more information about why you may need `--max_old_space_size`
-see [this article](https://medium.com/@ashleydavis75/node-js-memory-limitations-30d3fe2664c0).
-
-Keep in mind that this project only uses node to build the angular application.
-There is no production dependency on node.
+Para obter mais informações sobre por que você pode precisar `--max_old_space_size`
+veja [this article](https://medium.com/@ashleydavis75/node-js-memory-limitations-30d3fe2664c0).
