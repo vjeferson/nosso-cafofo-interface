@@ -15,6 +15,25 @@ acessado [neste link](https://bit.ly/3zMCKdT).
 ### API
 O código-fonte do projeto da API REST utilizada está presente em outro repositório na plataforma do GitHub, disponínel em [Nosso Cafofo - API](https://github.com/VJEFERSON/nosso-cafofo-api).
 
+
+## Funcionalidades do projeto
+
+### Cadastro de Moradores
+Permitirá o registro fácil e seguro de informações pessoais dos moradores da república, incluindo nome, contato e dados de emergência.
+
+### Controle de Despesas
+Possibilitará o registro e monitoramento das despesas compartilhadas, como aluguel, contas de serviços públicos e compras coletivas.
+
+### Divisão de Despesas
+Automatizará a divisão justa das despesas entre os moradores, considerando variáveis como área ocupada, consumo individual e outros critérios pré-definidos.
+
+### Histórico Financeiro
+Manterá um registro detalhado das transações financeiras, permitindo aos moradores visualizar seu histórico e acompanhar as mudanças ao longo do tempo.
+
+### Notificações e Lembretes
+Enviará notificações automáticas sobre datas de vencimento, eventos importantes e outras informações relevantes para garantir uma comunicação eficiente.
+Geração de Relatórios:
+
 ## Inicialização
 
 ```bash
