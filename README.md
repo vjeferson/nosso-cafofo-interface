@@ -7,8 +7,6 @@ O projeto foi desenvolvido utilizando o framework Angular, na versão 11. O Angu
 
 ### SB Admin Angular
 O SB Admin Angular é um projeto inicial Angular com tema Bootstrap gratuito e de código aberto, e ja vem com uma implementação básica de navegação e layouts.
-Ele compartilha a mesma estrutura de projeto e subconjunto de ferramentas da nossa oferta profissional
-[SB Admin Pro](https://startbootstrap.com/theme/sb-admin-pro).
 
 ### API
 O código-fonte do projeto da API REST utilizada está presente em outro repositório na plataforma do GitHub, disponínel em [Nosso Cafofo - API](https://github.com/VJEFERSON/nosso-cafofo-api).
